@@ -23,7 +23,4 @@ class TestPage extends Component {
     }
 }
 
-export default connect(
-    state => state.weatherForecasts,
-    dispatch => bindActionCreators(actionCreators, dispatch)
-)(TestPage);
+export default TestPage;

@@ -5,17 +5,18 @@ class QuizRender extends Component {
         super();
         this.state = {reasponse: '' }
     }
-    componentWillMount(){
+    async componentWillMount() {
         const index = parseInt(this.props.match.params.id, 10) || 0;
-        const reasponse = fetch(`api/SampleData/Pisun?startDateIndex=${this.id}`);
-        this.state.reasponse = reasponse.json();
+        const reasponse = await fetch(`api/SampleData/Pisun?startDateIndex=${index}`);
+         console.log(reasponse.json())
     }
 
     render() {
+
         return (
             <div>
                 <div>
-                    {this.state.reasponse.text}
+                    {this.state.reasponse.DateFormatted}
                 </div>
             </div>
         );

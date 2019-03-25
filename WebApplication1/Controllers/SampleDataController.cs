@@ -28,12 +28,11 @@ namespace WebApplication1.Controllers
         [HttpGet("[action]")]
         public IEnumerable<WeatherForecast> Pisun(int startDateIndex)
         {
-
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 DateFormatted = "Pisun1",
-                TemperatureC = 2,
+                TemperatureC = startDateIndex,
                 Summary = Summaries[2]
             });
 
