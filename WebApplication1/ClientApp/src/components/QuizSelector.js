@@ -7,8 +7,12 @@ class QuizSelector extends Component {
             <div className={"Page"}>
             <QuizCard text={"sometext"}
                     id = {1}
-
             />
+                <QuizCard text={"sometext"}
+                          id = {1}
+                />
+
+
             </div>
         );
     }

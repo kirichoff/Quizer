@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import TestPage from "./TestPage";
 
 class QuizRender extends Component {
     constructor(){
@@ -16,6 +17,8 @@ class QuizRender extends Component {
         return (
             <div>
                 <div>
+                    someeeeeee
+
                     {this.state.reasponse.DateFormatted}
                 </div>
             </div>
