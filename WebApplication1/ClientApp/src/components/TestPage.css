@@ -21,17 +21,19 @@
     width: 60vw;
     background-color: white;
     border-radius: 2vh ;
-    margin: auto;
-    display: flex;
-    justify-content: center;
+    display: grid;
+    justify-self: center;
     font-family: Helvetica;
-    flex-direction: column;
+    grid-column-start: 2;
+    grid-row-start: 1;
+    grid-template-columns: 90% 10%;
+    grid-template-rows: 50% 50%;
     font-style: italic;
-    padding-left: 10vw;
-    padding-right: 10vw;
     font-size: 5vh;
 }
 .header{
+    padding-top: 10vh;
+    padding-left: 10vw;
     font-size: 3.2vw;
     font-weight: bolder;
     color: #212121;
@@ -40,42 +42,19 @@
     font-size: 2vw;
     font-weight: bolder;
     color: rgba(33, 33, 33, 0.75);
+    padding-left: 10vw;
 }
 
-.triangle,
-.triangle:before,
-.triangle:after {
-    width:  3em;
-    height: 3em;
-    position: relative;
-    background: #130E87;
-    border-top-right-radius: 30%;
-    border-color: #130e87;
-    border-width: 22px;
+.triangle{
+    height: 100px;
+    width: 100px;
+    background-color: #130e87;
 }
-.triangle:before,
-.triangle:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-.triangle {
-    transform: rotate(30deg) skewX(-30deg) scale(1,.866);
-}
-.triangle:before {
-    transform: rotate(-135deg) skewX(-45deg) scale(1.414,.707) translate(0,-50%);
-}
-.triangle:after {
-    transform: rotate(135deg) skewY(-45deg) scale(.707,1.414) translate(50%);
-}
-
 
 .pad{
-    width: 200px;
-    position: absolute;
-    float: left;
-    margin-left: 75%;
-    margin-top: 25%;
+    display: flex;
+    padding-top: 20vh;
+    justify-content: center ;
+    padding-right: 10%;
+
 }

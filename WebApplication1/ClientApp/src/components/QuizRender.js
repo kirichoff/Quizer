@@ -6,9 +6,9 @@ class QuizRender extends Component {
         this.state = {reasponse: '' }
     }
     async componentWillMount() {
-        const index = parseInt(this.props.match.params.id, 10) || 0;
-        const reasponse = await fetch(`api/SampleData/Pisun?startDateIndex=${index}`);
-         console.log(reasponse.json())
+        //const index = parseInt(this.props.match.params.id, 10) || 0;
+        //const reasponse = await fetch(`api/SampleData/Pisun?startDateIndex=${index}`);
+        // console.log(reasponse.json())
     }
 
     render() {
@@ -17,7 +17,13 @@ class QuizRender extends Component {
             <div>
                 <div>
                     {this.state.reasponse.DateFormatted}
+
+
+                <div className={"triangle"}>asd</div>
+
                 </div>
+
+                addada
             </div>
         );
     }
