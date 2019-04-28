@@ -4,12 +4,16 @@ import FetchData from './components/FetchData';
 import TestPage from "./components/TestPage";
 import QuizSelector from "./components/QuizSelector";
 import QuizRender from "./components/QuizRender";
+import QuizCard from "./components/QuizCard";
+import Background from "./components/Background";
 export default () => (
   <div>
-      <Route exact path ='/' component = {TestPage} />
-    <Route path ='/TestPage' component = {TestPage} />
-    <Route path='/fetchdata/:startDateIndex?' component={FetchData} />
-      <Route path='/Quiz/:id?' component={QuizRender} />
+      <Route path exact  ='/' component = {QuizSelector} />
+     <Route path='/fetchdata/:startDateIndex?' component={FetchData} />
+      <Route path='/bg/Quiz/:id?' component={QuizRender} />
       <Route path='/QuizRender' component={QuizRender} />
+      <Route path='/bg' component={Background} />
+      <Route path='/bg/Tp' component={TestPage} />
+      <Route path='/bg/QuizRender' component={QuizRender} />
   </div>
 );

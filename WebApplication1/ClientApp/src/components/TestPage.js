@@ -7,20 +7,17 @@ import  './TestPage.css'
 
 class TestPage extends Component {
     render() {
-
         return (
-            <div>
-            <div className={"TestPageBody"} >
+            <div className={"center"}>
                 <div className={"Welcome"} >
                 <span className={"header"} >Насколько ты хороший программист?</span>
                     <div className="pad">
-                        <div className={"triangle"}>
-                            <Link to = {"/TestPage/QuizRender"}>da</Link>
+                        <div className={"arrow"}>
+                            <Link  to = {"/bg/QuizRender"}>nex</Link>
                         </div>
                     </div>
                     <span  className={"discripton"} >насколько ты хорош в своем деле</span>
                 </div>
-            </div>
             </div>
         );
     }
