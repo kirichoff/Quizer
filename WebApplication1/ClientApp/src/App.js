@@ -6,6 +6,7 @@ import QuizSelector from "./components/QuizSelector";
 import QuizRender from "./components/QuizRender";
 import QuizCard from "./components/QuizCard";
 import Background from "./components/Background";
+import InfoForm from "./components/InfoForm";
 export default () => (
   <div>
       <Route path exact  ='/' component = {QuizSelector} />
@@ -14,6 +15,7 @@ export default () => (
       <Route path='/QuizRender' component={QuizRender} />
       <Route path='/bg' component={Background} />
       <Route path='/bg/Tp' component={TestPage} />
+      <Route path='/bg/Info' component={InfoForm} />
       <Route path='/bg/QuizRender' component={QuizRender} />
   </div>
 );
