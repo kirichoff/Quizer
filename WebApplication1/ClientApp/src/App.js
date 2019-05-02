@@ -13,7 +13,7 @@ export default () => (
       <Route path='/bg/Quiz/:id?' component={QuizRender} />
       <Route path='/QuizRender' component={QuizRender} />
       <Route path='/bg' component={Background} />
-      <Route path='/bg/Tp' component={TestPage} />
-      <Route path='/bg/QuizRender' component={QuizRender} />
+      <Route path='/bg/Tp/:id' component={TestPage} />
+      <Route path='/bg/QuizRender/:id?' component={QuizRender} />
   </div>
 );

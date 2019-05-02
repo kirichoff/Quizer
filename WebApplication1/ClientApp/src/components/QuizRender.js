@@ -11,7 +11,8 @@ var obj ={
     right: 1,
     tests: [tests,tests,tests]
 }
-var arr = [obj,obj,obj];
+var arr = [obj,obj,obj]
+
 
 class QuizRender extends Component {
     constructor(){
@@ -23,26 +24,55 @@ class QuizRender extends Component {
             isend: false
         }
         this.change = this.change.bind(this)
+        this.getQuiz = this.getQuiz.bind(this)
+        this.getData = this.getData.bind(this)
+    }
+
+     async getData ()
+    {
+        var dt;
+        const url = `api/SampleData/GetQuizById?id=${this.props.match.params.id}`;
+        const response = await fetch(url,{
+            method:"GET"
+        }).then(function(response) { return response.json()}).then(data=>{
+            dt = data
+            return data
+
+        } );
+        this.setState({QuizMap: response.Items});
+        this.setState({QuizMap: "qwe"});
+        console.log("________________   ")
+        console.log(dt);
+        console.log(this.state.QuizMap);
+        console.log("This is req");
+        console.log(response);
+        return response.Items
     }
 
     async getQuiz() {
         let Quizes;
-        const url = `api/SampleData/quiz?hash=${"this.props.match.params.hash"}`;
+        const url = `api/SampleData/GetQuizById?id=${this.props.match.params.id}`;
         try {
             const response = await fetch(url);
              Quizes = await response.json();
         }
         catch (e) {
             Quizes = arr;
-        }
-        this.setState({QuizMap: Quizes});
-        console.log(Quizes);
+            }
+        this.setState({QuizMap: Quizes.Items});
+        console.log("state")
+        console.log(this.state.QuizMap)
+        console.log(Quizes.Items);
     }
 
-    async componentWillMount() {
+     componentWillMount = () => {
         console.log(this.state.counter)
-        this.getQuiz()
+        // console.log(this.getData())
+         //this.setState({QuizMap:});
+         //this.getQuiz();
     }
+
+
 
      inc = ()=>  {
         let counter =this.state.counter;
@@ -50,7 +80,7 @@ class QuizRender extends Component {
          if (counter+1 === this.state.QuizMap.length) isend = true;
          if (counter+1 <= this.state.QuizMap.length-1) counter = counter+1;
         this.setState({counter: counter,anser: -1,isend: isend});
-        console.log(this.state.counter )
+        console.log(this.state.counter)
          console.log(this.state)
     }
     dec = () => {
@@ -67,20 +97,15 @@ class QuizRender extends Component {
         console.log(i)
 
     }
-
-
-
     render(){
-
-        console.log('log'+this.props.match.params.id);
-
+        quid_get();
         return (
             <div>
         <Menu/>
                 <div className={"mainRend"}>
 
                         <div className="header hs">
-                            { this.state.QuizMap[this.state.counter].header}
+                            { this.state.QuizMap[this.state.counter].Question}
                             {this.state.counter}
                             <br/>
                             Что ты любишь  делаеть когда грустно?
@@ -90,9 +115,9 @@ class QuizRender extends Component {
                             {
                                 (!this.state.isend )?
                                     <div>
-                                        { this.state.QuizMap[this.state.counter].tests.map((k, i) =>
-                                        <div onClick={() => this.change(i)}>{k.text}</div>)}
-                                    {isRight(this.state.anser,this.state.QuizMap[this.state.counter].right)}
+                                        { this.state.QuizMap[this.state.counter].Questions.map((k, i) =>
+                                        <div onClick={() => this.change(i)}>{k}</div>)}
+                                    {isRight(this.state.anser,this.state.QuizMap[this.state.counter].Right)}
                                     </div>
                                     :
                                 <div>Good Work</div>
@@ -103,6 +128,23 @@ class QuizRender extends Component {
             </div>
 
         );
+
+
+        async function quid_get () {
+            let Quizes;
+            const url = `api/SampleData/GetQuizById?id=${this.props.match.params.id}`;
+            try {
+                const response = await fetch(url);
+                Quizes = await response.json();
+            }
+            catch (e) {
+                Quizes = arr;
+            }
+            this.setState({QuizMap: Quizes.Items});
+            console.log("state")
+            console.log(this.state.QuizMap)
+            console.log(Quizes.Items);
+        }
 
         function isRight(anser,right) {
             if (anser === -1 )
