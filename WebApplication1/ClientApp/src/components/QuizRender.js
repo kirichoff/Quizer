@@ -25,29 +25,11 @@ class QuizRender extends Component {
             request: false
         }
         this.change = this.change.bind(this)
-        this.getData = this.getData.bind(this)
     }
-
-      getData = () =>
-    {
-        const url = `api/SampleData/GetQuizById?id=${this.props.match.params.id}`;
-         fetch(url, {
-            method: "GET"
-        }).then(function (response) {
-            return response.json()
-        }).then(data =>
-            this.setState({QuizMap: data.Items, request: true})).catch( e=>
-                console.log(e)
-        );
-    };
-
      componentWillMount = () => {
         console.log('WillMount');
-         this.getData()
+     this.setState({QuizMap: this.props.QuizMap})
              };
-
-
-
      inc = ()=>  {
         let counter =this.state.counter;
         let isend = false;
@@ -75,8 +57,6 @@ class QuizRender extends Component {
         return (
             <div>
         <Menu/>
-
-                    { this.state.request ?
                         <div className={"mainRend"}>
                         <div className="header hs">
                             {this.state.QuizMap[this.state.counter].Question}
@@ -97,8 +77,6 @@ class QuizRender extends Component {
                         <div onClick={this.inc}  className="arrow">Arrow</div>
                         </div>
                         </div>
-                        : ""
-                    }
             </div>
 
         );

@@ -33,14 +33,26 @@ class InfoForm extends Component {
         }
     }
 
+    componentDidMount() {
+        console.log('goodby')
+    }
+
+
+
     render() {
         return (
             <div className={"center"}>
                 <div className={"Welcome"}>
                     <span className={"header"}>О себе</span>
                     <div className="pad">
-                        <div className={"arrow"}>
-                            <Link to={"/bg/QuizRender"}>nex</Link>
+                        <div onClick={()=> this.props.result({
+                            wher:this.state.wher,
+                            sex: this.state.sex,
+                            work: this.state.work,
+                            age: this.state.age,
+                            lern: this.state.lern}) }
+                             className={"arrow"}>
+                            Стрелка вправо
                         </div>
                     </div>
                     <div>

@@ -6,14 +6,17 @@ import { Link } from 'react-router-dom';
 import  './TestPage.css'
 
 class TestPage extends Component {
+
+
+
     render() {
         return (
             <div className={"center"}>
                 <div className={"Welcome"} >
-                <span className={"header"} >Насколько ты хороший программист?</span>
+                <span className={"header"} >{this.props.children}</span>
                     <div className="pad">
-                        <div className={"arrow"}>
-                            <Link  to = {"/bg/QuizRender"}>nex</Link>
+                        <div onClick={()=> this.props.next()} className={"arrow"}>
+                            Next
                         </div>
                     </div>
                     <span  className={"discripton"} >насколько ты хорош в своем деле</span>

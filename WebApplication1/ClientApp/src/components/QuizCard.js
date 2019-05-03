@@ -14,7 +14,7 @@ class QuizCard extends Component {
 
             <div>
                 <Link  className={'linkstyle'}
-                       to={`/bg/TP/${this.props.id}`}
+                       to={`/bg/Test/${this.props.id}`}
                         >
                 <div className={`ImageBox`}>
                         <span className={"mainText"} >
