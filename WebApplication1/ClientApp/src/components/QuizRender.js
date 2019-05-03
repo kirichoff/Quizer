@@ -11,7 +11,8 @@ var obj ={
     right: 1,
     tests: [tests,tests,tests]
 }
-var arr = [obj,obj,obj];
+var arr = [obj,obj,obj]
+
 
 class QuizRender extends Component {
     constructor(){
@@ -20,29 +21,32 @@ class QuizRender extends Component {
             counter: 0,
             anser: -1,
             QuizMap: arr,
-            isend: false
+            isend: false,
+            request: false
         }
         this.change = this.change.bind(this)
+        this.getData = this.getData.bind(this)
     }
 
-    async getQuiz() {
-        let Quizes;
-        const url = `api/SampleData/quiz?hash=${"this.props.match.params.hash"}`;
-        try {
-            const response = await fetch(url);
-             Quizes = await response.json();
-        }
-        catch (e) {
-            Quizes = arr;
-        }
-        this.setState({QuizMap: Quizes});
-        console.log(Quizes);
-    }
+      getData = () =>
+    {
+        const url = `api/SampleData/GetQuizById?id=${this.props.match.params.id}`;
+         fetch(url, {
+            method: "GET"
+        }).then(function (response) {
+            return response.json()
+        }).then(data =>
+            this.setState({QuizMap: data.Items, request: true})).catch( e=>
+                console.log(e)
+        );
+    };
 
-    async componentWillMount() {
-        console.log(this.state.counter)
-        this.getQuiz()
-    }
+     componentWillMount = () => {
+        console.log('WillMount');
+         this.getData()
+             };
+
+
 
      inc = ()=>  {
         let counter =this.state.counter;
@@ -50,64 +54,58 @@ class QuizRender extends Component {
          if (counter+1 === this.state.QuizMap.length) isend = true;
          if (counter+1 <= this.state.QuizMap.length-1) counter = counter+1;
         this.setState({counter: counter,anser: -1,isend: isend});
-        console.log(this.state.counter )
+        console.log(this.state.counter)
          console.log(this.state)
-    }
+    };
     dec = () => {
         let counter = 0;
-
         if (this.state.counter > 0) counter = this.state.counter-1
         this.setState({counter: counter ,anser: -1,isend:false});
         console.log(this.state)
-    }
+    };
 
     change  (i)
     {
-       this.setState({anser: i})
+       this.setState({anser: i});
         console.log(i)
-
     }
 
-
-
     render(){
-
-        console.log('log'+this.props.match.params.id);
-
+            console.log('render');
         return (
             <div>
         <Menu/>
-                <div className={"mainRend"}>
 
+                    { this.state.request ?
+                        <div className={"mainRend"}>
                         <div className="header hs">
-                            { this.state.QuizMap[this.state.counter].header}
+                            {this.state.QuizMap[this.state.counter].Question}
                             {this.state.counter}
-                            <br/>
-                            Что ты любишь  делаеть когда грустно?
                         </div>
-                        <div className="QuizRender">
-                            <div onClick={this.dec}  className="arrow">Arrow </div>
-                            {
-                                (!this.state.isend )?
-                                    <div>
-                                        { this.state.QuizMap[this.state.counter].tests.map((k, i) =>
-                                        <div onClick={() => this.change(i)}>{k.text}</div>)}
-                                    {isRight(this.state.anser,this.state.QuizMap[this.state.counter].right)}
-                                    </div>
-                                    :
-                                <div>Good Work</div>
-                            }
-                            <div onClick={this.inc}  className="arrow">Arrow</div>
-                            </div>
-                    </div>
+                        < div className = "QuizRender" >
+                            < div onClick={this.dec}  className="arrow">Arrow </div>
+                    {
+                        (!this.state.isend )?
+                        <div>
+                        {this.state.QuizMap[this.state.counter].Questions.map((k, i) =>
+                            <div key={i} onClick={() => this.change(i)}>{k}</div>)}
+                        {isRight(this.state.anser, this.state.QuizMap[this.state.counter].Right)}
+                        </div>
+                        :
+                        <div>Good Work</div>
+                    }
+                        <div onClick={this.inc}  className="arrow">Arrow</div>
+                        </div>
+                        </div>
+                        : ""
+                    }
             </div>
 
         );
-
         function isRight(anser,right) {
             if (anser === -1 )
-                return ( <div></div> )
-            else if(anser === right)  return (<div>True</div>)
+                return ( <div></div> );
+            else if(anser === right)  return (<div>True</div>);
             else  return (<div>False</div>)
         }
     }

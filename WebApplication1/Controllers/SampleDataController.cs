@@ -1,56 +1,81 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using WebApplication1.Models;
 
+using Newtonsoft.Json;
 namespace WebApplication1.Controllers
 {
     [Route("api/[controller]")]
     public class SampleDataController : Controller
     {
-        private static string[] Summaries = new[]
-        {
-            "qq", "qq", "Chilqqly", "Cqqool", "Milqqd", "Waqqrm", "Baqqlmy", "Hotqq", "Sweltqqering", "Scorqqching"
-        };
+        private MongoController db;                
 
-        [HttpGet("[action]")]
-        public IEnumerable<WeatherForecast> WeatherForecasts(int startDateIndex)
-        {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                DateFormatted = DateTime.Now.AddDays(index + startDateIndex).ToString("d"),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            });
-        }
-        [HttpGet("[action]")]
-        public IEnumerable<WeatherForecast> Pisun(int startDateIndex)
-        {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                DateFormatted = "Pisun1",
-                TemperatureC = startDateIndex,
-                Summary = Summaries[2]
-            });
-
+        public SampleDataController(MongoController con)
+        {           
+            db = con;       
         }
 
-        public class WeatherForecast
+        private string Hash(string password)
         {
-            public string DateFormatted { get; set; }
-            public int TemperatureC { get; set; }
-            public string Summary { get; set; }
+            Byte[] innput = Encoding.UTF8.GetBytes(password);
+            Byte[] hashB = SHA256.Create().ComputeHash(innput);
+            return BitConverter.ToString(hashB);
+        }
 
-            public int TemperatureF
-            {
-                get
-                {
-                    return 32 + (int)(TemperatureC / 0.5556);
-                }
+        [HttpGet("[action]")]
+        public async void Pisun(int startDateIndex)
+        {            
+            Admin A = (new Admin {Login = "Real", Pass_hash = "Admin" });
+          //  await db.Create(A);
+        }
+        [HttpPost("[action]")]
+        public string Login(Admin ad)
+        {
+            var b = db.LogIn(ad.Login);
+            if (b.Result != null)
+            {                
+                return b.Result.Login;
             }
+            else
+            {
+                return "Neo";
+            }           
+        }
+
+        [HttpPost("[action]")]
+        public async void AddQuiz(string q)
+        {            
+                   await db.addQuiz(
+                   JsonConvert.DeserializeObject<Quiz>(q)
+                                    );      
+        }
+        [HttpGet("[action]")]
+        public  string GetQuiz(int hash)
+        {            
+             return JsonConvert.SerializeObject(
+                 db.GetQuiz(hash)
+                 );
+        }
+
+        [HttpGet("[action]")]
+        public string GetQuizById(string id)
+        {
+            return JsonConvert.SerializeObject(
+                db.GetQuizById(id)
+                );
+        }
+
+        [HttpGet("[action]")]
+        public string GetQuizHeaders(int count)
+        {
+            return JsonConvert.SerializeObject(
+                db.GetQuiz(count)
+                );
         }
     }
 }

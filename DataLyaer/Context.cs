@@ -22,7 +22,7 @@ namespace DataLayer
             public Context CreateDbContext(string[] args)
             {
                 var optionsBuilder = new DbContextOptionsBuilder<Context>();
-                optionsBuilder.UseSqlServer("Server=(SQLEXPRESS)\\mssqllocaldb;Database=Quzer;Trusted_Connection=True;MultipleActiveResultSets=true", b => b.MigrationsAssembly("DataLayer"));
+                optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database = M;Trusted_Connection=True;MultipleActiveResultSets=true", b => b.MigrationsAssembly("DataLayer"));
 
                 return new Context(optionsBuilder.Options);
             }
