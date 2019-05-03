@@ -7,14 +7,13 @@ import  './TestPage.css'
 
 class TestPage extends Component {
     render() {
-        console.log(this.props.match.params)
         return (
             <div className={"center"}>
                 <div className={"Welcome"} >
                 <span className={"header"} >Насколько ты хороший программист?</span>
                     <div className="pad">
                         <div className={"arrow"}>
-                            <Link  to = {`/bg/QuizRender/${this.props.match.params.id}`}>nex</Link>
+                            <Link  to = {"/bg/Info"}>nex</Link>
                         </div>
                     </div>
                     <span  className={"discripton"} >насколько ты хорош в своем деле</span>
