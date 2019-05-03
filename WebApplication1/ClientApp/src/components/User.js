@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import InfoForm from "./InfoForm";
 
 class User extends Component {
     constructor(props, context) {
@@ -11,6 +12,9 @@ class User extends Component {
 
 
             <div>
+
+
+                <InfoForm/>
 
                 <div>name</div>
                 {"Vlaer"}
