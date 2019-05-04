@@ -27,6 +27,25 @@ class AgregateComponent extends Component {
         );
     };
 
+    SendStat = (obj) =>{
+        const url = `api/SampleData/SendStat`;
+        let b;
+        console.log('call')
+        if (obj != null) {
+            b = obj
+            b["QuizId"] = this.props.match.params.id;
+            const body = new FormData();
+            for (const pair in b)
+                body.append(pair,b[pair])
+            fetch(url, {
+                method: "Post",
+                body: body
+            }).then(console.log('Sucsces')).catch(e =>
+                console.log(e)
+            );
+        }
+    }
+
     componentWillMount = () => {
         console.log('WillMount');
         this.getData()
@@ -45,7 +64,7 @@ class AgregateComponent extends Component {
                 case
                 1
                 :
-                    return (<InfoForm result={(obj) => this.setState({UserInfo: obj, counter: 2})}
+                    return (<InfoForm result={(obj) =>{ this.setState({UserInfo: obj, counter: 2}); this.SendStat(obj); }}
                     />);
                 case
                 2
@@ -58,7 +77,6 @@ class AgregateComponent extends Component {
     }
 
     render() {
-        console.log(this.state)
         return (
             <div>
 

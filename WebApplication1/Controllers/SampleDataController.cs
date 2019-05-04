@@ -77,5 +77,10 @@ namespace WebApplication1.Controllers
                 db.GetQuiz(count)
                 );
         }
+        [HttpPost("[action]")]
+        public async void SendStat(QuizStats q)
+        {
+            await db.AddQuizStats(q);
+        }
     }
 }

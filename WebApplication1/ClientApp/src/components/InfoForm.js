@@ -37,8 +37,6 @@ class InfoForm extends Component {
         console.log('goodby')
     }
 
-
-
     render() {
         return (
             <div className={"center"}>
