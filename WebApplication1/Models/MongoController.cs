@@ -35,6 +35,10 @@ namespace WebApplication1.Models
         {
             get { return database.GetCollection<Quiz>("Quizes"); }
         }
+        private IMongoCollection<QuizStats> QuizStat
+        {
+            get { return database.GetCollection<QuizStats>("Users"); }
+        }
         // получаем все документы, используя критерии фальтрации
         //public async Task<IEnumerable<Admin>> GetPhones(int? minPrice, int? maxPrice, string name)
         //{
@@ -96,6 +100,11 @@ namespace WebApplication1.Models
             await Phones.InsertOneAsync(p);
         }
 
+        public async Task AddQuizStats(QuizStats p)
+        {
+            await QuizStat.InsertOneAsync(p);
+        }
+
         // обновление документа
         public async Task Update(Admin p)
         {
@@ -111,6 +120,10 @@ namespace WebApplication1.Models
         {
             return await gridFS.DownloadAsBytesAsync(new ObjectId(id));
         }
+
+
+
+
         // сохранение изображения
         //public async Task StoreImage(string id, Stream imageStream, string imageName)
         //{
