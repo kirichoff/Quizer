@@ -43,9 +43,11 @@
 }
 .header{
     padding-top: 10vh;
-    padding-left: 10vw;
-    font-size: 3.2vw;
+    margin: auto;
+    text-align: center;
+    font-size: 3.7vw;
     font-weight: bolder;
+    width: 50vw;
     color: #212121;
 }
 .discripton{
@@ -80,7 +82,7 @@
     align-content: center;
     align-self: center;
     margin-left: 0;
-    padding-left: 5vw;
+    padding-left: 0vw;
 }
 
 
