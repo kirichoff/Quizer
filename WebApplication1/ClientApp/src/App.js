@@ -9,6 +9,7 @@ import  InfoForm from  './components/InfoForm'
 import Background from "./components/Background";
 import User from "./components/User";
 import AgregateComponent from "./components/AgregateComponent";
+import Index from  './components/MasonryComponent'
 export default () => (
   <div>
       <Route path exact  ='/' component = {QuizSelector} />
@@ -17,6 +18,7 @@ export default () => (
       <Route path='/QuizRender' component={QuizRender} />
       <Route path='/bg' component={Background} />
       <Route path='/bg/Tp' component={TestPage} />
+      <Route path='/Mansory/:itemsWithSizes?' component={Index} />
       <Route path='/bg/info/:id' component={InfoForm} />
       <Route path={'/bg/Test/:id'} component={AgregateComponent}  />
       <Route path='/bg/QuizRender/:id' component={QuizRender} />

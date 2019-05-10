@@ -64,11 +64,11 @@ h4 {
 }
 #trigger, #burger, #burger:before, #burger:after {
     position: absolute;
-    top: 25px;
-    left: 25px;
+    top: 3px;
+    left: 3px;
     background: #03A9F4;
-    width: 30px;
-    height: 5px;
+    width: 2vw;
+    height: 0.5vh;
     transition: .2s ease;
     cursor: pointer;
     z-index: 1;
@@ -110,8 +110,8 @@ h4 {
 #menu {
     position: absolute;
     margin: 0; padding: 0;
-    width: 110px;
-    height: 110px;
+    width: 4vw;
+    height: 3vw;
     background-color: #fff;
     border-bottom-right-radius: 100%;
     box-shadow: 0 2px 5px rgba(0,0,0,0.26);

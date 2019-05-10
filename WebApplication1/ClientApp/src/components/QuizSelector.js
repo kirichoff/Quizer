@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 import {actionCreators} from "../store/QuizMap";
 import './selector.css'
+import Menu from "./Menu";
 
 var obj = {text: 'sometext', id: 1}, arr = [obj,obj,obj];
 class QuizSelector extends Component {
@@ -39,6 +40,7 @@ class QuizSelector extends Component {
         console.log(this.state.QuizMap.data);
         return (
             <div className={'main'} >
+                <Menu/>
                 <div className={'Header'} > Выберите тест </div>
                 <div className={"Page"}>
                 {this.state.QuizMap.map( (k,i)=>
