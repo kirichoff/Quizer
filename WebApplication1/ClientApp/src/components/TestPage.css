@@ -90,7 +90,7 @@
     width: 50vw;
     background-color: white;
     border-bottom-left-radius: 2vh ;
-    border-top-right-radius: 2vh;
+    border-top-left-radius: 2vh;
     display: grid;
     justify-self: center;
     font-family: Helvetica;

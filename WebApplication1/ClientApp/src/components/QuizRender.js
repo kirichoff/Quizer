@@ -81,12 +81,6 @@ class QuizRender extends Component {
 
         );
         function isRight(anser,right) {
-            // if (anser === -1 )
-            //     return ({})
-            // else if(anser === right)  return (<div>True</div>);
-            // else  return (<div>False</div>)
-
-
             if(anser === right)  return (<div>True</div>);
             if (anser !== -1 ) return (<div>False</div>)
         }
