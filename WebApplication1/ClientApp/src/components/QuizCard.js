@@ -12,7 +12,7 @@ class QuizCard extends Component {
     render() {
         return (
 
-            <div>
+            <div className={'some'}>
                 <Link  className={'linkstyle'}
                        to={`/bg/Test/${this.props.id}`}
                         >

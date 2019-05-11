@@ -66,9 +66,9 @@ class QuizRender extends Component {
                             < div onClick={this.dec}  className="arrow">Arrow </div>
                     {
                         (!this.state.isend )?
-                        <div>
+                        <div className={'justify_content'} >
                         {this.state.QuizMap[this.state.counter].Questions.map((k, i) =>
-                            <div key={i} onClick={() => this.change(i)}>{k}</div>)}
+                            <div className={'Pointstyle'} key={i} onClick={() => this.change(i)}>{k}</div>)}
                         {isRight(this.state.anser, this.state.QuizMap[this.state.counter].Right)}
                         </div>
                         :
@@ -81,10 +81,8 @@ class QuizRender extends Component {
 
         );
         function isRight(anser,right) {
-            if (anser === -1 )
-                return ( <div></div> );
-            else if(anser === right)  return (<div>True</div>);
-            else  return (<div>False</div>)
+            if(anser === right)  return (<div>True</div>);
+            if (anser !== -1 ) return (<div>False</div>)
         }
     }
 }

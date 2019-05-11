@@ -8,6 +8,8 @@
     transition: all ease-in-out 100ms;
     z-index: 2;
     padding-top: 12vw;
+    grid-row-start: 1;
+    grid-row-end: 3;
 }
 .sec{
  margin: -0.2px;
