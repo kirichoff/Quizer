@@ -54,7 +54,7 @@ class AdminQuizRender extends Component {
 
     addQu = ()=>{
         this.setState({
-            counter: this.state.QuizMap.length-1,
+            counter: this.state.QuizMap.length,
             QuizMap: [...this.state.QuizMap,{
              Question: 'q',
              Descripton: 'q',
@@ -71,7 +71,6 @@ class AdminQuizRender extends Component {
                 <Menu/>
                 <div className={"mainRend"}>
                     <div className="header hs">
-                        {()=> console.log('Input',this.state)}
                         <input
                             className={'Pointstyle'}
                             type={'text'}
