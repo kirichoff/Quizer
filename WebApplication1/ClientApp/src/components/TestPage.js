@@ -6,9 +6,6 @@ import { Link } from 'react-router-dom';
 import  './TestPage.css'
 
 class TestPage extends Component {
-
-
-
     render() {
         return (
             <div className={"center"}>

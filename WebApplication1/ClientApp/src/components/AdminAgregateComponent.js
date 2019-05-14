@@ -2,13 +2,15 @@ import React, {Component} from 'react';
 import TestPage from "./TestPage";
 import QuizRender from "./QuizRender";
 import InfoForm from "./InfoForm";
+import AdminQuizRender from "./AdminQuizRender";
 
-class AgregateComponent extends Component {
+class AdminAgregateComponent extends Component {
     constructor(props, context) {
         super(props, context);
         this.state ={
             QuizMap:null,
-            request: false,
+            vale: '',
+            request: true,
             counter: 0,
             UserInfo: null,
         }
@@ -48,10 +50,28 @@ class AgregateComponent extends Component {
 
     componentWillMount = () => {
         console.log('WillMount');
-        this.getData()
+      //  this.getData()
     };
 
-     Tags = () => {
+    Send = (state) =>{
+
+        const url = 'api/SampleData/AddQuiz'
+        const body = new FormData;
+        body.append('q',JSON.stringify(
+            {
+                Header:this.state.vale,
+                Baground: '#123H1',
+                Items: state
+            }))
+        fetch(url,{
+            method:'Post',
+            body: body
+        }).then(console.log('success')).catch(e=>console.log(e))
+    }
+
+
+
+    Tags = () => {
         if(this.state.request)
         {
             switch (this.state.counter) {
@@ -59,18 +79,16 @@ class AgregateComponent extends Component {
                 0
                 :
                     return (<TestPage next={() => this.setState({counter: 1})}>
-                        {this.state.QuizMap.Header}
+                        <input type="text"
+                              value={this.state.vale}
+                               onChange={event => this.setState({vale: event.target.value})}
+                        />
                     </TestPage>);
                 case
                 1
                 :
-                    return (<InfoForm result={      (obj) =>{ this.setState({UserInfo: obj, counter: 2}); this.SendStat(obj); }}
-                    />);
-                case
-                2
-                :
-                    return (<QuizRender
-                        QuizMap={this.state.QuizMap.Items}
+                    return (<AdminQuizRender
+                            cl={this.Send}
                     />);
             }
         }
@@ -91,4 +109,4 @@ class AgregateComponent extends Component {
     }
 }
 
-export default AgregateComponent;
+export default AdminAgregateComponent;
