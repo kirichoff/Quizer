@@ -17,7 +17,7 @@ namespace WebApplication1.Models
         public MongoController()
         {
             // строка подключения
-            string connectionString = "mongodb://localhost:27017/Quiz";
+            string connectionString = "mongodb://localhost:27017/Quizer";
             var connection = new MongoUrlBuilder(connectionString);
             // получаем клиента для взаимодействия с базой данных
             MongoClient client = new MongoClient(connectionString);
