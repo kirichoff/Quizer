@@ -97,7 +97,6 @@ class AdminQuizRender extends Component {
                                     }>Send</button>
                                 </div>
                         }
-
                         <div   className="arrow">
                             <span onClick={this.inc} >  Arrow</span>
                             <span onClick={this.add}> Вариант++</span>

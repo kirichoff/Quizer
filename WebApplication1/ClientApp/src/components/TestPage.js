@@ -4,16 +4,18 @@ import {bindActionCreators} from "redux";
 import {actionCreators} from "../store/WeatherForecasts";
 import { Link } from 'react-router-dom';
 import  './TestPage.css'
+import Arrow from "./Arrow";
 
 class TestPage extends Component {
     render() {
         return (
-            <div className={"center"}>
+            <div className={"TestPageBody"}>
                 <div className={"Welcome"} >
-                <span className={"header"} >{this.props.children}</span>
+                <span className={"header"} >{this.props.children}
+                </span>
                     <div className="pad">
-                        <div onClick={()=> this.props.next()} className={"arrow"}>
-                            Next
+                        <div onClick={()=> this.props.next()}>
+                             <Arrow/>
                         </div>
                     </div>
                     <span  className={"discripton"} >насколько ты хорош в своем деле</span>

@@ -1,0 +1,26 @@
+#Слой_1{
+    position: relative;
+    z-index: 200;
+}
+
+.st0{
+        fill: url(#SVGID_2_);
+        stroke:url(#SVGID_1_);
+        stroke-width:3;
+         stroke-miterlimit:10;
+ }
+
+svg stop{
+    transition:  1s ease-in-out  all;
+}
+ svg:hover #SVGID_2_ stop:nth-child(1) {
+    stop-color: red;
+}
+
+ svg:hover #SVGID_2_ stop:nth-child(2) {
+    stop-color: #00f;
+}
+
+ svg:hover #SVGID_2_ stop:nth-child(3) {
+    stop-color: #3000cf;
+}

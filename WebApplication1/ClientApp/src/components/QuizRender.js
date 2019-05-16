@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import TestPage from "./TestPage";
 import "./TestPage.css"
 import Menu from "./Menu";
+import Arrow from "./Arrow";
 
 const tests = {
     text:"hallow"
@@ -74,7 +75,9 @@ class QuizRender extends Component {
                         :
                         <div>Good Work</div>
                     }
-                        <div onClick={this.inc}  className="arrow">Arrow</div>
+                        <div onClick={this.inc}  className="arrow">
+                            a<Arrow/>
+                        </div>
                         </div>
                         </div>
             </div>
