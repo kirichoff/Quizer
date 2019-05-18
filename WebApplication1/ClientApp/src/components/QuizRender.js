@@ -61,10 +61,11 @@ class QuizRender extends Component {
                         <div className={"mainRend"}>
                         <div className="header hs">
                             {this.state.QuizMap[this.state.counter].Question}
-                            {this.state.counter}
                         </div>
                         < div className = "QuizRender" >
-                            < div onClick={this.dec}  className="arrow">Arrow </div>
+                            < div onClick={this.dec} style={{margin: '15%' }}   className="arrow">
+                                <Arrow  rotate={'top'} />
+                            </div>
                     {
                         (!this.state.isend )?
                         <div className={'justify_content'} >
@@ -76,8 +77,13 @@ class QuizRender extends Component {
                         <div>Good Work</div>
                     }
                         <div onClick={this.inc}  className="arrow">
-                            a<Arrow/>
+                           <Arrow rotate={'bottom'}/>
                         </div>
+
+                            <div className={"progress"}>
+                                <div className={"progress-bar progress-bar-success"} style={{width: ((this.state.counter+1)/(this.state.QuizMap.length))*100+'%' }}>
+                                </div>
+                            </div>
                         </div>
                         </div>
             </div>

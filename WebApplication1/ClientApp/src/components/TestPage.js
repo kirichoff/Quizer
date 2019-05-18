@@ -15,10 +15,12 @@ class TestPage extends Component {
                 </span>
                     <div className="pad">
                         <div onClick={()=> this.props.next()}>
-                             <Arrow/>
+                             <Arrow
+                                rotate={'right'}
+                             />
                         </div>
                     </div>
-                    <span  className={"discripton"} >насколько ты хорош в своем деле</span>
+                    <span  className={"discripton"} >насколько  хорош в своем деле</span>
                 </div>
             </div>
         );
