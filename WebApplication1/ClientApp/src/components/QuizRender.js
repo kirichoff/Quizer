@@ -14,6 +14,7 @@ var obj ={
 }
 var arr = [obj,obj,obj]
 
+const st = 'Pointstyle bg'
 
 class QuizRender extends Component {
     constructor(){
@@ -23,7 +24,9 @@ class QuizRender extends Component {
             anser: -1,
             QuizMap: arr,
             isend: false,
-            request: false
+            request: false,
+            is_answer: false,
+            bg: ''
         }
         this.change = this.change.bind(this)
     }
@@ -36,21 +39,25 @@ class QuizRender extends Component {
         let isend = false;
          if (counter+1 === this.state.QuizMap.length) isend = true;
          if (counter+1 <= this.state.QuizMap.length-1) counter = counter+1;
-        this.setState({counter: counter,anser: -1,isend: isend});
-        console.log(this.state.counter)
-         console.log(this.state)
+        this.setState({counter: counter,anser: -1,isend: isend,is_answer: false,bg:''});
+        this.render()
     };
     dec = () => {
         let counter = 0;
         if (this.state.counter > 0) counter = this.state.counter-1
         this.setState({counter: counter ,anser: -1,isend:false});
-        console.log(this.state)
     };
 
-    change  (i)
+    change  = (e)=>
     {
-       this.setState({anser: i});
-        console.log(i)
+        console.log(e)
+       this.setState({anser: parseInt(e.target.dataset.index ) });
+       console.log(e.target.dataset.index )
+       if(this.state.QuizMap[this.state.counter].Right == parseInt(e.target.dataset.index) ) {
+           this.setState({is_answer: true,bg: 'bg' });
+           e.target.style = 'background-color: #96ff63;'
+       }
+       e.preventDefault()
     }
 
     render(){
@@ -70,7 +77,7 @@ class QuizRender extends Component {
                         (!this.state.isend )?
                         <div className={'justify_content'} >
                         {this.state.QuizMap[this.state.counter].Questions.map((k, i) =>
-                            <div className={'Pointstyle'} key={i} onClick={() => this.change(i)}>{k}</div>)}
+                            <div className={'Pointstyle'} data-index = {i} key={i} onClick={this.change}>{k}</div>)}
                         {isRight(this.state.anser, this.state.QuizMap[this.state.counter].Right)}
                         </div>
                         :
@@ -89,8 +96,11 @@ class QuizRender extends Component {
             </div>
 
         );
+        function is_Answer(is) {
+            if(is) return (<div className={'answer'}>Все верно</div>)
+        }
         function isRight(anser,right) {
-            if(anser === right)  return (<div>True</div>);
+            if(anser === right)  return (<div  >True</div>);
             if (anser !== -1 ) return (<div>False</div>)
         }
     }

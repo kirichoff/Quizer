@@ -117,10 +117,25 @@
     align-content: center;
     align-items: center;
     border-radius:50px;
-    box-shadow: 1px 2px 7px 4px rgba(0, 0, 0, 0.36);
+    box-shadow: 1px 2px 7px 4px rgba(0, 0, 0, 0.20);
     font-style: italic;
     font-size: 5vh;
+    transition: transform 0.07s ease-in-out;
 }
+
+.Pointstyle:hover {
+    box-shadow: 1px 10px 20px 5px rgba(0, 0, 0, 0.16);
+    transform: scale(1.05);
+}
+.bg {
+    background-color: #96ff63;
+}
+.answer{
+    text-align: center;
+    font-family: Helvetica;
+    font-size: 1.3vw;
+}
+
 .arrow
 {
     justify-self: center;
