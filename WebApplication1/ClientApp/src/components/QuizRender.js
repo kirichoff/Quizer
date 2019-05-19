@@ -25,7 +25,7 @@ class QuizRender extends Component {
             QuizMap: arr,
             isend: false,
             request: false,
-            is_answer: false,
+            is_answer: null,
             bg: null
         }
         this.change = this.change.bind(this)
@@ -51,7 +51,7 @@ class QuizRender extends Component {
         let isend = false;
          if (counter+1 === this.state.QuizMap.length) isend = true;
          if (counter+1 <= this.state.QuizMap.length-1) counter = counter+1;
-        this.setState({counter: counter,anser: -1,isend: isend,is_answer: false});
+        this.setState({counter: counter,anser: -1,isend: isend,is_answer: null});
         this.render()
     };
     dec = () => {
@@ -64,11 +64,25 @@ class QuizRender extends Component {
     {
         let index =  parseInt(e.target.dataset.index);
        this.setState({anser:index});
-       if(this.state.QuizMap[this.state.counter].Right == index ) {
+       let notnul =false;
+
+       this.state.bg[this.state.counter].s.map((k)=>{
+            if(k !== null)
+                notnul=true
+            }
+       )
+       if( (this.state.QuizMap[this.state.counter].Right == index) && !notnul   ) {
            let buf = this.state.bg;
            buf[this.state.counter].s[index] ={backgroundColor: '#96ff63'};
-           this.setState({is_answer: true,bg: {...buf} });
+           this.setState({is_answer: 'Верно',bg: {...buf} });
        }
+       else if(!notnul)
+        {
+            let buf = this.state.bg;
+            buf[this.state.counter].s[this.state.QuizMap[this.state.counter].Right] ={backgroundColor: '#96ff63'};
+            buf[this.state.counter].s[index] ={backgroundColor: '#ff6d5c'};
+            this.setState({is_answer: 'Неверно',bg: {...buf} });
+        }
     }
 
     render(){
@@ -88,7 +102,8 @@ class QuizRender extends Component {
                         <div className={'justify_content'} >
                         {this.state.QuizMap[this.state.counter].Questions.map((k, i) =>
                             <div className={'Pointstyle'} style={this.state.bg[this.state.counter].s[i] } data-index = {i} key={i} onClick={this.change}>{k}</div>)}
-                        {isRight(this.state.anser,  this.state.QuizMap[this.state.counter].Right)}
+                        {/*{isRight(this.state.anser,  this.state.QuizMap[this.state.counter].Right,this.state.is_answer)}*/}
+                            { (this.state.is_answer)? <div className={'answer'}>{this.state.is_answer}</div> : null}
                         </div>
                         :
                         <div>Good Work</div>
@@ -97,22 +112,31 @@ class QuizRender extends Component {
                            <Arrow rotate={'bottom'}/>
                         </div>
 
+
+                            { (!this.state.isend)?
+                                <div className={"progress"}>
                             <div className={"progress"}>
                                 <div className={"progress-bar progress-bar-success"} style={{width: ((this.state.counter+1)/(this.state.QuizMap.length))*100+'%' }}>
                                 </div>
                             </div>
+                                <div className={'answer'}>{this.state.counter}  </div>
+                                </div>
+                                : null
+                            }
+
+
+
+
                         </div>
                         </div>
             </div>
 
         );
-        function is_Answer(is) {
-            if(is) return (<div className={'answer'}>Все верно</div>)
+        function isRight(anser,right,isan) {
+            if(anser === right )  return (<div className={'answer'}>{isan}</div>);
+            if (anser !== -1 ) return (<div className={'answer'}>{isan}</div>)
         }
-        function isRight(anser,right) {
-            if(anser === right)  return (<div className={'answer'} >верно</div>);
-            if (anser !== -1 ) return (<div className={'answer'} >не </div>)
-        }
+
     }
 }
 
