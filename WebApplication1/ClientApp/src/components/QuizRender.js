@@ -14,7 +14,7 @@ var obj ={
 }
 var arr = [obj,obj,obj]
 
-const st = 'Pointstyle bg'
+const st = {backgroundColor: '#96ff63'};
 
 class QuizRender extends Component {
     constructor(){
@@ -26,20 +26,32 @@ class QuizRender extends Component {
             isend: false,
             request: false,
             is_answer: false,
-            bg: ''
+            bg: null
         }
         this.change = this.change.bind(this)
     }
      componentWillMount = () => {
         console.log('WillMount');
-     this.setState({QuizMap: this.props.QuizMap})
+        console.log( this.props.QuizMap)
+            let ar = [];
+        this.props.QuizMap.map((k,i)=>
+            {
+                ar.push({s:[]});
+                    k.Questions.map(()=>{
+                        ar[i].s.push(null)
+                    });
+            }
+        )
+
+         this.setState({QuizMap: this.props.QuizMap,bg: ar})
+
              };
      inc = ()=>  {
         let counter =this.state.counter;
         let isend = false;
          if (counter+1 === this.state.QuizMap.length) isend = true;
          if (counter+1 <= this.state.QuizMap.length-1) counter = counter+1;
-        this.setState({counter: counter,anser: -1,isend: isend,is_answer: false,bg:''});
+        this.setState({counter: counter,anser: -1,isend: isend,is_answer: false});
         this.render()
     };
     dec = () => {
@@ -50,18 +62,16 @@ class QuizRender extends Component {
 
     change  = (e)=>
     {
-        console.log(e)
-       this.setState({anser: parseInt(e.target.dataset.index ) });
-       console.log(e.target.dataset.index )
-       if(this.state.QuizMap[this.state.counter].Right == parseInt(e.target.dataset.index) ) {
-           this.setState({is_answer: true,bg: 'bg' });
-           e.target.style = 'background-color: #96ff63;'
+        let index =  parseInt(e.target.dataset.index);
+       this.setState({anser:index});
+       if(this.state.QuizMap[this.state.counter].Right == index ) {
+           let buf = this.state.bg;
+           buf[this.state.counter].s[index] ={backgroundColor: '#96ff63'};
+           this.setState({is_answer: true,bg: {...buf} });
        }
-       e.preventDefault()
     }
 
     render(){
-            console.log('render');
         return (
             <div>
         <Menu/>
@@ -77,8 +87,8 @@ class QuizRender extends Component {
                         (!this.state.isend )?
                         <div className={'justify_content'} >
                         {this.state.QuizMap[this.state.counter].Questions.map((k, i) =>
-                            <div className={'Pointstyle'} data-index = {i} key={i} onClick={this.change}>{k}</div>)}
-                        {isRight(this.state.anser, this.state.QuizMap[this.state.counter].Right)}
+                            <div className={'Pointstyle'} style={this.state.bg[this.state.counter].s[i] } data-index = {i} key={i} onClick={this.change}>{k}</div>)}
+                        {isRight(this.state.anser,  this.state.QuizMap[this.state.counter].Right)}
                         </div>
                         :
                         <div>Good Work</div>
@@ -100,8 +110,8 @@ class QuizRender extends Component {
             if(is) return (<div className={'answer'}>Все верно</div>)
         }
         function isRight(anser,right) {
-            if(anser === right)  return (<div  >True</div>);
-            if (anser !== -1 ) return (<div>False</div>)
+            if(anser === right)  return (<div className={'answer'} >верно</div>);
+            if (anser !== -1 ) return (<div className={'answer'} >не </div>)
         }
     }
 }
