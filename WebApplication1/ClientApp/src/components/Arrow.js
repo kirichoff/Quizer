@@ -15,7 +15,7 @@ class Arrow extends Component {
         }
 
         return (
-            <div>
+            <div >
                 <svg style={{transform: sw(this.props.rotate)}} id='Слой_1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'>
                     <linearGradient id='SVGID_1_' gradientUnits='userSpaceOnUse' x1='0.5'
                                     y1='102' x2='199.5' y2='102'>

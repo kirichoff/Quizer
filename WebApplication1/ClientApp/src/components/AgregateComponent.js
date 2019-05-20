@@ -64,13 +64,14 @@ class AgregateComponent extends Component {
                 case
                 1
                 :
-                    return (<InfoForm result={      (obj) =>{ this.setState({UserInfo: obj, counter: 2}); this.SendStat(obj); }}
+                    return (<InfoForm result={(obj) => { this.setState({UserInfo: obj, counter: 2}); }}
                     />);
                 case
                 2
                 :
                     return (<QuizRender
-                        QuizMap={this.state.QuizMap.Items}
+                        QuizMap = {this.state.QuizMap.Items}
+                        result = {( obj )=> this.SendStat(obj) }
                     />);
             }
         }

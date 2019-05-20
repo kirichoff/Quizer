@@ -140,6 +140,7 @@
 {
     justify-self: center;
     justify-content: center;
+    margin: 1px;
     width: 20%;
     height: 20%;
 }
@@ -152,10 +153,10 @@
 
 }
 .progress{
-    margin-top: 10vh;
+
     float: bottom;
-    height: 3%;
-    width: 140%;
+    height: 16%;
+    width: 100%;
 }
 .progress-bar{
     width: 20px;
@@ -169,4 +170,22 @@
     justify-items: center;
     justify-content: center;
     margin: auto;
+}
+
+.prog{
+    margin-top: 1vh;
+    float: bottom;
+    height: 20%;
+    width: 140%;
+}
+
+.end{
+    width: 40vw;
+    height: 5vh;
+    padding-top: 1%;
+    transition: all ease-in-out 0.2s;
+}
+.end:hover{
+    transform: scale(1.1);
+    box-shadow: 1px 10px 20px 5px rgba(0, 0, 0, 0.16);
 }
