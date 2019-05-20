@@ -189,3 +189,28 @@
     transform: scale(1.1);
     box-shadow: 1px 10px 20px 5px rgba(0, 0, 0, 0.16);
 }
+.toHome{
+    background: linear-gradient(135deg, #130e87 19%,#ff1396 100%);
+    width: 10vw;
+    height: 5vh;
+    border-radius: 10px;
+    transition: all ease-in-out 0.2s;
+}
+.pos
+{
+    z-index: 1000;
+    position: absolute;
+    margin-left: 3%;
+    margin-top: 0%;
+    text-align: center;
+    color: #eeeeee;
+}
+.Home{
+    background: linear-gradient(135deg, #130e87 19%,#ff1396 100%);
+    width: 10vw;
+    height: 5vh;
+    border-radius: 10px;
+}
+.Home:hover .toHome{
+    filter: blur(20px);
+}

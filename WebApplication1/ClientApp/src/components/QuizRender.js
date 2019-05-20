@@ -4,6 +4,7 @@ import "./TestPage.css"
 import Menu from "./Menu";
 import Arrow from "./Arrow";
 import EndOfQuestion from "./EndOfQuestion";
+import {Link} from "react-router-dom";
 
 const tests = {
     text:"hallow"
@@ -88,13 +89,18 @@ class QuizRender extends Component {
             this.setState({is_answer: 'Неверно',bg: {...buf} });
         }
     }
+
+    send(){
+        console.log('sending...')
+    }
+
     render(){
         return (
             <div  >
         <Menu/>
                         <div className={"mainRend"}>
                         <div className="header hs">
-                            {this.props.QuizMap[this.state.counter].Question}
+                             { !(this.state.isend )? this.props.QuizMap[this.state.counter].Question : 'Good Work!' }
                         </div>
                         < div className = "QuizRender" >
                             < div onClick={this.dec} style={{margin: '15%' }}   className="arrow">
@@ -109,17 +115,26 @@ class QuizRender extends Component {
                         </div>
                         :
                         <div style={{marginTop: "10vh" }} >
-                            <div className={'answer'}>Good Work</div>
                             <EndOfQuestion
                                 linck = {this.linck}
                                 Questions={this.props.QuizMap}
                                 answer={this.state.answerMap} />
                         </div>
                     }
-
-                        <div onClick={this.inc} className="arrow">
-                              <Arrow  rotate={'bottom'}/>
-                        </div>
+                            { (!this.state.isend )?
+                                <div onClick={this.inc} className="arrow">
+                                    <Arrow rotate={'bottom'}/>
+                                </div>
+                                :
+                                <Link  style={{textDecoration: 'none'  }} className={'justify_content'}  to={'/'} >
+                                    <div>
+                                        <div className={'Home'}>
+                                            <div className={'pos'}>Home</div>
+                                            <div className={'toHome'}></div>
+                                        </div>
+                                    </div>
+                                </Link>
+                            }
                             { (!this.state.isend)?
                                 <div className={"prog"}>
                             <div className={"progress"}>
