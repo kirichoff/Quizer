@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import  './TestPage.css'
 import  './Infoform.css'
 import Radio from "./Radio";
+import Arrow from "./Arrow";
 
 class InfoForm extends Component {
     constructor(props, context) {
@@ -39,7 +40,7 @@ class InfoForm extends Component {
 
     render() {
         return (
-            <div className={"center"}>
+            <div className={"TestPageBody"}>
                 <div className={"Welcome"}>
                     <span className={"header"}>О себе</span>
                     <div className="pad">
@@ -48,19 +49,23 @@ class InfoForm extends Component {
                             sex: this.state.sex,
                             work: this.state.work,
                             age: this.state.age,
-                            lern: this.state.lern}) }
+                            lern: this.state.lern})
+                        }
                              className={"arrow"}>
-                            Стрелка вправо
+                            <Arrow/>
+
                         </div>
                     </div>
-                    <div>
+                    <div className={'center'}>
+
                         <Radio val1={'Город'} val2={'Село'} onchange={this.change}>Место проживания</Radio>
                         <Radio val1={'Да'} val2={'Нет'} onchange={this.change}>Работаете?</Radio>
-                        <Radio val1={'Да'} val2={'Нет'} onchange={this.change}>Пол</Radio>
+                        <Radio val1={'M'} val2={'Ж'} onchange={this.change}>Пол</Radio>
                         <div className={"discripton"}>Возраст</div>
-                        <input type={'number'} onChange={(e) => this.setState({age: e.currentTarget.value})}/>
+                        <input className={'Pointstyle'} type={'number'} onChange={(e) => this.setState({age: e.currentTarget.value})}/>
                         <div className={"discripton"}>Образование</div>
-                        <input type={'text'} onChange={(e) => this.setState({lern: e.currentTarget.value})}/>
+                        <input className={'Pointstyle'} type={'text'} onChange={(e) => this.setState({lern: e.currentTarget.value})}/>
+
                     </div>
                 </div>
             </div>

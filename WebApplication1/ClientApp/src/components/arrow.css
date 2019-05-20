@@ -1,0 +1,34 @@
+#Слой_1{
+    position: relative;
+    z-index: 200;
+}
+svg{
+    transition:  0.5s ease-in-out  all;
+}
+linearGradient{
+    transition:  0.5s ease-in-out  all;
+}
+.st0{
+        stroke:url(#SVGID_1_);
+        stroke-width:3;
+         stroke-miterlimit:10;
+    transition:  0.5s ease-in-out  all;
+ }
+.st0:hover{
+    fill: url(#SVGID_1_);
+}
+
+/*svg stop{*/
+/*    transition:  0.5s ease-in-out  all;*/
+/*}*/
+/* svg:hover #SVGID_2_ stop:nth-child(1) {*/
+/*    stop-color: red;*/
+/*}*/
+
+/* svg:hover #SVGID_2_ stop:nth-child(2) {*/
+/*    stop-color: #00f;*/
+/*}*/
+
+/* svg:hover #SVGID_2_ stop:nth-child(3) {*/
+/*    stop-color: #3000cf;*/
+/*}*/

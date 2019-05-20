@@ -1,13 +1,11 @@
 .rad{
-    width: 5%;
-    height: 5%;
-    background-color: #444444;
+    padding: 2%;
+    margin-left: 20%;
 }
 .cl{
-    width: 5%;
-    height: 5%;
+    margin-left: 20%;
+    padding: 2%;
+    border-radius: 8vh;
+    background: linear-gradient(135deg, #130e87 19%,#ff1396 100%);
+}
 
-    background-color: #130e87;
-}
-.center{
-}

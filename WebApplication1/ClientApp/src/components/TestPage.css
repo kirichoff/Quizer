@@ -19,31 +19,35 @@
 }
 .center
 {
-    padding: 10%;
-    display: flex;
     align-items: center;
     align-content: center;
     justify-content: center;
-    overflow: auto;
+    margin: auto;
 }
 .Welcome{
-    height: 60vh;
-    width: 60vw;
+    margin-top: 10%;
+    width: 70%;
+    height: 90%;
     background-color: white;
-    border-radius: 2vh ;
+    border-radius: 7vh ;
     display: grid;
     justify-self: center;
     font-family: Helvetica;
+    padding-bottom: 30%;
     grid-column-start: 2;
     grid-row-start: 1;
     grid-template-columns: 90% 10%;
     grid-template-rows: 50% 50%;
     font-style: italic;
     font-size: 5vh;
+    margin-bottom: 10%;
 }
 .header{
+    color: #eeeeee;
     padding-top: 10vh;
     margin: auto;
+    margin-left: 10vw;
+    margin-bottom: 20%;
     text-align: center;
     font-size: 3.7vw;
     font-weight: bolder;
@@ -55,6 +59,7 @@
     font-weight: bolder;
     color: rgba(33, 33, 33, 0.75);
     padding-left: 10vw;
+ 
 }
 
 .triangle{
@@ -64,9 +69,7 @@
 }
 
 .pad{
-    display: flex;
     padding-top: 20vh;
-    justify-content: center ;
     padding-right: 10%;
 }
 .mainRend{
@@ -77,8 +80,8 @@
     justify-content: center;
 }
 .hs{
-    color: rgb(33, 32, 30);
-    padding-bottom: 50vh;
+    color: rgb(255, 253, 249);
+    padding-bottom: 30vh;
     align-content: center;
     align-self: center;
     margin-left: 0;
@@ -94,18 +97,14 @@
     border-bottom-left-radius: 2vh ;
     border-top-left-radius: 2vh;
     display: grid;
-    justify-self: center;
-    font-family: Helvetica;
-    margin: auto;
+    /*margin: auto;*/
     justify-self: center;
     justify-content: center;
     justify-items: center;
-    padding-top: 10vh;
+    /*padding-top: 10vh;*/
     grid-column-start: 2;
     grid-row-start: 1;
-    grid-template-rows:  10%;
-    font-style: italic;
-    font-size: 5vh;
+    grid-template-rows:  20%;
 }
 .Pointstyle{
     width: 30vw;
@@ -113,18 +112,58 @@
     position: center;
     text-align: center;
     margin: auto;
+    margin-bottom: 10px;
     margin-bottom: 4.5vh;
     align-content: center;
     align-items: center;
     border-radius:50px;
-    box-shadow: 1px 2px 7px 4px rgba(0, 0, 0, 0.36);
+    box-shadow: 1px 2px 7px 4px rgba(0, 0, 0, 0.20);
+    font-style: italic;
+    font-size: 5vh;
+    transition: transform 0.07s ease-in-out;
 }
+
+.Pointstyle:hover {
+    box-shadow: 1px 10px 20px 5px rgba(0, 0, 0, 0.16);
+    transform: scale(1.05);
+}
+.bg {
+    background-color: #96ff63;
+}
+.answer{
+    text-align: center;
+    font-family: Helvetica;
+    font-size: 1.5vw;
+}
+
 .arrow
 {
     justify-self: center;
     justify-content: center;
+    width: 20%;
+    height: 20%;
 }
 
+.progress .progress-bar {
+    animation-name: animateBar;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: .4s;
+
+}
+.progress{
+    margin-top: 10vh;
+    float: bottom;
+    height: 3%;
+    width: 140%;
+}
+.progress-bar{
+    width: 20px;
+}
+@keyframes animateBar {
+    0% {transform: translateX(-100%);}
+    100% {transform: translateX(0);}
+}
 .st0{fill:#FFFFFF;stroke:#000000;stroke-miterlimit:10;}
 .justify_content{
     justify-items: center;
