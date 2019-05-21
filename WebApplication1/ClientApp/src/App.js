@@ -13,6 +13,7 @@ import Index from  './components/MasonryComponent'
 import AdminAgregateComponent from "./components/AdminAgregateComponent";
 import AdminQuizRender from "./components/AdminQuizRender";
 import Arrow from "./components/Arrow";
+import {Masonry} from "react-virtualized";
 export default () => (
   <div>
       <Route path exact  ='/' component = {QuizSelector} />
@@ -20,6 +21,7 @@ export default () => (
       <Route path='/bg/Quiz/:id?' component={QuizRender} />
       <Route path='/QuizRender' component={QuizRender} />
       <Route path='/bg' component={Background} />
+      <Route path={'/Masonry'}  component={Index} />
       <Route path='/bg/Tp' component={TestPage} />
       <Route path='/Mansory/:itemsWithSizes?' component={Index} />
       <Route path='/bg/info/:id' component={InfoForm} />

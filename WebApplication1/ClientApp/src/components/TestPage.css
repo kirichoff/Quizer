@@ -46,12 +46,11 @@
     color: #eeeeee;
     padding-top: 10vh;
     margin: auto;
-    margin-left: 10vw;
-    margin-bottom: 20%;
     text-align: center;
+    align-self: center;
+    margin-left: 45%;
     font-size: 3.7vw;
     font-weight: bolder;
-    width: 50vw;
     color: #212121;
 }
 .discripton{
@@ -71,6 +70,8 @@
 .pad{
     padding-top: 20vh;
     padding-right: 10%;
+    width: 40vw;
+    height: 40vh;
 }
 .mainRend{
     display: grid;
