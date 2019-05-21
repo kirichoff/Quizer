@@ -78,6 +78,7 @@ class AgregateComponent extends Component {
 
     render() {
         return (
+
             <div>
 
                 {this.state.request ?
