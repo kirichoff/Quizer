@@ -55,7 +55,7 @@ namespace WebApplication1
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
             });
-
+            
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ClientApp";

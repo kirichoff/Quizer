@@ -5,25 +5,29 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
 namespace WebApplication1.Models
 {
     public class MongoController
     {
+      
         IMongoDatabase database; // база данных
         IGridFSBucket gridFS;   // файловое хранилище
         private object stringbuilder;
 
+
+
         public MongoController()
-        {
-            // строка подключения
-            string connectionString = "mongodb://localhost:27017/Quizer";
-            var connection = new MongoUrlBuilder(connectionString);
-            // получаем клиента для взаимодействия с базой данных
+        {           
+            string connectionString = "mongodb://Quizer:12345678k@quizerdata-shard-00-00-xju83.mongodb.net:27017,quizerdata-shard-00-01-xju83.mongodb.net:27017,quizerdata-shard-00-02-xju83.mongodb.net:27017/test?ssl=true&replicaSet=QuizerData-shard-0&authSource=admin&retryWrites=true";  //"mongodb://localhost:27017/Quiz";            
+
+            string databas = "Quiz";
+
             MongoClient client = new MongoClient(connectionString);
-            // получаем доступ к самой базе данных
-            database = client.GetDatabase(connection.DatabaseName);
-            // получаем доступ к файловому хранилищу
+            
+            database = client.GetDatabase(databas);
+                            
             gridFS = new GridFSBucket(database);
         }
         // обращаемся к коллекции Phones

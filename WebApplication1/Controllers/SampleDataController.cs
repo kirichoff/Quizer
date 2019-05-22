@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Models;
-
 using Newtonsoft.Json;
 namespace WebApplication1.Controllers
 {
