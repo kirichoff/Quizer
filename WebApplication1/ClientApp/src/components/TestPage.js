@@ -4,23 +4,22 @@ import {bindActionCreators} from "redux";
 import {actionCreators} from "../store/WeatherForecasts";
 import { Link } from 'react-router-dom';
 import  './TestPage.css'
+import './Infoform.css'
 import Arrow from "./Arrow";
 
 class TestPage extends Component {
     render() {
         return (
             <div className={"TestPageBody"}>
-                <div className={"Welcome"} >
-                <span className={"header"} >{this.props.children}
-                </span>
-                    <div className="pad">
-                        <div onClick={()=> this.props.next()}>
+                <div className={"Wel2"} >
+                <div className={"hpos header"} >
+                    {this.props.children}qwqeqweqweqewe
+                </div>
+                        <div className={'pos2'} onClick={()=> this.props.next()}>
                              <Arrow
                                 rotate={'right'}
                              />
-                        </div>
                     </div>
-                    <span  className={"discripton"} >насколько  хорош в своем деле</span>
                 </div>
             </div>
         );

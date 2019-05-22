@@ -1,11 +1,63 @@
 .rad{
-    padding: 2%;
-    margin-left: 20%;
+    padding: 1%;
+    margin-left: 1%;
+    color: #212121;
 }
 .cl{
-    margin-left: 20%;
-    padding: 2%;
+    color: #eeeeee;
     border-radius: 8vh;
     background: linear-gradient(135deg, #130e87 19%,#ff1396 100%);
 }
 
+.radd{
+    text-align: center;
+    font-size: 3vw;
+}
+
+
+.Wel{
+    margin-top: 10%;
+    width: 70%;
+    height: 90%;
+    background-color: white;
+    border-radius: 7vh ;
+    justify-self: center;
+    font-family: Helvetica;
+    align-items: center;
+    align-content: center;
+    padding-bottom: 50%;
+    font-style: italic;
+    font-size: 3vh;
+    margin-bottom: 10%;
+}
+.pos2{
+    float: right;
+    position: absolute;
+    bottom: 50%;
+    right: 15%;
+    height: 10vw;
+    width: 10vh;
+}
+.mar{
+    margin-left: 30%;
+}
+.hpos
+{
+    margin-top: 10%;
+    margin-left: -10%;
+}
+.Wel2{
+    margin-top: 10%;
+    width: 80vw;
+    height: 50vh;
+    background-color: white;
+    border-radius: 7vh ;
+    justify-self: center;
+    font-family: Helvetica;
+    align-items: center;
+    align-content: center;
+    padding-bottom: 50%;
+    font-style: italic;
+    font-size: 3vh;
+    margin-bottom: 10%;
+}
