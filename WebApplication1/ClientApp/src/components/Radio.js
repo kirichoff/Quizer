@@ -5,7 +5,6 @@ class Radio extends Component {
     constructor() {
         super();
         this.state = {
-
             r1: true,
             r2: false,
             clas1: 'cl rad',
@@ -14,13 +13,15 @@ class Radio extends Component {
     }
 
     cl = (e)=>{
-        this.props.onchange(this.state.r1,this.state.r2,this.props.children);
         if(e.currentTarget.id == 1) {
             this.setState({r1: true,r2: false, clas1: 'cl rad',clas2: 'rad'} )
+            this.props.onchange(true,false,this.props.children);
         }
         else {
             this.setState({r1: false,r2: true, clas1: 'rad',clas2: 'cl rad'} )
+            this.props.onchange(false,true,this.props.children);
         }
+
     }
     render() {
         return (

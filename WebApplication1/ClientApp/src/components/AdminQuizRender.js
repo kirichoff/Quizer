@@ -3,6 +3,7 @@ import "./TestPage.css"
 import './chebox.css'
 import Menu from "./Menu";
 import Arrow from "./Arrow";
+import './AdminAgregatecss.css'
 import {Link} from "react-router-dom";
 
 
@@ -92,7 +93,7 @@ class AdminQuizRender extends Component {
             <div>
                 <Menu/>
                 <div className={"mainRend"}>
-                    <div className="header ">
+                    <div className="header AdminHeader">
                         <input
                             className={'Pointstyle'}
                             type={'text'}

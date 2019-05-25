@@ -102,7 +102,7 @@ class QuizRender extends Component {
                         (!this.state.isend )?
 
 
-                            (    (this.props.istest === false )?
+                            (    (this.props.istest === true )?
                                 <div className={'justify_content'} >
                         {this.props.QuizMap[this.state.counter].Questions.map((k, i) =>
                             <div className={'Pointstyle'}

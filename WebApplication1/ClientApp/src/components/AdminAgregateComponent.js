@@ -42,6 +42,9 @@ class AdminAgregateComponent extends Component {
             const body = new FormData();
             for (const pair in b)
                 body.append(pair,b[pair])
+
+            body.append('istest',this.state.istest)
+
             fetch(url, {
                 method: "Post",
                 body: body
@@ -57,14 +60,14 @@ class AdminAgregateComponent extends Component {
     };
 
     Send = (state) =>{
-
         const url = 'api/SampleData/AddQuiz'
         const body = new FormData;
         body.append('q',JSON.stringify(
             {
                 Header:this.state.vale,
                 Baground: '#123H1',
-                Items: state
+                Items: state,
+                istest: this.state.istest
             }))
         fetch(url,{
             method:'Post',
