@@ -8,6 +8,7 @@ var obj ={
     Question: "Q",
     right: 1,
     Descripton: "",
+    istest: false,
     Questions: ["txt"]
 }
 var arr = [obj]
