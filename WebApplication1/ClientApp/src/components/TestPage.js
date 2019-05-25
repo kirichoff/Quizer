@@ -13,7 +13,7 @@ class TestPage extends Component {
             <div className={"TestPageBody"}>
                 <div className={"Wel2"} >
                 <div className={"hpos header"} >
-                    {this.props.children}qwqeqweqweqewe
+                    {this.props.children}
                 </div>
                         <div className={'pos2'} onClick={()=> this.props.next()}>
                              <Arrow

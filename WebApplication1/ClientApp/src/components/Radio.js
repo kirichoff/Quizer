@@ -27,7 +27,7 @@ class Radio extends Component {
             <div className={'radd'} >
                 {/*<div className={"discripton"} ></div>*/}
                 {this.props.children}
-                <div>
+                <div style={{marginTop: '2%' }} >
                 <span onClick={this.cl} id={1} className={this.state.clas1 }>{this.props.val1}</span>
                 <span onClick={this.cl} id={2} className={this.state.clas2}>{this.props.val2}</span>
                 </div>

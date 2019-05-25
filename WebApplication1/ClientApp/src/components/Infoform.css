@@ -43,20 +43,20 @@
 }
 .hpos
 {
-    margin-top: 10%;
+    margin-top: 0%;
     margin-left: -10%;
 }
 .Wel2{
     margin-top: 10%;
     width: 80vw;
-    height: 50vh;
+    height: 20vh;
     background-color: white;
     border-radius: 7vh ;
     justify-self: center;
     font-family: Helvetica;
     align-items: center;
     align-content: center;
-    padding-bottom: 50%;
+    padding-bottom: 40%;
     font-style: italic;
     font-size: 3vh;
     margin-bottom: 10%;

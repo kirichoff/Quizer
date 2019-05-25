@@ -107,24 +107,34 @@ class AdminQuizRender extends Component {
                         {
                             (!this.state.isend )?
                                 <div className={'justify_content'} >
-                                    {this.state.QuizMap[this.state.counter].Questions.map((k, i) =>
-                                        <div className={'sizz'} >
+                                    {(this.props.istest)?
+                                            this.state.QuizMap[this.state.counter].Questions.map((k, i) =>
+                                                    <div className={'sizz'}>
                                             <span>
-                                            <label className={'container'} >
+                                            <label className={'container'}>
                                             <input
                                                 name="isGoing"
                                                 type="checkbox"
                                                 data-index={i}
-                                                checked={ (this.state.QuizMap[this.state.counter].right === i)? true : false }
-                                                onChange={this.handleInputChange} />
+                                                checked={(this.state.QuizMap[this.state.counter].right === i) ? true : false}
+                                                onChange={this.handleInputChange}/>
                                                 <span className={'checkmark'}></span>
                                             </label>
                                                 </span>
-                                        <span><input type={'text'} value={k} className={'Pointstyle'} id={i} key={i} onChange={ this.change
-                                        }/>
+                                                        <span><input type={'text'} value={k} className={'Pointstyle'} id={i}
+                                                                     key={i} onChange={this.change
+                                                        }/>
                                         </span>
-                                        </div>
-                                        )}
+                                                    </div>
+                                            )
+
+                                        :
+                                        this.state.QuizMap[this.state.counter].Questions.map((k, i) =>
+                                            <input type={'text'} value={k} className={'Pointstyle'} id={i}
+                                                                 key={i} onChange={this.change}/>
+                                        )
+
+                                    }
                                             <span onClick={this.add}>
                                                 <svg className={'PlusQues'} id='Capa_1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 52'>
                                     <path d='M26,0C11.664,0,0,11.663,0,26s11.664,26,26,26s26-11.663,26-26S40.336,0,26,0z M38.5,28H28v11c0,1.104-0.896,2-2,2	s-2-0.896-2-2V28H13.5c-1.104,0-2-0.896-2-2s0.896-2,2-2H24V14c0-1.104,0.896-2,2-2s2,0.896,2,2v10h10.5c1.104,0,2,0.896,2,2	S39.604,28,38.5,28z'

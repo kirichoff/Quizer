@@ -3,16 +3,19 @@ import TestPage from "./TestPage";
 import QuizRender from "./QuizRender";
 import InfoForm from "./InfoForm";
 import AdminQuizRender from "./AdminQuizRender";
+import Radio from "./Radio";
+import  './AdminAgregatecss.css'
 
 class AdminAgregateComponent extends Component {
     constructor(props, context) {
         super(props, context);
         this.state ={
             QuizMap:null,
-            vale: '',
+            vale: null,
             request: true,
             counter: 0,
             UserInfo: null,
+            istest: false
         }
     }
 
@@ -71,6 +74,7 @@ class AdminAgregateComponent extends Component {
 
 
 
+
     Tags = () => {
         if(this.state.request)
         {
@@ -79,16 +83,29 @@ class AdminAgregateComponent extends Component {
                 0
                 :
                     return (<TestPage next={() => this.setState({counter: 1})}>
-                        <input type="text"
-                              value={this.state.vale}
-                               onChange={event => this.setState({vale: event.target.value})}
+                        <input
+                            className= {'AdminHeader'}
+                            type="text"
+                            defaultValue={'Your Header!'}
+                            value={this.state.vale}
+                            onChange={event => this.setState({vale: event.target.value})}
                         />
+                        <Radio val1={'тест'} val2 ={'опрос'}  onchange = {
+                            ( val1, val2, child )=>
+                            {
+                                this.setState({istest: val1 })
+                                console.log(this.state.istest)
+                            }
+                        }>
+                            тип
+                        </Radio>
                     </TestPage>);
                 case
                 1
                 :
                     return (<AdminQuizRender
                             cl={this.Send}
+                            istest={this.state.istest}
                     />);
             }
         }
