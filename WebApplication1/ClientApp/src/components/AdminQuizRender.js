@@ -10,7 +10,7 @@ var obj ={
     Question: "Q",
     right: 1,
     Descripton: "",
-    istest: false,
+    istest: true,
     Questions: ["txt"]
 }
 var arr = [obj]
@@ -25,6 +25,7 @@ class AdminQuizRender extends Component {
             anser: -1,
             QuizMap: Object.assign(arr),
             isend: false,
+            istest: true,
             isGoing: false
         }
         this.change = this.change.bind(this)
@@ -85,7 +86,8 @@ class AdminQuizRender extends Component {
     }
 
     render(){
-        console.log('render');
+        console.log('render ee');
+        console.log(this.props.istest)
         return (
             <div>
                 <Menu/>

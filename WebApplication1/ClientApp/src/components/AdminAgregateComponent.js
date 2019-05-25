@@ -15,7 +15,7 @@ class AdminAgregateComponent extends Component {
             request: true,
             counter: 0,
             UserInfo: null,
-            istest: false
+            istest: true
         }
     }
 
@@ -91,8 +91,9 @@ class AdminAgregateComponent extends Component {
                             onChange={event => this.setState({vale: event.target.value})}
                         />
                         <Radio val1={'тест'} val2 ={'опрос'}  onchange = {
-                            ( val1, val2, child )=>
+                            ( val1, val2, child ) =>
                             {
+                                console.log(val1)
                                 this.setState({istest: val1 })
                                 console.log(this.state.istest)
                             }
