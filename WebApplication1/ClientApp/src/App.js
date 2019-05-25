@@ -22,7 +22,7 @@ export default () => (
       <Route path='/QuizRender' component={QuizRender} />
       <Route path='/bg' component={Background} />
       <Route path={'/Masonry'}  component={Index} />
-      <Route path='/bg/Tp' component={TestPage} />
+      <Route path={'/User'} component={User} />
       <Route path='/Mansory/:itemsWithSizes?' component={Index} />
       <Route path='/bg/info/:id' component={InfoForm} />
       <Route path={'/bg/Test/:id'} component={AgregateComponent}  />
