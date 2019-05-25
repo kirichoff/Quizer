@@ -15,6 +15,8 @@ namespace WebApplication1.Models
         public string Header { get; set; }
         [Display(Name = "Baground")]
         public string Baground { get; set;}
+        [Display(Name = "istest")]
+        public bool istest { get; set; }
         [Display(Name = "Items")]
         public List<QuizItem> Items { get; set; }
     }

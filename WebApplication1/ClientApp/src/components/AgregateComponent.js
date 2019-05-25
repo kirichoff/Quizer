@@ -71,6 +71,7 @@ class AgregateComponent extends Component {
                 :
                     return (<QuizRender
                         QuizMap = {this.state.QuizMap.Items}
+                        istest = {this.state.QuizMap.istest}
                         result = {( obj )=> this.SendStat(obj) }
                     />);
             }

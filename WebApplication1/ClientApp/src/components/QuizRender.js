@@ -26,28 +26,27 @@ class QuizRender extends Component {
             isend: false,
             request: false,
             is_answer: null,
-            bg: null,
-            answerMap: []
+            answerssMap: []
         }
+
         this.change = this.change.bind(this)
     }
      componentWillMount = () => {
         console.log('WillMount');
         console.log( this.props.QuizMap)
-            let ar = [];
-        this.props.QuizMap.map((k,i)=>
-            {
-                ar.push({s:[]});
-                    k.Questions.map(()=>{
-                        ar[i].s.push(null)
-                    });
-            }
-
-
-        )
-            let mp = new Array(this.props.QuizMap.length).fill("skip");
-         this.setState({QuizMap: this.props.QuizMap,bg: ar,answerMap: mp})
+            let ans = []
+         this.props.QuizMap.map((k,i)=>
+             {
+                 ans.push({answers:[], answer: -2 });
+                 k.Questions.map(()=>{
+                     ans[i].answers.push(false)
+                 });
+             }
+         )
+         this.setState({answerssMap: ans})
              };
+
+
 
      inc = ()=>  {
         let counter = this.state.counter;
@@ -62,36 +61,29 @@ class QuizRender extends Component {
         if (this.state.isend) counter = this.state.counter
         this.setState({counter: counter ,anser: -1,isend:false});
     };
-
-    change  = (e)=>
-    {
-        let index =  parseInt(e.target.dataset.index);
-       let notnul =false;
-       this.state.bg[this.state.counter].s.map((k)=>{
-            if(k !== null)
-                notnul=true
-            }
-       )
-       if( (this.state.QuizMap[this.state.counter].Right == index) && !notnul   ) {
-           let buf = this.state.bg;
-           buf[this.state.counter].s[index] ={backgroundColor: '#96ff63'};
-           let ar = this.state.answerMap;
-           ar[this.state.counter] = "true";
-           this.setState({is_answer: 'Верно',bg: {...buf} });
-       }
-       else if(!notnul)
-        {
-            let buf = this.state.bg;
-            buf[this.state.counter].s[this.props.QuizMap[this.state.counter].Right] ={backgroundColor: '#96ff63'};
-            buf[this.state.counter].s[index] ={backgroundColor: '#ff6d5c'};
-            let ar = this.state.answerMap;
-            ar[this.state.counter] = "false";
-            this.setState({is_answer: 'Неверно',bg: {...buf} });
-        }
-    }
-
     send(){
         console.log('sending...')
+    }
+
+    change(e){
+        let index =  parseInt(e.target.dataset.index);
+        let buf = this.state.answerssMap;
+        let notnul = false;
+        buf[this.state.counter].answers.map((k)=>{
+                if(k === true)
+                    notnul=true
+            }
+        )
+        console.log(buf)
+        if ( notnul === false ) {
+            buf[this.state.counter].answers[index] = true;
+            buf[this.state.counter].answer = -1;
+            if (this.props.QuizMap[this.state.counter].Right == index)
+            {
+                buf[this.state.counter].answer = index;
+            }
+        }
+        this.setState({answerssMap: buf})
     }
 
     render(){
@@ -108,17 +100,40 @@ class QuizRender extends Component {
                             </div>
                     {
                         (!this.state.isend )?
-                        <div className={'justify_content'} >
+
+
+                            (    (this.props.istest === false )?
+                                <div className={'justify_content'} >
                         {this.props.QuizMap[this.state.counter].Questions.map((k, i) =>
-                            <div className={'Pointstyle'} style={this.state.bg[this.state.counter].s[i] } data-index = {i} key={i} onClick={this.change}>{k}</div>)}
-                            {isRight(this.state.answerMap,this.state.counter)}
+                            <div className={'Pointstyle'}
+                                 style={ (this.state.answerssMap[this.state.counter].answers[i] &&
+                                 this.state.answerssMap[this.state.counter].answer === this.props.QuizMap[this.state.counter].Right
+                                 ) ? {backgroundColor: '#96ff63'} : (this.state.answerssMap[this.state.counter].answers[i])? {backgroundColor: '#ff6d5c'} : {} }
+                                 data-index = {i}
+                                 key={i}
+                                 onClick={this.change}>{k}
+                            </div>)}
+                            {isRight(this.state.answerssMap,this.state.counter,this.props.QuizMap[this.state.counter].Right)}
                         </div>
+                                    :
+                                    <div className={'justify_content'} >
+                                        {this.props.QuizMap[this.state.counter].Questions.map((k, i) =>
+                                        {
+                                         return(   <div className={'Pointstyle'}
+                                                 style={(this.state.answerssMap[this.state.counter].answers[i]) ? {backgroundColor: '#96ff63'} : {}}
+                                                 data-index={i} key={i} onClick={this.change}>{k}</div>)
+                                        }
+                                        )
+                                        }
+                                    </div>
+                            )
+
                         :
                         <div style={{marginTop: "10vh" }} >
                             <EndOfQuestion
                                 linck = {this.linck}
                                 Questions={this.props.QuizMap}
-                                answer={this.state.answerMap} />
+                                answer={this.state.answerssMap} />
                         </div>
                     }
                             { (!this.state.isend )?
@@ -126,6 +141,8 @@ class QuizRender extends Component {
                                     <Arrow rotate={'bottom'}/>
                                 </div>
                                 :
+
+
                                 <Link  style={{textDecoration: 'none'  }} className={'justify_content'}  to={'/'} >
                                     <div>
                                         <div className={'Home'}>
@@ -150,10 +167,10 @@ class QuizRender extends Component {
             </div>
 
         );
-        function isRight(ar,counter) {
-            if(ar[counter]=== 'true')  return (<div className={'answer'}>Верно</div>);
-            if (ar[counter] === 'false') return (<div className={'answer'}>неверно</div>)
-            if (ar[counter]=== 'skip') return (null)
+        function isRight(ar,counter,right) {
+            if(ar[counter].answer === right)  return (<div className={'answer'}>Верно</div>);
+            if (ar[counter].answer === -1) return (<div className={'answer'}>неверно</div>)
+            if (ar[counter] === -2) return (null)
         }
 
     }

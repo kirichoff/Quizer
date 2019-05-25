@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import TestPage from "./TestPage";
 import "./TestPage.css"
+import './chebox.css'
 import Menu from "./Menu";
+import Arrow from "./Arrow";
+import {Link} from "react-router-dom";
 
 
 var obj ={
@@ -22,10 +24,13 @@ class AdminQuizRender extends Component {
             counter: 0,
             anser: -1,
             QuizMap: Object.assign(arr),
-            isend: false
+            isend: false,
+            isGoing: false
         }
         this.change = this.change.bind(this)
+        this.handleInputChange = this.handleInputChange.bind(this);
     }
+
     inc = ()=>  {
         let counter =this.state.counter;
         let isend = false;
@@ -65,13 +70,27 @@ class AdminQuizRender extends Component {
         })
         }
 
+    handleInputChange(event) {
+
+        const target = event.target;
+        const  index = parseInt(event.target.dataset.index);
+        const map = this.state.QuizMap
+
+        map[this.state.counter].right = index
+
+        console.log(this.state.QuizMap)
+
+        this.setState({QuizMap: map})
+
+    }
+
     render(){
         console.log('render');
         return (
             <div>
                 <Menu/>
                 <div className={"mainRend"}>
-                    <div className="header hs">
+                    <div className="header ">
                         <input
                             className={'Pointstyle'}
                             type={'text'}
@@ -82,13 +101,36 @@ class AdminQuizRender extends Component {
                         <div>{this.state.counter}</div>
                     </div>
                     < div className = "QuizRender" >
-                        < div onClick={this.dec}  className="arrow">Arrow </div>
+                        < div onClick={this.dec}  className="arrow">
+                            <Arrow rotate={'top'} />
+                        </div>
                         {
                             (!this.state.isend )?
                                 <div className={'justify_content'} >
                                     {this.state.QuizMap[this.state.counter].Questions.map((k, i) =>
-                                        <input type={'text'} value={k} className={'Pointstyle'} id={i} key={i} onChange={ this.change
-                                        }/>)}
+                                        <div className={'sizz'} >
+                                            <span>
+                                            <label className={'container'} >
+                                            <input
+                                                name="isGoing"
+                                                type="checkbox"
+                                                data-index={i}
+                                                checked={ (this.state.QuizMap[this.state.counter].right === i)? true : false }
+                                                onChange={this.handleInputChange} />
+                                                <span className={'checkmark'}></span>
+                                            </label>
+                                                </span>
+                                        <span><input type={'text'} value={k} className={'Pointstyle'} id={i} key={i} onChange={ this.change
+                                        }/>
+                                        </span>
+                                        </div>
+                                        )}
+                                            <span onClick={this.add}>
+                                                <svg className={'PlusQues'} id='Capa_1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 52'>
+                                    <path d='M26,0C11.664,0,0,11.663,0,26s11.664,26,26,26s26-11.663,26-26S40.336,0,26,0z M38.5,28H28v11c0,1.104-0.896,2-2,2	s-2-0.896-2-2V28H13.5c-1.104,0-2-0.896-2-2s0.896-2,2-2H24V14c0-1.104,0.896-2,2-2s2,0.896,2,2v10h10.5c1.104,0,2,0.896,2,2	S39.604,28,38.5,28z'
+                                        />
+                                                </svg>
+                                            </span>
                                 </div>
                                 :
                                 <div>
@@ -99,15 +141,35 @@ class AdminQuizRender extends Component {
                                 </div>
                         }
                         <div   className="arrow">
-                            <span onClick={this.inc} >  Arrow</span>
-                            <span onClick={this.add}> Вариант++</span>
+                            <span onClick={this.inc} > <Arrow rotate={'bottom'} /></span>
                             <span onClick={this.addQu} > Qestion++</span>
                         </div>
+
+
+                        { (!this.state.isend)?
+
+                            <div  style={{height: '20%',width: '120%'}} className={"prog"}>
+                                <div className={"progress"}>
+                                    <div className={"progress-bar progress-bar-success"} style={{width: ((this.state.counter+1)/(this.state.QuizMap.length))*100+'%' }}>
+                                    </div>
+                                </div>
+                                <div className={'answer'}>{this.state.counter}  </div>
+                            </div>
+
+                            : null
+                        }
+
+
                     </div>
                 </div>
             </div>
 
         );
+        function check(map){
+
+
+
+        }
     }
 }
 
