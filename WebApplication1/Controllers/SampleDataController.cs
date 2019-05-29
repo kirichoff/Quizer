@@ -76,10 +76,22 @@ namespace WebApplication1.Controllers
                 db.GetQuiz(count)
                 );
         }
-        [HttpPost("[action]")]
-        public async void SendStat(QuizStats q)
+
+        [HttpGet("[action]")]
+        public string GetStatsOfQuestion(string id)
         {
-            await db.AddQuizStats(q);
+            return JsonConvert.SerializeObject(
+                db.GetStatsOfQuestion(id)
+                );
+        }
+
+        [HttpPost("[action]")]
+        public async void SendStat(string body)
+        {
+            int a=0;
+            await db.AddQuizStats(                            
+                   JsonConvert.DeserializeObject<QuizStats>(body)                                    
+                );
         }
     }
 }
