@@ -41,13 +41,17 @@ class QuizSelector extends Component {
         return (
             <div className={'main'} >
                 <Menu/>
-                <div className={'Header'} > Выберите тест </div>
+                <img src={'../marc-kargel-1621473-unsplash.jpg'} style={
+                    {marginLeft: '14%',
+                        marginBottom: "2%"
+                    ,height: '60vh', width: '72vw',borderRadius: 20 }} />
                 <div className={"Page"}>
                 {this.state.QuizMap.map( (k,i)=>
                     <QuizCard key={i}
                               text={k.Header}
                               id = {k.Id}
                               obj = {k}
+                              desc = {'qweewqrwqr qfsaf asfasfasfasf asfafa'}
                     />
                     )}
                 </div>

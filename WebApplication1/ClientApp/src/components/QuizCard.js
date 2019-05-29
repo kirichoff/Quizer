@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import '../ImgBox.css'
 import  {connect} from 'react-redux'
 import {Link} from "react-router-dom";
 import { withRouter } from 'react-router-dom'
-import './card.css'
+import './quizcard.css'
+import  '../immge.jpg'
+
 class QuizCard extends Component {
     constructor(){
         super();
@@ -11,18 +12,15 @@ class QuizCard extends Component {
 
     render() {
         return (
+            <Link
+                className={'Contain'}
+               to={`/bg/Test/${this.props.id}`}
+                >
 
-            <div className={'some'}>
-                <Link  className={'linkstyle'}
-                       to={`/bg/Test/${this.props.id}`}
-                        >
-                <div className={`ImageBox`}>
-                        <span className={"mainText"} >
+                        <img src={'../immge.jpg'} className={'imag'} />
                            <div>{this.props.text}</div>
-                       </span>
-                </div>
-            </Link>
-            </div>
+                            <p className={'desc'} >{this.props.desc}</p>
+        </Link>
         );
     }
 }

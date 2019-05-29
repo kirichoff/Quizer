@@ -1,0 +1,36 @@
+.Contain{
+    font-family: Roboto;
+    text-decoration: none;
+    color: #212121;
+    width: 22vw;
+    height: 48vh;
+    font-size: 30px;
+    font-style: normal;
+    border-radius: 10px;
+    justify-content: center;
+    justify-items: center;
+    transition: all ease-out 0.1s;
+}
+.Contain:hover{
+    text-decoration: none;
+    color: black;
+    box-shadow: rgba(0, 0, 0, 0.31) 0 3px 15px;
+}
+.imag{
+    margin: auto;
+    justify-self: center;
+    width: 100%;
+    height: 26vh;
+    border-radius: 10px;
+}
+.desc{
+    margin-left: 5%;
+    font-family: "Roboto Condensed";
+    text-decoration: none;
+    color: #212121;
+    font-size: 16px;
+    letter-spacing: normal;
+}
+.Contain div{
+    margin-left: 5%;
+}

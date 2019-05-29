@@ -2,15 +2,6 @@ import React, {Component} from 'react';
 
 class EndOfQuestion extends Component {
     render() {
-
-        function rightCount(ans){
-            let counter =0;
-            ans.map(k=>{
-                if( k === 'true' )
-                    counter++;
-            }  )
-            return counter;
-        }
         return (
             <div>
             <div style={{borderRadius: "20px",overflow: "hidden"}}>
@@ -21,7 +12,7 @@ class EndOfQuestion extends Component {
                     }
                 )}
             </div>
-                <div className={'answer'}>{rightCount(this.props.answer)}/{this.props.Questions.length}</div>
+                <div className={'answer'}>{this.props.trueCounter}/{this.props.Questions.length}</div>
             </div>
         );
     }

@@ -1,5 +1,7 @@
+
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
+import { ApplyTheme } from 'rambler-ui/theme'
 import './index.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -18,14 +20,17 @@ const history = createBrowserHistory({ basename: baseUrl });
 const initialState = window.initialReduxState;
 const store = configureStore(history, initialState);
 
+
 const rootElement = document.getElementById('root');
 
 ReactDOM.render(
+    <ApplyTheme>
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <App />
+            <App />
     </ConnectedRouter>
-  </Provider>,
+  </Provider>
+    </ApplyTheme>,
   rootElement);
 
 registerServiceWorker();

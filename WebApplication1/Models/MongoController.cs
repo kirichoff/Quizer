@@ -109,6 +109,164 @@ namespace WebApplication1.Models
             await QuizStat.InsertOneAsync(p);
         }
 
+        public double[] GetStatsOfQuestion(string id)
+        {
+            var builder = new FilterDefinitionBuilder<QuizStats>();
+            var filter = builder.Empty; // фильтр для выборки всех документов
+            filter = filter & builder.Regex("QuizId", new BsonRegularExpression(id));
+            var ls = QuizStat.Find(new BsonDocument("QuizId", id ) ).ToList();
+
+
+            double[] ans = new double[ls[0].answerssmap.Length];
+                int counter = 0; 
+            
+            for(int i=0; i< ls[0].answerssmap.Length; i++)
+            {
+                ans[i] = 0;
+            }
+
+            foreach( var pt in ls)
+            {
+                pt.answerssmap.ToList().ForEach(k => {
+                    if (k.answer >= 0)
+                    {
+                        ans[counter] += 1; 
+                    }
+                    counter++;
+                       });
+                counter = 0;
+            }
+
+            for (int i = 0; i < ls[0].answerssmap.Length; i++)
+            {
+                ans[i] = ans[i]/ ls.Count*100;
+            }
+
+            return ans;
+        }
+
+
+        public double AveAge(string id)
+        {
+            var builder = new FilterDefinitionBuilder<QuizStats>();
+            var filter = builder.Empty; // фильтр для выборки всех документов
+            filter = filter & builder.Regex("QuizId", new BsonRegularExpression(id));
+            var ls = QuizStat.Find(new BsonDocument("QuizId", id)).ToList();
+
+
+            double age = 0;
+
+            foreach (var pt in ls)
+            {
+                age += pt.age;
+            }            
+            return age/ls.Count;
+        }
+
+        public double AveAnsers(string id)
+        {
+            var builder = new FilterDefinitionBuilder<QuizStats>();
+            var filter = builder.Empty; // фильтр для выборки всех документов
+            filter = filter & builder.Regex("QuizId", new BsonRegularExpression(id));
+            var ls = QuizStat.Find(new BsonDocument("QuizId", id)).ToList();
+
+
+            double age = 0;
+
+            foreach (var pt in ls)
+            {
+                age += pt.right_count;
+            }
+            return age / ls.Count * 100;
+        }
+
+
+        public int[] sex(string id)
+        {
+            var builder = new FilterDefinitionBuilder<QuizStats>();
+            var filter = builder.Empty; // фильтр для выборки всех документов
+            filter = filter & builder.Regex("QuizId", new BsonRegularExpression(id));
+            var ls = QuizStat.Find(new BsonDocument("QuizId", id)).ToList();
+
+
+            int men = 0;
+            int women = 0;
+
+            foreach (var pt in ls)
+            {
+                if (pt.sex) men++;
+                else women++;                        
+            }
+            int[] a = { men, women, ls.Count };
+            return a;
+        }
+
+        public int[] GetSex(string id)
+        {
+            var builder = new FilterDefinitionBuilder<QuizStats>();
+            var filter = builder.Empty; // фильтр для выборки всех документов
+            filter = filter & builder.Regex("QuizId", new BsonRegularExpression(id));
+            var ls = QuizStat.Find(new BsonDocument("QuizId", id)).ToList();
+
+
+            int men = 0;
+            int women = 0;
+
+            foreach (var pt in ls)
+            {
+                if (pt.sex) men++;
+                else women++;
+            }
+            int[] a = { men, women, ls.Count };
+            return a;
+        }
+
+
+        public int[] GetWork(string id)
+        {
+            var builder = new FilterDefinitionBuilder<QuizStats>();
+            var filter = builder.Empty; // фильтр для выборки всех документов
+            filter = filter & builder.Regex("QuizId", new BsonRegularExpression(id));
+            var ls = QuizStat.Find(new BsonDocument("QuizId", id)).ToList();
+
+
+            int men = 0;
+            int women = 0;
+
+            foreach (var pt in ls)
+            {
+                if (pt.work) men++;
+                else women++;
+            }
+            int[] a = { men, women, ls.Count };
+            return a;
+        }
+
+
+
+        public int[] GetLoc(string id)
+        {
+            var builder = new FilterDefinitionBuilder<QuizStats>();
+            var filter = builder.Empty; // фильтр для выборки всех документов
+            filter = filter & builder.Regex("QuizId", new BsonRegularExpression(id));
+            var ls = QuizStat.Find(new BsonDocument("QuizId", id)).ToList();
+
+
+            int men = 0;
+            int women = 0;
+
+            foreach (var pt in ls)
+            {
+                if (pt.wher) men++;
+                else women++;
+            }
+            int[] a = { men, women, ls.Count };
+            return a;
+        }
+
+
+
+
         // обновление документа
         public async Task Update(Admin p)
         {

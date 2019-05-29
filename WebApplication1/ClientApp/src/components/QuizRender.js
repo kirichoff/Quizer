@@ -26,7 +26,8 @@ class QuizRender extends Component {
             isend: false,
             request: false,
             is_answer: null,
-            answerssMap: []
+            answerssMap: [],
+            trueCounter: 0
         }
 
         this.change = this.change.bind(this)
@@ -74,6 +75,7 @@ class QuizRender extends Component {
                     notnul=true
             }
         )
+        let bf = this.state.trueCounter;
         console.log(buf)
         if ( notnul === false ) {
             buf[this.state.counter].answers[index] = true;
@@ -81,9 +83,11 @@ class QuizRender extends Component {
             if (this.props.QuizMap[this.state.counter].Right == index)
             {
                 buf[this.state.counter].answer = index;
+                bf++;
             }
         }
-        this.setState({answerssMap: buf})
+
+        this.setState({answerssMap: buf, trueCounter: bf})
     }
 
     render(){
@@ -129,12 +133,20 @@ class QuizRender extends Component {
                             )
 
                         :
+                            <div>
+                            {(this.props.istest)?
                         <div style={{marginTop: "10vh" }} >
                             <EndOfQuestion
                                 linck = {this.linck}
                                 Questions={this.props.QuizMap}
-                                answer={this.state.answerssMap} />
+                                answer={this.state.answerssMap}
+                                trueCounter = {this.state.trueCounter}
+                            />
                         </div>
+                                :
+                                <div style={{color: 'black'}} className="header hs">Спасибо!</div>
+                        }
+                            </div>
                     }
                             { (!this.state.isend )?
                                 <div onClick={this.inc} className="arrow">
@@ -145,7 +157,7 @@ class QuizRender extends Component {
 
                                 <Link  style={{textDecoration: 'none'  }} className={'justify_content'}  to={'/'} >
                                     <div>
-                                        <div className={'Home'}>
+                                        <div onClick={()=> this.props.getQuiz(this.state.answerssMap,this.state.trueCounter)} className={'Home'}>
                                             <div className={'pos'}>Home</div>
                                             <div className={'toHome'}></div>
                                         </div>

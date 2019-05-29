@@ -1,5 +1,6 @@
 ﻿import React from 'react';
 import { Route } from 'react-router';
+import { ApplyTheme } from 'rambler-ui/theme'
 import FetchData from './components/FetchData';
 import TestPage from "./components/TestPage";
 import QuizSelector from "./components/QuizSelector";
@@ -14,7 +15,9 @@ import AdminAgregateComponent from "./components/AdminAgregateComponent";
 import AdminQuizRender from "./components/AdminQuizRender";
 import Arrow from "./components/Arrow";
 import {Masonry} from "react-virtualized";
+
 export default () => (
+
   <div>
       <Route path exact  ='/' component = {QuizSelector} />
      <Route path='/fetchdata/:startDateIndex?' component={FetchData} />
@@ -30,4 +33,5 @@ export default () => (
       <Route path={'/bg/Admin'} component={AdminAgregateComponent}/>
       <Route path='/bg/QuizRender/:id' component={QuizRender} />
   </div>
+
 );

@@ -27,16 +27,17 @@ class AgregateComponent extends Component {
         );
     };
 
-    SendStat = (obj) =>{
+    SendStat = (answers,right_count) =>{
         const url = `api/SampleData/SendStat`;
         let b;
         console.log('call')
+        let obj = this.state.UserInfo
         if (obj != null) {
-            b = obj
-            b["QuizId"] = this.props.match.params.id;
-            const body = new FormData();
-            for (const pair in b)
-                body.append(pair,b[pair])
+             const body = new FormData();
+            obj.answerssmap = answers
+            obj.QuizId = this.props.match.params.id
+            obj.right_count = right_count
+            body.append('body', JSON.stringify(obj))
             fetch(url, {
                 method: "Post",
                 body: body
@@ -72,7 +73,7 @@ class AgregateComponent extends Component {
                     return (<QuizRender
                         QuizMap = {this.state.QuizMap.Items}
                         istest = {this.state.QuizMap.istest}
-                        result = {( obj )=> this.SendStat(obj) }
+                        getQuiz = {this.SendStat}
                     />);
             }
         }
