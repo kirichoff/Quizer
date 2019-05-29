@@ -45,12 +45,11 @@ class Menu extends Component {
 
         return (
                 <div id="navbar">
-                <div style={{marginBottom: 2,marginLeft: 10}}>
-                    <img src="../Zaur.png"  style={{height: '10%',width: '10%'}}  alt=""/>
+                    <img src="../Zaur.png"  style={{height: '4vw',width: '7vw'}}  alt=""/>
                     <Tabs value={this.state.value} onChange={this.handleChange}>
                         {values.map((item, index) => (
                             <TabsItem
-                                style = {{marginLeft: '17.5vw'}}
+                                style = {{marginLeft: '20%'}}
                                 value={item}
                                 key={index}
                                 >
@@ -58,18 +57,16 @@ class Menu extends Component {
                             </TabsItem>
                         ))}
                     </Tabs>
-                    <div style={{ marginTop: 10, float: 'right'}} >
-
-                        <Button type={'outline'} rounded={true}>
+                    <div style={{ marginTop: 5}} >
+                        <div style={ {  marginBottom:5,   float: 'right'}}>
+                        <Button type={'outline'} size={'small'} rounded={true}>
                             Sign In
                             </Button>
-                            <Button style={{marginLeft: 20}}  rounded={true}>
+                            <Button style={{marginLeft: 20,marginRight: 10,}} size={'small'}  rounded={true}>
                             Sign up
                             </Button>
-
+                        </div>
                     </div>
-
-                </div>
                 </div>
         )
     }

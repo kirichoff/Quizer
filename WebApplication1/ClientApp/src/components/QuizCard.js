@@ -16,7 +16,6 @@ class QuizCard extends Component {
                 className={'Contain'}
                to={`/bg/Test/${this.props.id}`}
                 >
-
                         <img src={'../immge.jpg'} className={'imag'} />
                            <div>{this.props.text}</div>
                             <p className={'desc'} >{this.props.desc}</p>

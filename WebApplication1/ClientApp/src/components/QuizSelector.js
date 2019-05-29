@@ -5,6 +5,7 @@ import {bindActionCreators} from "redux";
 import {actionCreators} from "../store/QuizMap";
 import './selector.css'
 import Menu from "./Menu";
+import Button from "rambler-ui/Button";
 
 var obj = {text: 'sometext', id: 1}, arr = [obj,obj,obj];
 class QuizSelector extends Component {
@@ -41,10 +42,30 @@ class QuizSelector extends Component {
         return (
             <div className={'main'} >
                 <Menu/>
+                <div>
+                    <div className={'discr'} style={
+                        {marginLeft: '14%',
+                            marginBottom: "2%"
+                            ,height: '60vh', width: '72vw',borderRadius: 20 }}
+                    > <h1>Hellow</h1>
+                        <p style={{paddingRight: "40%" }}>
+                            Соноропериод, в первом приближении, имеет миксолидийский алеаторически
+                            выстроенный бесконечный канон с полизеркальной векторно-голосовой
+                            структурой,
+                            потому что современная музыка не запоминается. Панладовая система, по определению, полифигурно
+                            начинает нечетный сет. Фаза сонорна.
+                        </p>
+                        <Button style={{color: "#ffff",marginTop: 20 }} size={"small"} type={'primary'} rounded={true}>
+                            Read more
+                        </Button>
+                    </div>
                 <img src={'../marc-kargel-1621473-unsplash.jpg'} style={
                     {marginLeft: '14%',
+                        filter: 'brightness(0.6)',
                         marginBottom: "2%"
-                    ,height: '60vh', width: '72vw',borderRadius: 20 }} />
+                    ,height: '60vh', width: '72vw',borderRadius: 20 }}/>
+                </div>
+
                 <div className={"Page"}>
                 {this.state.QuizMap.map( (k,i)=>
                     <QuizCard key={i}

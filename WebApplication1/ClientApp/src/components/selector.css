@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
 .Page{
-display: grid;
+    display: grid;
     grid-template-columns: 33% 33% 33%;
     padding-left: 14%;
     padding-right: 23%;
@@ -8,7 +10,7 @@ display: grid;
 }
 
 .Header{
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 5vh;
     justify-content: center;
     text-align: center;
@@ -18,4 +20,12 @@ display: grid;
     justify-content: center;
     align-content: center;
     justify-items: center;
+}
+.discr{
+    font-family: 'Montserrat', sans-serif;
+    color: #fffcfe;
+    position: absolute;
+    top: 40%;
+    z-index: 200;
+    left: 2%;
 }
