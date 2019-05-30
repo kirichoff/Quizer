@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import TestPage from "./TestPage";
 import QuizRender from "./QuizRender";
 import InfoForm from "./InfoForm";
+import Menu from "./Menu";
 
 class AgregateComponent extends Component {
     constructor(props, context) {
@@ -48,8 +49,7 @@ class AgregateComponent extends Component {
     }
 
     componentWillMount = () => {
-        console.log('WillMount');
-        this.getData()
+
     };
 
      Tags = () => {
@@ -79,11 +79,15 @@ class AgregateComponent extends Component {
         }
     }
 
+    componentDidMount() {
+        this.getData()
+    }
+
     render() {
+        <Menu/>
         return (
 
             <div>
-
                 {this.state.request ?
                     <div>
                         {this.Tags()}

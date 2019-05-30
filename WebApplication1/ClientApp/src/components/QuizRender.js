@@ -93,7 +93,6 @@ class QuizRender extends Component {
     render(){
         return (
             <div  >
-        <Menu/>
                         <div className={"mainRend"}>
                         <div className="header hs">
                              { !(this.state.isend )? this.props.QuizMap[this.state.counter].Question : 'Good Work!' }

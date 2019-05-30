@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import {Tabs, TabsItem} from 'rambler-ui/Tabs'
 import Button from 'rambler-ui/Button'
 import './menu.css'
+import {Link} from 'react-router-dom'
+import {Popup} from "rambler-ui/Popup";
+import Input from "rambler-ui/Input";
 
 
 
@@ -12,13 +15,28 @@ class Menu extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            value: values[1]
+            value: values[1],
+            customIsOpened: false
         }
+        this.openPopup = this.openPopup.bind(this)
     }
     handleChange = (event, value) => {
         this.setState({value})
     }
 
+    openPopup  (e) {
+        console.log(e.target.v)
+        this.setState({customIsOpened: true})
+        // this.setState({
+        //     [`${type}IsOpened`]: true
+        // })
+    }
+
+    closePopup = () => {
+        this.setState({
+            customIsOpened: false
+        })
+    }
     render() {
 
         var prevScrollpos = window.pageYOffset;
@@ -42,7 +60,6 @@ class Menu extends Component {
 
         }
 
-
         return (
                 <div id="navbar">
                     <img src="../Zaur.png"  style={{height: '4vw',width: '7vw'}}  alt=""/>
@@ -59,14 +76,53 @@ class Menu extends Component {
                     </Tabs>
                     <div style={{ marginTop: 5}} >
                         <div style={ {  marginBottom:5,   float: 'right'}}>
-                        <Button type={'outline'} size={'small'} rounded={true}>
-                            Sign In
-                            </Button>
-                            <Button style={{marginLeft: 20,marginRight: 10,}} size={'small'}  rounded={true}>
+                        <Button  type={'outline'} size={'small'} rounded={true}>
                             Sign up
+                            </Button>
+                            <Button onClick={this.openPopup}  style={{marginLeft: 20,marginRight: 10,}} size={'small'}  rounded={true}>
+                            Sign in
                             </Button>
                         </div>
                     </div>
+
+
+                    <Popup
+                        title="Войдите"
+                        showClose
+                        isOpened={this.state.customIsOpened}
+                        backdropColor="blue"
+                        okButton={
+                            <Button type="primary" size="small" onClick={this.closePopup}>
+                                Ок
+                            </Button>
+                        }
+                        cancelButton={
+                            <Button type="flat" size="small" onClick={this.closePopup}>
+                                Отмена
+                            </Button>
+                        }
+                        onRequestClose={this.closePopup}>
+                        <div style={{width: 400}}>
+
+                            <Input
+                                style={{marginBottom: 5}}
+                                type="email"
+                                autoFocus
+                                value={this.state.inputValue}
+                                onChange={this.updateValue}
+                            />
+
+                            <Input
+                                type="password"
+                                autoFocus
+                                value={this.state.inputValue}
+                                onChange={this.updateValue}
+                            />
+                        </div>
+                    </Popup>
+
+
+
                 </div>
         )
     }

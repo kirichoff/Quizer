@@ -53,12 +53,6 @@ class AdminAgregateComponent extends Component {
             );
         }
     }
-
-    componentWillMount = () => {
-        console.log('WillMount');
-      //  this.getData()
-    };
-
     Send = (state) =>{
         const url = 'api/SampleData/AddQuiz'
         const body = new FormData;
@@ -118,7 +112,6 @@ class AdminAgregateComponent extends Component {
     render() {
         return (
             <div>
-
                 {this.state.request ?
                     <div>
                         {this.Tags()}

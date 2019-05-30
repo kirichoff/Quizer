@@ -34,3 +34,9 @@
 .Contain div{
     margin-left: 2%;
 }
+.icon:hover {
+    transform: scale(1.2);
+    fill: #130e87;
+    background-color: #eeeeee;
+    border-radius: 5px;
+}

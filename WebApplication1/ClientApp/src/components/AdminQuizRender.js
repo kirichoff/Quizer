@@ -91,7 +91,6 @@ class AdminQuizRender extends Component {
         console.log(this.props.istest)
         return (
             <div>
-                <Menu/>
                 <div className={"mainRend"}>
                     <div className="header AdminHeader">
                         <input

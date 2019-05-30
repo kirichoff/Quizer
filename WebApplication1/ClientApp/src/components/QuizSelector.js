@@ -14,7 +14,8 @@ class QuizSelector extends Component {
         super(props, context);
         this.state =
             {
-            QuizMap: arr
+            QuizMap: arr,
+
             }
     }
       async getData ()
@@ -31,11 +32,15 @@ class QuizSelector extends Component {
         console.log(this.state.QuizMap)
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.getData()
     }
 
+
+
     render() {
+
+
         console.log("arr hear")
         console.log(arr);
         console.log(this.state.QuizMap.data);
@@ -66,7 +71,7 @@ class QuizSelector extends Component {
                     ,height: '60vh', width: '72vw',borderRadius: 20 }}/>
                 </div>
 
-                <div className={"Page"}>
+                <div  className={"Page"}>
                 {this.state.QuizMap.map( (k,i)=>
                     <QuizCard key={i}
                               text={k.Header}
