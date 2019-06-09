@@ -65,7 +65,7 @@ class AgregateComponent extends Component {
                 case
                 1
                 :
-                    return (<InfoForm result={(obj) => { this.setState({UserInfo: obj, counter: 2}); }}
+                    return (<InfoForm prev={() => this.setState({counter: 0})}   result={(obj) => { this.setState({UserInfo: obj, counter: 2}); }}
                     />);
                 case
                 2
@@ -84,10 +84,10 @@ class AgregateComponent extends Component {
     }
 
     render() {
-        <Menu/>
+¸
         return (
-
             <div>
+                <Menu/>
                 {this.state.request ?
                     <div>
                         {this.Tags()}
