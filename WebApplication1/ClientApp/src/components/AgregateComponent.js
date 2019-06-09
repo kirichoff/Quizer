@@ -31,7 +31,7 @@ class AgregateComponent extends Component {
     SendStat = (answers,right_count) =>{
         const url = `api/SampleData/SendStat`;
         let b;
-        console.log('call')
+        console.log('call Send')
         let obj = this.state.UserInfo
         if (obj != null) {
              const body = new FormData();
@@ -39,17 +39,20 @@ class AgregateComponent extends Component {
             obj.QuizId = this.props.match.params.id
             obj.right_count = right_count
             body.append('body', JSON.stringify(obj))
+
+            console.log(body)
+
             fetch(url, {
                 method: "Post",
                 body: body
-            }).then(console.log('Sucsces')).catch(e =>
+            }).then(console.log('Success')).catch(e =>
                 console.log(e)
             );
         }
     }
 
     componentWillMount = () => {
-
+        document.getElementsByTagName("body")[0].style.background='linear-gradient(left, #0022cb 0%,#3fd3d8 100%);';
     };
 
      Tags = () => {
@@ -65,7 +68,9 @@ class AgregateComponent extends Component {
                 case
                 1
                 :
-                    return (<InfoForm prev={() => this.setState({counter: 0})}   result={(obj) => { this.setState({UserInfo: obj, counter: 2}); }}
+                    return (<InfoForm prev={() => this.setState({counter: 0})}   result={(obj) => {
+                        this.setState({UserInfo: obj, counter: 2});
+                    }}
                     />);
                 case
                 2
@@ -84,10 +89,9 @@ class AgregateComponent extends Component {
     }
 
     render() {
-¸
         return (
-            <div>
-                <Menu/>
+            <div style={{background: 'linear-gradient(left, #0022cb 0%,#3fd3d8 100%);'}} >
+                <Menu style={{margin:0}} />
                 {this.state.request ?
                     <div>
                         {this.Tags()}

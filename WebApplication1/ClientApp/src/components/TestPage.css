@@ -17,13 +17,20 @@
     overflow: auto;
     padding-left: 10%;
     padding-right: 10%;
+
 }
+.AlignText{
+    text-align: center;
+}
+.some {
+    margin-right: 5%;
+}
+
 .center
 {
     align-items: center;
     align-content: center;
     justify-content: center;
-    margin: auto;
 }
 .Welcome{
     margin-top: 10%;
@@ -76,29 +83,32 @@
     height: 40vh;
 }
 .mainRend{
-    display: grid;
+    display: flex;
     float: right;
     align-items: center;
     align-content: center;
     justify-content: center;
 }
 .hs{
+    height: 92.1vh;
+    width: 50vw;
     color: rgb(255, 253, 249);
-    padding-bottom: 30vh;
     align-content: center;
     align-self: center;
-    margin-left: 0;
-    padding-left: 0vw;
+    text-align: center;
+    padding-top: 18%;
+    float: left;
+    font-family: Montserrat;
+    font-size: 300%;
 }
 
 
 
 .QuizRender{
-    height: 100vh;
+    height: 92.1vh;
     width: 50vw;
     background-color: white;
     border-bottom-left-radius: 2vh ;
-    border-top-left-radius: 2vh;
     display: grid;
     /*margin: auto;*/
     justify-self: center;
@@ -110,8 +120,8 @@
     grid-template-rows:  20%;
 }
 .Pointstyle{
-    width: 30vw;
-    height: 7vh;
+    width: 40vw;
+    height: 4vh;
     position: center;
     text-align: center;
     margin: auto;
@@ -120,9 +130,9 @@
     align-content: center;
     align-items: center;
     border-radius:50px;
-    box-shadow: 1px 2px 7px 4px rgba(0, 0, 0, 0.20);
+    box-shadow: 1px 2px 7px 4px rgba(0, 0, 0, 0.07);
     font-style: italic;
-    font-size: 5vh;
+    font-size: 3vh;
     transition: transform 0.07s ease-in-out;
 }
 
@@ -170,6 +180,7 @@
 }
 .st0{fill:#FFFFFF;stroke:#000000;stroke-miterlimit:10;}
 .justify_content{
+
     justify-items: center;
     justify-content: center;
     margin: auto;
@@ -216,4 +227,16 @@
 }
 .Home:hover .toHome{
     filter: blur(20px);
+}
+
+.strelka{
+    transition: all ease-in-out 0.2s;
+}
+
+.strelka:hover{
+    transform: scale(0.9);
+}
+.Header2{
+    font-size: 200%;
+    margin-top: 10%;
 }

@@ -35,9 +35,9 @@ class QuizCard extends Component {
 
         </Link>
 
-                <div style={{marginLeft:'30%',marginTop: '20%' ,display: 'flex', alignItems:'center' }} >
-                    <IconMet  onClick={this.cl} className={'icon'}  />
-                    <IconRem className={'icon'} style={{marginLeft: '20%'}} />
+                <div style={{marginLeft:'30%',marginTop: '10%' ,display: 'flex', alignItems:'center' }} >
+                    <Link to={`/Stat/${this.props.id}`}><IconMet onClick={this.cl} className={'icon'}  /></Link>
+                    <IconRem  className={'icon'} style={{marginLeft: '20%'}} />
                 </div>
             </div>
         );

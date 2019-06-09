@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import data from "./data";
 import {Bar, BarChart, CartesianGrid, Legend, Tooltip, XAxis, YAxis} from "recharts";
+import Menu from "./Menu";
 
 
 class BarRender extends PureComponent {
@@ -8,7 +9,7 @@ class BarRender extends PureComponent {
         return (
             <div>
 
-
+                <Menu/>
 
                 <BarChart width={730} height={250} data={data}>
                     <CartesianGrid strokeDasharray="3 3" />

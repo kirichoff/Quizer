@@ -13,11 +13,11 @@ namespace WebApplication1.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
         [Display(Name = "wher")]
-        public bool wher { get; set; }
+        public string wher { get; set; }
         [Display(Name = "sex")]
-        public bool sex { get; set; }
+        public string sex { get; set; }
         [Display(Name = "work")]
-        public bool work { get; set; }
+        public string work { get; set; }
         [Display(Name = "age")]
         public int age { get; set; }
         [Display(Name = "lern")]

@@ -5,7 +5,9 @@ import Menu from "./Menu";
 import Arrow from "./Arrow";
 import EndOfQuestion from "./EndOfQuestion";
 import {Link} from "react-router-dom";
-
+import Checkbox from 'rambler-ui/Checkbox'
+import * as icons from 'rambler-ui/icons/forms'
+import Button from "rambler-ui/Button";
 const tests = {
     text:"hallow"
 }
@@ -18,6 +20,8 @@ var arr = [obj,obj,obj]
 
 const st = {backgroundColor: '#96ff63'};
 
+const ChevronLeftIcon = icons['ChevronLeftIcon'];
+const ChevronRightIcon = icons['ChevronRightIcon'];
 class QuizRender extends Component {
     constructor(){
         super();
@@ -94,21 +98,24 @@ class QuizRender extends Component {
         return (
             <div  >
                         <div className={"mainRend"}>
-                        <div className="header hs">
+                        <div className="hs">
                              { !(this.state.isend )? this.props.QuizMap[this.state.counter].Question : 'Good Work!' }
                         </div>
                         < div className = "QuizRender" >
-                            <span> <a href={'#'}></a> </span>
-                            <span> <a href={'#'}></a> </span>
-                            < div onClick={this.dec} style={{margin: '15%' }}   className="arrow">
-                                <Arrow  rotate={'top'} />
-                            </div>
+                            {
+                                (!this.state.isend) ?
+                                    <div className={' Header2 Header '}>
+                                        <div>Выберите один из Вариантов ответа</div>
+                                    </div>
+                                    : null
+                            }
                     {
                         (!this.state.isend )?
 
 
                             (    (this.props.istest === true )?
-                                <div className={'justify_content'} >
+                                <div style={{
+                                    marginTop: '10%'}} className={'justify_content'} >
                         {this.props.QuizMap[this.state.counter].Questions.map((k, i) =>
                             <div className={'Pointstyle'}
                                  style={ (this.state.answerssMap[this.state.counter].answers[i] &&
@@ -121,12 +128,18 @@ class QuizRender extends Component {
                             {isRight(this.state.answerssMap,this.state.counter,this.props.QuizMap[this.state.counter].Right)}
                         </div>
                                     :
-                                    <div className={'justify_content'} >
+                                    <div style={{
+                                        marginTop: '10%'}} className={'justify_content'} >
+
+
+
                                         {this.props.QuizMap[this.state.counter].Questions.map((k, i) =>
                                         {
                                          return(   <div className={'Pointstyle'}
                                                  style={(this.state.answerssMap[this.state.counter].answers[i]) ? {backgroundColor: '#96ff63'} : {}}
-                                                 data-index={i} key={i} onClick={this.change}>{k}</div>)
+                                                 data-index={i} key={i} onClick={this.change}>
+                                             {k}
+                                         </div>)
                                         }
                                         )
                                         }
@@ -145,33 +158,29 @@ class QuizRender extends Component {
                             />
                         </div>
                                 :
-                                <div style={{color: 'black'}} className="header hs">Спасибо!</div>
+                                <div style={{color: '#212121'}} className="hs">Спасибо!</div>
                         }
                             </div>
                     }
                             { (!this.state.isend )?
-                                <div onClick={this.inc} className="arrow">
-                                    <Arrow rotate={'bottom'}/>
-                                </div>
+                                null
                                 :
-
-
-                                <Link  style={{textDecoration: 'none'  }} className={'justify_content'}  to={'/'} >
-                                    <div>
-                                        <div onClick={()=> this.props.getQuiz(this.state.answerssMap,this.state.trueCounter)} className={'Home'}>
-                                            <div className={'pos'}>Home</div>
-                                            <div className={'toHome'}></div>
-                                        </div>
-                                    </div>
-                                </Link>
+                                <div style={{ marginTop: '30%' , height: '20%' }} >
+                                <Button container ={ <Link  style={{textDecoration: 'none',margin:0,padding:0  }} to={'/'} />}
+                                        onClick={()=>{ console.log('cal');  this.props.getQuiz(this.state.answerssMap,this.state.trueCounter)}}  size={'small'}  rounded={true}>
+                                    домой
+                                </Button>
+                                </div>
                             }
                             { (!this.state.isend)?
-                                <div className={"prog"}>
-                            <div className={"progress"}>
-                                <div className={"progress-bar progress-bar-success"} style={{width: ((this.state.counter+1)/(this.props.QuizMap.length))*100+'%' }}>
-                                </div>
-                            </div>
-                                <div className={'answer'}>{this.state.counter}  </div>
+                                <div style={{marginTop: '12%',width:'100%',height:'50%'}} className={'Header AlignText'}>
+                                    <ChevronLeftIcon style={{marginRight:'10%'}} onClick={this.dec} className={'strelka'} color={'#0022CB'}
+                                                     size={'20%'} />
+                                    <span> {this.state.counter}/{this.props.QuizMap.length} </span>
+                                    <ChevronRightIcon
+                                        style={{marginLeft:'10%'}}
+                                        onClick={this.inc}
+                                        className={'strelka'} color={'#0022CB'}  size={'20%'}/>
                                 </div>
                                 : null
                             }

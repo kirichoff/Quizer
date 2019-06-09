@@ -94,19 +94,14 @@ class Menu extends Component {
     // }
         return (
                 <div id="navbar"
-                     style={this.state.navBar}>
+                     style={{...this.state.navBar,...this.props.style}}>
                     <img src="../Zaur.png"  style={{height: '4vw',width: '7vw'}}  alt=""/>
-                    <Tabs value={this.state.value} onChange={this.handleChange}>
-                        {values.map((item, index) => (
-                            <TabsItem
-                                style = {{marginLeft: '20%'}}
-                                value={item}
-                                key={index}
-                                >
-                                {item}
-                            </TabsItem>
-                        ))}
-                    </Tabs>
+                    <div style={{marginTop: '3%'}} >
+                    <Link className={'LnStyle'} to={'/'} >Главная</Link>
+                    <Link className={'LnStyle'} to={'/'} >О нас</Link>
+                    <Link className={'LnStyle'} to={'/'} >Связь</Link>
+                    </div>
+
                     <div style={{ marginTop: 5}} >
                         <div style={ {  marginBottom:5,   float: 'right'}}>
                         <Button  type={'outline'} size={'small'} rounded={true}>

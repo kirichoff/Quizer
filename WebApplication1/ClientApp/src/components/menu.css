@@ -10,3 +10,17 @@
     box-shadow: rgba(0, 0, 0, 0.13) 0 1px 20px;
     transition: all ease-in-out 0.8s;
 }
+.LnStyle{
+    color: #212121;
+    text-decoration: none;
+    margin-left: 20%;
+    margin-top: 20%;
+}
+.LnStyle:hover {
+    text-decoration: none;
+    color: #274BC8;
+}
+.LnStyle:focus{
+    color: #274BC8;
+    text-decoration: none;
+}

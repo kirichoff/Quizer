@@ -85,12 +85,22 @@ namespace WebApplication1.Controllers
                 );
         }
 
+
+        [HttpGet("[action]")]
+        public string GetGender(string id)
+        {
+            return JsonConvert.SerializeObject(
+                db.GetSex(id)
+                );
+        }
+
+
         [HttpPost("[action]")]
         public async void SendStat(string body)
         {
-            int a=0;
+            var obj = JsonConvert.DeserializeObject<QuizStats>(body);
             await db.AddQuizStats(                            
-                   JsonConvert.DeserializeObject<QuizStats>(body)                                    
+                                        obj
                 );
         }
     }

@@ -179,27 +179,7 @@ namespace WebApplication1.Models
             }
             return age / ls.Count * 100;
         }
-
-
-        public int[] sex(string id)
-        {
-            var builder = new FilterDefinitionBuilder<QuizStats>();
-            var filter = builder.Empty; // фильтр для выборки всех документов
-            filter = filter & builder.Regex("QuizId", new BsonRegularExpression(id));
-            var ls = QuizStat.Find(new BsonDocument("QuizId", id)).ToList();
-
-
-            int men = 0;
-            int women = 0;
-
-            foreach (var pt in ls)
-            {
-                if (pt.sex) men++;
-                else women++;                        
-            }
-            int[] a = { men, women, ls.Count };
-            return a;
-        }
+     
 
         public int[] GetSex(string id)
         {
@@ -214,7 +194,7 @@ namespace WebApplication1.Models
 
             foreach (var pt in ls)
             {
-                if (pt.sex) men++;
+                if (pt.sex == "Женский") men++;
                 else women++;
             }
             int[] a = { men, women, ls.Count };
@@ -235,7 +215,7 @@ namespace WebApplication1.Models
 
             foreach (var pt in ls)
             {
-                if (pt.work) men++;
+                if (pt.work == "Да") men++;
                 else women++;
             }
             int[] a = { men, women, ls.Count };
@@ -257,7 +237,7 @@ namespace WebApplication1.Models
 
             foreach (var pt in ls)
             {
-                if (pt.wher) men++;
+                if (pt.wher == "Город") men++;
                 else women++;
             }
             int[] a = { men, women, ls.Count };

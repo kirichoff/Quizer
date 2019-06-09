@@ -40,10 +40,9 @@ class QuizSelector extends Component {
 
     render() {
 
+        let date = new Date()
+        console.log(date.getFullYear())
 
-        console.log("arr hear")
-        console.log(arr);
-        console.log(this.state.QuizMap.data);
         return (
             <div className={'main'} >
                 <Menu scroll = {true} />
