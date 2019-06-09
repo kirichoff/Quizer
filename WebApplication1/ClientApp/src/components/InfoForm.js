@@ -2,14 +2,19 @@ import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import  './TestPage.css'
 import  './Infoform.css'
+import {Toggle, ToggleOption} from 'rambler-ui/Toggle'
 import Radio from "./Radio";
 import Arrow from "./Arrow";
+import Button from "rambler-ui/Button";
 
 class InfoForm extends Component {
     constructor(props, context) {
         super(props, context);
         this.state =
             {
+                toggleValue: 'Rambler',
+                toggleValue2: 'Мужской',
+                toggleValue3: 'Да',
                 wher: false,
                 sex: false,
                 work: false,
@@ -41,30 +46,60 @@ class InfoForm extends Component {
     render() {
         return (
             <div className={"TestPageBody"}>
-                <div className={"Wel"}>
-                    <span className={"header"}>О себе</span>
-                        <div onClick={()=> this.props.result({
-                            wher:this.state.wher,
-                            sex: this.state.sex,
-                            work: this.state.work,
-                            age: this.state.age,
-                            lern: this.state.lern})
-                        }
-                             className={"pos2"}>
-                            <Arrow/>
+                <div className={"Wel2"}>
+                    <div className={"hpos header"}>О себе</div>
+                    <div>
+                    <div>
+                        Где?
+                        <Toggle
+                            rounded ={true}
+                            value={this.state.toggleValue}
+                            className="toggle"
+                            onChange={this.onChange}
+                            block={true}
+                            equalWidth={true}>
+                            <ToggleOption value="Rambler">Город</ToggleOption>
+                            <ToggleOption value="Yandex">Село</ToggleOption>
+                        </Toggle>
+                    </div>
+                        <div>
+                            Пол
+                            <Toggle
+                                rounded ={true}
+                                value={this.state.toggleValue2}
+                                className="toggle"
+                                onChange={this.onChange}
+                                block={true}
+                                equalWidth={true}>
+                                <ToggleOption value="Мужской">Мужской</ToggleOption>
+                                <ToggleOption value="Женский">Женский</ToggleOption>
+                            </Toggle>
                         </div>
-                    <div className={'center'}>
-                        <Radio val1={'Город'} val2={'Село'} onchange={this.change}>Место проживания</Radio>
-                        <Radio val1={'Да'} val2={'Нет'} onchange={this.change}>Работаете?</Radio>
-                        <Radio val1={'M'} val2={'Ж'} onchange={this.change}>Пол</Radio>
-                        <div className={'mar'}>
-                        <div className={"discripton"}>Возраст</div>
-                        <input className={'Pointstyle'} type={'number'} onChange={(e) => this.setState({age: e.currentTarget.value})}/>
+
+                        <div>
+                            Работаете
+                            <Toggle
+                                rounded ={true}
+                                value={this.state.toggleValue3}
+                                className="toggle"
+                                onChange={this.onChange}
+                                block={true}
+                                equalWidth={true}>
+                                <ToggleOption value="Да">Да</ToggleOption>
+                                <ToggleOption value="Нет">Нет</ToggleOption>
+                            </Toggle>
                         </div>
-                        <div className={'mar'} >
-                        <div className={"discripton"}>Образование</div>
-                        <input className={'Pointstyle'} type={'text'} onChange={(e) => this.setState({lern: e.currentTarget.value})}/>
+                        <div>
+                            Дата рождения
                         </div>
+                    </div>
+                    <div style={ {  marginBottom: "5%",}}>
+                        <Button onClick={()=> this.props.prev()}  type={'outline'} size={'small'} rounded={true}>
+                            Назад
+                        </Button>
+                        <Button onClick={()=> this.props.result()}  style={{float:'right' }} size={'small'}  rounded={true}>
+                            Начать тест
+                        </Button>
                     </div>
                 </div>
             </div>

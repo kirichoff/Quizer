@@ -8,14 +8,16 @@ import AdminAgregateComponent from "./components/AdminAgregateComponent";
 import BarRender from "./components/BarRender";
 import PieRender from "./components/PieRender";
 import LogIn from "./components/LogIn";
+import Background from "./components/Background";
 
 export default () => (
 
   <div>
-      <Route path ={'/Home'} component = {QuizSelector} />
+      <Route exact path ={'/'} component = {QuizSelector} />
         <Route path={'/Bar'} component={BarRender}/>
         <Route path={'/Pie'}  component = {PieRender} />
       <Route path={'/bg/info/:id'} component={InfoForm} />
+      <Route path={'/bg'} component={Background} />
       <Route path={'/bg/Test/:id'} component={AgregateComponent}  />
       <Route path={'/Home/Login'} component={LogIn}/>
       <Route path={'/bg/Admin'} component={AdminAgregateComponent}/>

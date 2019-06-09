@@ -7,6 +7,9 @@ class BarRender extends PureComponent {
     render() {
         return (
             <div>
+
+
+
                 <BarChart width={730} height={250} data={data}>
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />

@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import  './TestPage.css'
 import './Infoform.css'
 import Arrow from "./Arrow";
+import Button from "rambler-ui/Button";
+import {Toggle, ToggleOption} from 'rambler-ui/Toggle'
 
 class TestPage extends Component {
     render() {
@@ -14,11 +16,20 @@ class TestPage extends Component {
                 <div className={"Wel2"} >
                 <div className={"hpos header"} >
                     {this.props.children}
-                </div>
-                        <div className={'pos2'} onClick={()=> this.props.next()}>
-                             <Arrow
-                                rotate={'right'}
-                             />
+                    </div>
+                    <p>
+                        Скрытый смысл, на первый взгляд, последовательно иллюстрирует культурный поток сознания и передается
+                        в этом стихотворении Донна метафорическим образом циркуля. Диалогический контекст неравномерен.
+                        Абстрактное высказывание многопланово аллитерирует дискурс. Орнаментальный сказ иллюстрирует диссонансный ритм.
+                    </p>
+
+                        <div style={ {  marginBottom: "5%",}}>
+                            <Button container={<Link to={'/'}/>}  type={'outline'} size={'small'} rounded={true}>
+                                Назад
+                            </Button>
+                            <Button onClick={()=> this.props.next()}  style={{float:'right' }} size={'small'}  rounded={true}>
+                               Далее
+                            </Button>
                     </div>
                 </div>
             </div>

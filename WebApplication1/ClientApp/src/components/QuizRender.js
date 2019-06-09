@@ -98,6 +98,8 @@ class QuizRender extends Component {
                              { !(this.state.isend )? this.props.QuizMap[this.state.counter].Question : 'Good Work!' }
                         </div>
                         < div className = "QuizRender" >
+                            <span> <a href={'#'}></a> </span>
+                            <span> <a href={'#'}></a> </span>
                             < div onClick={this.dec} style={{margin: '15%' }}   className="arrow">
                                 <Arrow  rotate={'top'} />
                             </div>

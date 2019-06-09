@@ -25,7 +25,7 @@
     font-family: 'Montserrat', sans-serif;
     color: #fffcfe;
     position: absolute;
-    top: 40%;
-    z-index: 200;
+    margin-top: 15%;
+    z-index: 2;
     left: 2%;
 }

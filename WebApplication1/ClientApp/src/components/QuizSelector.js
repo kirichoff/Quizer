@@ -46,7 +46,7 @@ class QuizSelector extends Component {
         console.log(this.state.QuizMap.data);
         return (
             <div className={'main'} >
-                <Menu/>
+                <Menu scroll = {true} />
                 <div>
                     <div className={'discr'} style={
                         {marginLeft: '14%',

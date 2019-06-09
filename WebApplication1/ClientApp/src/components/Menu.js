@@ -10,16 +10,50 @@ import Input from "rambler-ui/Input";
 
 
 const values = ['Home', 'About', 'Contact']
+var nav_style = {position: 'relative',top: '0px'}
 
 class Menu extends Component {
+    prop
+
     constructor(props, context) {
         super(props, context);
         this.state = {
             value: values[1],
-            customIsOpened: false
+            customIsOpened: false,
+            prevS: window.pageYOffset,
+            navBar:{position: 'relative',top: '0px'}
         }
-        this.openPopup = this.openPopup.bind(this)
+        this.openPopup = this.openPopup.bind(this);
+
     }
+
+    Scrol = ()=>{
+        var nav = {position: "",top:"",zIndex: 200};
+        var prevScrollpos = this.state.prevS
+        var currentScrollpos = window.pageYOffset;
+        if (currentScrollpos <= 0) {
+            nav.position = 'relative';
+        } else {
+            if (prevScrollpos > currentScrollpos) {
+                nav.top = "0px";
+                nav.position = 'fixed';
+            } else {
+                nav.top = "-100px";
+            }
+        }
+        prevScrollpos = currentScrollpos;
+
+        this.setState({navBar: nav, prevS: prevScrollpos })
+    }
+
+    componentDidMount() {
+      if (this.props.scroll)  window.addEventListener("scroll",this.Scrol)
+    }
+
+    componentWillUnmount() {
+        if (this.props.scroll)   window.removeEventListener("scroll",this.Scrol)
+    }
+
     handleChange = (event, value) => {
         this.setState({value})
     }
@@ -37,31 +71,30 @@ class Menu extends Component {
             customIsOpened: false
         })
     }
+
     render() {
-
-        var prevScrollpos = window.pageYOffset;
-        window.onscroll = function() {
-            var currentScrollpos = window.pageYOffset;
-            console.log(currentScrollpos)
-            if (currentScrollpos <= 50 )
-            {
-                document.getElementById("navbar").style.position = 'relative';
-            }
-            else {
-                if (prevScrollpos > currentScrollpos) {
-                    document.getElementById("navbar").style.top = "0";
-                    document.getElementById("navbar").style.position = 'fixed';
-                } else {
-                    document.getElementById("navbar").style.top = "-100px";
-                }
-            }
-
-            prevScrollpos = currentScrollpos;
-
-        }
-
+    // if(this.state.navBar !== undefined) {
+    //     console.log('nav: ',this.state.navBar)
+    //     var nav = this.state.navBar
+    //     var prevScrollpos = window.pageYOffset;
+    //     window.onscroll = function () {
+    //         var currentScrollpos = window.pageYOffset;
+    //         if (currentScrollpos <= 50) {
+    //             nav.position = 'relative';
+    //         } else {
+    //             if (prevScrollpos > currentScrollpos) {
+    //                 nav.top = "0px";
+    //                 nav.position = 'fixed';
+    //             } else {
+    //                 nav.top = "-100px";
+    //             }
+    //         }
+    //         prevScrollpos = currentScrollpos;
+    //     }
+    // }
         return (
-                <div id="navbar">
+                <div id="navbar"
+                     style={this.state.navBar}>
                     <img src="../Zaur.png"  style={{height: '4vw',width: '7vw'}}  alt=""/>
                     <Tabs value={this.state.value} onChange={this.handleChange}>
                         {values.map((item, index) => (

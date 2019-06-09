@@ -44,20 +44,28 @@
 .hpos
 {
     margin-top: 0%;
-    margin-left: -10%;
+    margin-left: 0%;
 }
 .Wel2{
     margin-top: 10%;
-    width: 80vw;
-    height: 20vh;
+    /*width: 80vw;*/
+    /*height: 20vh;*/
     background-color: white;
     border-radius: 7vh ;
     justify-self: center;
     font-family: Helvetica;
     align-items: center;
     align-content: center;
-    padding-bottom: 40%;
+    padding-bottom: 1%;
+    padding-top: 1%;
+    padding-left: 5%;
+    padding-right: 5%;
     font-style: italic;
     font-size: 3vh;
     margin-bottom: 10%;
+}
+.Wel2 p{
+    padding-bottom: 10%;
+    font-family: Roboto;
+    font-size: 18px;
 }
