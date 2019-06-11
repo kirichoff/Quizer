@@ -20,8 +20,15 @@ class Menu extends Component {
         this.state = {
             value: values[1],
             customIsOpened: false,
+            SignUpOpened: false,
+            Key: '',
+            name: '',
+            pass: '',
+            isKey: false,
+            isFail: false,
             prevS: window.pageYOffset,
-            navBar:{position: 'relative',top: '0px'}
+            navBar:{position: 'relative',top: '0px'},
+            LogIn: {isLogin: false,isAdmin: false,name:'' }
         }
         this.openPopup = this.openPopup.bind(this);
 
@@ -53,22 +60,69 @@ class Menu extends Component {
     componentWillUnmount() {
         if (this.props.scroll)   window.removeEventListener("scroll",this.Scrol)
     }
-
-    handleChange = (event, value) => {
-        this.setState({value})
-    }
-
-    openPopup  (e) {
-        console.log(e.target.v)
+    openPopup =()=> {
         this.setState({customIsOpened: true})
         // this.setState({
         //     [`${type}IsOpened`]: true
         // })
     }
 
+    openPopup2 = ()=>{
+        this.setState({SignUpOpened: true,name: '',pass: ''})
+    }
+
+    updateValue = type => e=> {
+        this.setState({
+            [`${type}`]: e.target.value
+         })
+        }
+
+   async getLogin ()
+    {
+        const url = `api/SampleData/Login?name=${this.state.name}&pas=${this.state.pass}`;
+        const response = await fetch(url);
+        const Log = await response.json();
+
+        if(Log.Status){
+            this.props.LogIn(true)
+            this.setState({ LogIn:
+                    {isLogin: true,isAdmin: Log.isAdmin ,name: this.state.name}
+            })
+            this.closePopup()
+        }
+        else {
+            this.setState({isFail: true });
+        }
+    }
+
+
+   async Reg()
+    {
+        const url = `api/SampleData/Reg?name=${this.state.name}&pas=${this.state.pass}&key=${this.state.Key}`;
+        const response = await fetch(url);
+        const Log = await response.json();
+
+        if(Log.key){
+            this.setState({name: '',pass: ''})
+            this.closePopup2()
+        }
+        else {
+            this.setState({isKey: true})
+        }
+    }
+
+
+    closePopup2 = () => {
+        this.setState({
+            SignUpOpened: false,
+            isFail: false
+        })
+    }
+
     closePopup = () => {
         this.setState({
-            customIsOpened: false
+            customIsOpened: false,
+            isFail: false
         })
     }
 
@@ -104,7 +158,7 @@ class Menu extends Component {
 
                     <div style={{ marginTop: 5}} >
                         <div style={ {  marginBottom:5,   float: 'right'}}>
-                        <Button  type={'outline'} size={'small'} rounded={true}>
+                        <Button onClick={this.openPopup2} type={'outline'} size={'small'} rounded={true}>
                             Sign up
                             </Button>
                             <Button onClick={this.openPopup}  style={{marginLeft: 20,marginRight: 10,}} size={'small'}  rounded={true}>
@@ -131,25 +185,111 @@ class Menu extends Component {
                         }
                         onRequestClose={this.closePopup}>
                         <div style={{width: 400}}>
-
+                            <div style={{marginBottom: '5%',color: 'red' }} >{(this.state.isFail)? 'Неверное имя пользователя или пароль' : null}</div>
                             <Input
                                 style={{marginBottom: 5}}
                                 type="email"
+                                status={(this.state.isFail)? 'error': ''}
                                 autoFocus
-                                value={this.state.inputValue}
-                                onChange={this.updateValue}
+                                value={this.state.name}
+                                onChange={this.updateValue('name')}
                             />
 
                             <Input
                                 type="password"
                                 autoFocus
-                                value={this.state.inputValue}
-                                onChange={this.updateValue}
+                                status={(this.state.isFail)? 'error': ''}
+                                value={this.state.pass}
+                                onChange={this.updateValue('pass')}
+                            />
+                        </div>
+                    </Popup>
+
+                    <Popup
+                        title="Войдите"
+                        showClose
+                        isOpened={this.state.customIsOpened}
+                        backdropColor="blue"
+                        okButton={
+                            <Button type="primary" size="small" onClick={this.closePopup}>
+                                Ок
+                            </Button>
+                        }
+                        cancelButton={
+                            <Button type="flat" size="small" onClick={this.closePopup}>
+                                Отмена
+                            </Button>
+                        }
+                        onRequestClose={this.closePopup}>
+                        <div style={{width: 400}}>
+                            <div style={{marginBottom: '5%',color: 'red' }} >{(this.state.isFail)? 'Неверное имя пользователя или пароль' : null}</div>
+                            <Input
+                                style={{marginBottom: 5}}
+                                type="email"
+                                status={(this.state.isFail)? 'error': ''}
+                                autoFocus
+                                value={this.state.name}
+                                onChange={this.updateValue('name')}
+                            />
+
+                            <Input
+                                type="password"
+                                autoFocus
+                                status={(this.state.isFail)? 'error': ''}
+                                value={this.state.pass}
+                                onChange={this.updateValue('pass')}
                             />
                         </div>
                     </Popup>
 
 
+                    <Popup
+                        title="Регистрация"
+                        showClose
+                        isOpened={this.state.SignUpOpened}
+                        backdropColor="blue"
+                        okButton={
+                            <Button type="primary" size="small" onClick={this.closePopup2}>
+                                Ок
+                            </Button>
+                        }
+                        cancelButton={
+                            <Button type="flat" size="small" onClick={this.closePopup2}>
+                                Отмена
+                            </Button>
+                        }
+                        onRequestClose={this.closePopup2}>
+                        <div style={{width: 400}}>
+                            <div style={{marginBottom: '5%',color: 'red' }} >{(this.state.isKey)? 'Неверный ключ' : null}</div>
+                            <Input
+                                style={{marginBottom: 5}}
+                                type="email"
+                                placeholder={'username'}
+                                status={(this.state.isFail)? 'error': ''}
+                                autoFocus
+                                value={this.state.name}
+                                onChange={this.updateValue('name')}
+                            />
+
+                            <Input
+                                type="password"
+                                style={{marginBottom: 5}}
+                                autoFocus
+                                placeholder={'password'}
+                                value={this.state.pass}
+                                onChange={this.updateValue('pass')}
+                            />
+                            <Input
+                                type="text"
+                                placeholder={'Key'}
+                                autoFocus
+                                status={(this.state.isKey)? 'error': ''}
+                                value={this.state.pass}
+                                onChange={this.updateValue('Key')}
+                            />
+
+                        </div>
+                    </Popup>
 
                 </div>
         )

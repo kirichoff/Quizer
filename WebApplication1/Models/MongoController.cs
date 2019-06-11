@@ -155,8 +155,16 @@ namespace WebApplication1.Models
 
             var Qwes  = new List<List<int>>();
             var buf = new List<int>();
+            
             for ( int i = 0; i<ls.First().answerssmap.Length; i++)
             {
+
+                buf = new List<int>();
+
+                foreach (var pt4 in ls.First().answerssmap[i].answers)
+                {
+                    buf.Add(0);
+                }
                 Qwes.Add(buf);
             }
 
@@ -166,19 +174,11 @@ namespace WebApplication1.Models
             foreach (var pt in ls)
             {               
                 foreach (var pt2 in pt.answerssmap)
-                {
-                    buf = new List<int>();
-
-                    foreach (var pt4 in pt2.answers)
-                    {
-                        buf.Add(0);
-                    }
-
+                {                
                     for (int i =0; i< pt2.answers.Length; i++)
                     {
-                        if (pt2.answers[i]) buf[i]++;
-                    }
-                    Qwes[counter] = buf;
+                        if (pt2.answers[i]) Qwes[counter][i]++;
+                    }                    
                     counter++;
                 }
                 counter = 0;

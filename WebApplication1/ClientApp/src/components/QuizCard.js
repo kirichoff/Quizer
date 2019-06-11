@@ -20,14 +20,11 @@ class QuizCard extends Component {
         console.log('cl')
     }
     render() {
-        console.log('qweeeeeeeee')
-        console.log(icons)
-
         return (
             <div className={'Contain'} >
             <Link
                 className={'Contain'}
-               to={`/bg/Test/${this.props.id}`}
+               to={`/${this.props.to}${this.props.id}`}
                 >
                         <img src={'../immge.jpg'} className={'imag'} />
                            <div>{this.props.text}</div>
@@ -37,7 +34,7 @@ class QuizCard extends Component {
 
                 <div style={{marginLeft:'30%',marginTop: '10%' ,display: 'flex', alignItems:'center' }} >
                     <Link to={`/Stat/${this.props.id}`}><IconMet onClick={this.cl} className={'icon'}  /></Link>
-                    <IconRem  className={'icon'} style={{marginLeft: '20%'}} />
+                    <IconRem onClick={  ()=>this.props.Remove(this.props.id)}  className={'icon'} style={{marginLeft: '20%'}} />
                 </div>
             </div>
         );

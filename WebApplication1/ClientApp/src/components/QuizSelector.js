@@ -29,7 +29,7 @@ class QuizSelector extends Component {
         const url = `api/SampleData/GetQuiz?count=12`;
         const response = await fetch(url,{method:"GET"})
         var res = await response.json();
-        await this.sleep(1000);
+        // await this.sleep(1000);
         this.setState({QuizMap: res,response: true})
     }
 
@@ -38,6 +38,12 @@ class QuizSelector extends Component {
     }
 
 
+    Remove = (id)=>{
+        const url = `api/SampleData/Delete?id=${id}`;
+        const response =  fetch(url);
+        console.log('delete ?',response.status);
+        this.getData()
+    }
 
     render() {
 
@@ -77,13 +83,28 @@ class QuizSelector extends Component {
                         <div  className={"Page"}>
                             {this.state.QuizMap.map( (k,i)=>
                                     <QuizCard key={i}
+                                              to={'bg/Test/'}
                                               text={k.Header}
                                               id = {k.Id}
                                               obj = {k}
                                               desc = {'qweewqrwqr qfsaf asfasfasfasf asfafa'}
+                                              Remove={this.Remove}
                                     />
                                 )}
+
+                            <QuizCard
+                                        style={{filter: 'grayscale(.75)'}}
+                                        key={241}
+                                      to={'bg/Test/'}
+                                      text={"qq"}
+                                      id = {'k.Id'}
+                                      obj = {{}}
+                                      desc = {'qweewqrwqr qfsaf asfasfasfasf asfafa'}
+                                      Remove={this.Remove}
+                            />
+
                         </div>
+
                         </div>
                         :
                             <Loader  style={{transform: 'scale(2)' ,marginTop: '35%'}} loading={!this.state.response} />
