@@ -117,7 +117,7 @@ namespace WebApplication1.Models
             var ls = QuizStat.Find(new BsonDocument("QuizId", id ) ).ToList();
 
 
-            double[] ans = new double[ls[0].answerssmap.Length];
+            double[] ans = new double[ls.First().answerssmap.Length];
                 int counter = 0; 
             
             for(int i=0; i< ls[0].answerssmap.Length; i++)
@@ -143,6 +143,49 @@ namespace WebApplication1.Models
             }
 
             return ans;
+        }
+
+
+        public Array GetStatsQ(string id)
+        {
+            var builder = new FilterDefinitionBuilder<QuizStats>();
+            var filter = builder.Empty; // фильтр для выборки всех документов
+            filter = filter & builder.Regex("QuizId", new BsonRegularExpression(id));
+            var ls = QuizStat.Find(new BsonDocument("QuizId", id)).ToList();
+
+            var Qwes  = new List<List<int>>();
+            var buf = new List<int>();
+            for ( int i = 0; i<ls.First().answerssmap.Length; i++)
+            {
+                Qwes.Add(buf);
+            }
+
+            int counter = 0;
+
+            
+            foreach (var pt in ls)
+            {               
+                foreach (var pt2 in pt.answerssmap)
+                {
+                    buf = new List<int>();
+
+                    foreach (var pt4 in pt2.answers)
+                    {
+                        buf.Add(0);
+                    }
+
+                    for (int i =0; i< pt2.answers.Length; i++)
+                    {
+                        if (pt2.answers[i]) buf[i]++;
+                    }
+                    Qwes[counter] = buf;
+                    counter++;
+                }
+                counter = 0;
+            }
+            
+
+            return  Qwes.ToArray();
         }
 
 
