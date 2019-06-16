@@ -15,10 +15,9 @@ class BarRender extends PureComponent {
 
             let obj = []
 
-            for (var key in data[1]){
+            for (var key in data[0]){
                 console.log(key)
                 obj.push(<Bar dataKey={key} fill="#8884d8" />)
-
             }
             obj.splice(0,1);
             return obj;

@@ -1,9 +1,11 @@
 #navbar {
+    font-family: Roboto;
+    font-size: 120%;
     background: #fffcfe;
     padding: 0%;
     z-index: 100000;
     display: grid;
-    grid-template-columns: 33vw 33vw 33vw;
+    grid-template-columns: 25% 40% 35%;
     margin-bottom: 2%;
     top: 0;
     width: 100%;

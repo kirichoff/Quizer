@@ -29,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="C:\Users\Kirill\AppData\Local\JetBrains\Toolbox\apps\datagrip\ch-0\191.6707.12\bin\datagrip64.exe" Link="datagrip64.exe" />
     <Compile Include="C:\Users\Kirill\Desktop\SampleDataController.cs" Link="SampleDataController.cs" />
   </ItemGroup>
 

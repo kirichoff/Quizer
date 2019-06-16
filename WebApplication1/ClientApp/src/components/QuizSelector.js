@@ -91,18 +91,18 @@ class QuizSelector extends Component {
                                               Remove={this.Remove}
                                     />
                                 )}
-
+                    <div   style={{filter: 'grayscale(.75)'}} >
                             <QuizCard
-                                        style={{filter: 'grayscale(.75)'}}
+
                                         key={241}
-                                      to={'bg/Test/'}
-                                      text={"qq"}
+                                      to={'bg/Admin/'}
+                                      text={"Доабавить тест"}
                                       id = {'k.Id'}
                                       obj = {{}}
-                                      desc = {'qweewqrwqr qfsaf asfasfasfasf asfafa'}
+                                      desc = {'какой-то тескст'}
                                       Remove={this.Remove}
                             />
-
+                    </div>
                         </div>
 
                         </div>
@@ -111,6 +111,10 @@ class QuizSelector extends Component {
 
                     }
                 </div>
+
+
+                <div className={'footer'} >  </div>
+
             </div>
         );
     }

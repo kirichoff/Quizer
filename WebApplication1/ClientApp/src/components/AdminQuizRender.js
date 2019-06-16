@@ -5,7 +5,10 @@ import Menu from "./Menu";
 import Arrow from "./Arrow";
 import './AdminAgregatecss.css'
 import {Link} from "react-router-dom";
+import * as icons from "rambler-ui/icons/forms";
 
+const ChevronLeftIcon = icons['ChevronLeftIcon'];
+const ChevronRightIcon = icons['ChevronRightIcon'];
 
 var obj ={
     Question: "Q",
@@ -103,9 +106,6 @@ class AdminQuizRender extends Component {
                         <div>{this.state.counter}</div>
                     </div>
                     < div className = "QuizRender" >
-                        < div onClick={this.dec}  className="arrow">
-                            <Arrow rotate={'top'} />
-                        </div>
                         {
                             (!this.state.isend )?
                                 <div className={'justify_content'} >
@@ -153,19 +153,20 @@ class AdminQuizRender extends Component {
                                 </div>
                         }
                         <div   className="arrow">
-                            <span onClick={this.inc} > <Arrow rotate={'bottom'} /></span>
                             <span onClick={this.addQu} > Qestion++</span>
                         </div>
 
 
                         { (!this.state.isend)?
 
-                            <div  style={{height: '20%',width: '120%'}} className={"prog"}>
-                                <div className={"progress"}>
-                                    <div className={"progress-bar progress-bar-success"} style={{width: ((this.state.counter+1)/(this.state.QuizMap.length))*100+'%' }}>
-                                    </div>
-                                </div>
-                                <div className={'answer'}>{this.state.counter}  </div>
+                            <div style={{marginTop: '12%',width:'100%',height:'50%'}} className={'Header AlignText'}>
+                                <ChevronLeftIcon style={{marginRight:'10%'}} onClick={this.dec} className={'strelka'} color={'#0022CB'}
+                                                 size={'20%'} />
+                                <span> {this.state.counter}/{this.state.QuizMap.length} </span>
+                                <ChevronRightIcon
+                                    style={{marginLeft:'10%'}}
+                                    onClick={this.inc}
+                                    className={'strelka'} color={'#0022CB'}  size={'20%'}/>
                             </div>
 
                             : null

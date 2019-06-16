@@ -151,6 +151,7 @@ class QuizRender extends Component {
                             {(this.props.istest)?
                         <div style={{marginTop: "10vh" }} >
                             <EndOfQuestion
+                                id = {this.props}
                                 linck = {this.linck}
                                 Questions={this.props.QuizMap}
                                 answer={this.state.answerssMap}

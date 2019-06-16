@@ -151,7 +151,7 @@ class Menu extends Component {
                      style={{...this.state.navBar,...this.props.style}}>
                     <img src="../Zaur.png"  style={{height: '4vw',width: '7vw'}}  alt=""/>
                     <div style={{marginTop: '3%'}} >
-                    <Link className={'LnStyle'} to={'/'} >Главная</Link>
+                    <Link className={'LnStyle '} to={'/'} >Главная</Link>
                     <Link className={'LnStyle'} to={'/'} >О нас</Link>
                     <Link className={'LnStyle'} to={'/'} >Связь</Link>
                     </div>
@@ -183,7 +183,7 @@ class Menu extends Component {
                                 Отмена
                             </Button>
                         }
-                        onRequestClose={this.closePopup}>
+                     >
                         <div style={{width: 400}}>
                             <div style={{marginBottom: '5%',color: 'red' }} >{(this.state.isFail)? 'Неверное имя пользователя или пароль' : null}</div>
                             <Input
@@ -228,6 +228,7 @@ class Menu extends Component {
                                 type="email"
                                 status={(this.state.isFail)? 'error': ''}
                                 autoFocus
+                                placeholder={'имя'}
                                 value={this.state.name}
                                 onChange={this.updateValue('name')}
                             />
@@ -235,6 +236,7 @@ class Menu extends Component {
                             <Input
                                 type="password"
                                 autoFocus
+                                placeholder={'пароль'}
                                 status={(this.state.isFail)? 'error': ''}
                                 value={this.state.pass}
                                 onChange={this.updateValue('pass')}
@@ -264,7 +266,7 @@ class Menu extends Component {
                             <Input
                                 style={{marginBottom: 5}}
                                 type="email"
-                                placeholder={'username'}
+                                placeholder={'имя'}
                                 status={(this.state.isFail)? 'error': ''}
                                 autoFocus
                                 value={this.state.name}
@@ -275,13 +277,13 @@ class Menu extends Component {
                                 type="password"
                                 style={{marginBottom: 5}}
                                 autoFocus
-                                placeholder={'password'}
+                                placeholder={'пароль'}
                                 value={this.state.pass}
                                 onChange={this.updateValue('pass')}
                             />
                             <Input
                                 type="text"
-                                placeholder={'Key'}
+                                placeholder={'ключ'}
                                 autoFocus
                                 status={(this.state.isKey)? 'error': ''}
                                 value={this.state.pass}

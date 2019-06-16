@@ -5,6 +5,9 @@ import InfoForm from "./InfoForm";
 import AdminQuizRender from "./AdminQuizRender";
 import Radio from "./Radio";
 import  './AdminAgregatecss.css'
+import Textarea from 'rambler-ui/Textarea'
+import FormGroup from 'rambler-ui/FormGroup'
+import InputStatus from 'rambler-ui/InputStatus'
 
 class AdminAgregateComponent extends Component {
     constructor(props, context) {
@@ -13,6 +16,7 @@ class AdminAgregateComponent extends Component {
             QuizMap:null,
             vale: null,
             request: true,
+            Desc: '',
             counter: 0,
             UserInfo: null,
             istest: true
@@ -86,6 +90,14 @@ class AdminAgregateComponent extends Component {
                             defaultValue={'Your Header!'}
                             value={this.state.vale}
                             onChange={event => this.setState({vale: event.target.value})}
+                        />
+                        <Textarea
+                            variation="regular"
+                            value={this.state.Desc}
+                            onChange={event => this.setState({Desc: event.target.value})}
+                            placeholder="Имя"
+                            style={{width: '500px'}}
+                            textareaStyle={{minHeight: '100px',maxHeight: '100px'}}
                         />
                         <Radio val1={'тест'} val2 ={'опрос'}  onchange = {
                             ( val1, val2, child ) =>
