@@ -100,9 +100,9 @@ class StatistickRender extends Component {
                         } />
                     </span>
                 </div>
-
+                        <div style={{marginLeft:"25%"}} >
                         <BarRender data={this.dataConvert()}  />
-
+                        </div>
                     </div>
                     :
                     <Loader  style={{transform: 'scale(2)' ,marginTop: '35%'}} loading={!this.state.response} />

@@ -8,6 +8,7 @@ import  './AdminAgregatecss.css'
 import Textarea from 'rambler-ui/Textarea'
 import FormGroup from 'rambler-ui/FormGroup'
 import InputStatus from 'rambler-ui/InputStatus'
+import Menu from "./Menu";
 
 class AdminAgregateComponent extends Component {
     constructor(props, context) {
@@ -19,7 +20,8 @@ class AdminAgregateComponent extends Component {
             Desc: '',
             counter: 0,
             UserInfo: null,
-            istest: true
+            istest: true,
+            biteImage: null,
         }
     }
 
@@ -48,6 +50,7 @@ class AdminAgregateComponent extends Component {
                 body.append(pair,b[pair])
 
             body.append('istest',this.state.istest)
+            body.append('istest',this.state.istest)
 
             fetch(url, {
                 method: "Post",
@@ -75,7 +78,6 @@ class AdminAgregateComponent extends Component {
 
 
 
-
     Tags = () => {
         if(this.state.request)
         {
@@ -95,9 +97,9 @@ class AdminAgregateComponent extends Component {
                             variation="regular"
                             value={this.state.Desc}
                             onChange={event => this.setState({Desc: event.target.value})}
-                            placeholder="Имя"
-                            style={{width: '500px'}}
-                            textareaStyle={{minHeight: '100px',maxHeight: '100px'}}
+                            placeholder="описание"
+                            style={{width: '100%'}}
+                            textareaStyle={{minHeight: '100px',maxHeight: '100px',minWidth:"100%"}}
                         />
                         <Radio val1={'тест'} val2 ={'опрос'}  onchange = {
                             ( val1, val2, child ) =>
@@ -121,11 +123,14 @@ class AdminAgregateComponent extends Component {
         }
     }
 
+
+
     render() {
         return (
-            <div>
+            <div  >
+                <Menu style={{margin:0}} />
                 {this.state.request ?
-                    <div>
+                    <div className={'TestPageBody'}>
                         {this.Tags()}
                     </div>
                     : ''

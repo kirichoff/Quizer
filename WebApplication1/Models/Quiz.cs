@@ -11,6 +11,8 @@ namespace WebApplication1.Models
     {
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
+        [Display(Name = "Description")]
+        public string Description { get; set; }
         [Display(Name = "Header")]
         public string Header { get; set; }
         [Display(Name = "Baground")]

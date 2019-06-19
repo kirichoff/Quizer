@@ -105,7 +105,7 @@
 
 
 .QuizRender{
-    height: 92.1vh;
+    height: 100.1vh;
     width: 50vw;
     background-color: white;
     border-bottom-left-radius: 2vh ;
@@ -238,5 +238,14 @@
 }
 .Header2{
     font-size: 200%;
-    margin-top: 10%;
+    margin-top: 13%;
+}
+.HeaderInput{
+    background-color: rgba(0,0,0,0);
+    border: 0px solid;
+}
+@media (max-width: 767px) {
+    body {
+        padding-top: 0px;
+    }
 }

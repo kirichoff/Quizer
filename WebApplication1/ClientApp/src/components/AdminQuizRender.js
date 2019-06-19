@@ -1,14 +1,18 @@
 import React, {Component} from 'react';
 import "./TestPage.css"
 import './chebox.css'
+import {RadioButton, RadioButtonGroup} from 'rambler-ui/Radio'
 import Menu from "./Menu";
 import Arrow from "./Arrow";
 import './AdminAgregatecss.css'
 import {Link} from "react-router-dom";
 import * as icons from "rambler-ui/icons/forms";
+import Input from "rambler-ui/Input";
+import Button from "rambler-ui/Button";
 
 const ChevronLeftIcon = icons['ChevronLeftIcon'];
 const ChevronRightIcon = icons['ChevronRightIcon'];
+const AddIcon = icons['AddIcon'];
 
 var obj ={
     Question: "Q",
@@ -93,19 +97,34 @@ class AdminQuizRender extends Component {
         console.log('render ee');
         console.log(this.props.istest)
         return (
-            <div>
+            <div className={'TestPageBody'}>
                 <div className={"mainRend"}>
-                    <div className="header AdminHeader">
+                    <div className="hs">
                         <input
-                            className={'Pointstyle'}
+                            className={'HeaderInput'}
                             type={'text'}
                             value={this.state.QuizMap[this.state.counter].Question}
                             onChange={(e)=> { let bf = this.state.QuizMap; bf[this.state.counter].Question = e.target.value; this.setState({ QuizMap: bf })}}
                         />
-                        {/*{this.state.QuizMap[this.state.counter].Question}*/}
-                        <div>{this.state.counter}</div>
                     </div>
                     < div className = "QuizRender" >
+                        {
+                            (!this.state.isend) ?
+                                <div className={' Header2 Header '}>
+                                    <div>
+                                        Выберите один из Вариантов ответа
+                                    </div>
+                                    <Link to={'/'} >
+                                        <Button
+                                            onClick={()=>this.props.cl(this.state.QuizMap)}
+                                            style={{marginRight: '0%',marginTop: '1%'}}
+                                            type={'outline'} size={'small'} rounded={true}>
+                                            завершить
+                                        </Button>
+                                    </Link>
+                                </div>
+                                : null
+                        }
                         {
                             (!this.state.isend )?
                                 <div className={'justify_content'} >
@@ -115,6 +134,7 @@ class AdminQuizRender extends Component {
                                             <span>
                                             <label className={'container'}>
                                             <input
+                                                className={"check"}
                                                 name="isGoing"
                                                 type="checkbox"
                                                 data-index={i}
@@ -123,10 +143,19 @@ class AdminQuizRender extends Component {
                                                 <span className={'checkmark'}></span>
                                             </label>
                                                 </span>
-                                                        <span><input type={'text'} value={k} className={'Pointstyle'} id={i}
-                                                                     key={i} onChange={this.change
-                                                        }/>
+                                                        <span className={'inputAdmin'}>
+                                                            <Input
+                                                                type="text"
+                                                                value={k}
+                                                                onChange={this.change}
+                                                                placeholder="вопросс"
+                                                                id={i}
+                                                                key={i}
+                                                                variation={'regular'}
+                                                                size={'small'}
+                                                            />
                                         </span>
+
                                                     </div>
                                             )
 
@@ -138,10 +167,7 @@ class AdminQuizRender extends Component {
 
                                     }
                                             <span onClick={this.add}>
-                                                <svg className={'PlusQues'} id='Capa_1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 52'>
-                                    <path d='M26,0C11.664,0,0,11.663,0,26s11.664,26,26,26s26-11.663,26-26S40.336,0,26,0z M38.5,28H28v11c0,1.104-0.896,2-2,2	s-2-0.896-2-2V28H13.5c-1.104,0-2-0.896-2-2s0.896-2,2-2H24V14c0-1.104,0.896-2,2-2s2,0.896,2,2v10h10.5c1.104,0,2,0.896,2,2	S39.604,28,38.5,28z'
-                                        />
-                                                </svg>
+                                          <AddIcon className={"PlusQues"} />
                                             </span>
                                 </div>
                                 :
@@ -152,24 +178,27 @@ class AdminQuizRender extends Component {
                                     }>Send</button>
                                 </div>
                         }
-                        <div   className="arrow">
-                            <span onClick={this.addQu} > Qestion++</span>
-                        </div>
-
-
-                        { (!this.state.isend)?
-
+                        { (!this.state.isend)?    <div>
                             <div style={{marginTop: '12%',width:'100%',height:'50%'}} className={'Header AlignText'}>
                                 <ChevronLeftIcon style={{marginRight:'10%'}} onClick={this.dec} className={'strelka'} color={'#0022CB'}
                                                  size={'20%'} />
-                                <span> {this.state.counter}/{this.state.QuizMap.length} </span>
+                                <span> {this.state.counter+1}/{this.state.QuizMap.length} </span>
+                                {
+                                    ( !(this.state.counter+1 === this.state.QuizMap.length))?
                                 <ChevronRightIcon
                                     style={{marginLeft:'10%'}}
                                     onClick={this.inc}
                                     className={'strelka'} color={'#0022CB'}  size={'20%'}/>
+                                    :
+                                          <AddIcon
+                                              style={{marginLeft:'10%'}}
+                                              onClick={this.addQu}
+                                              className={'strelka'} color={'#0022CB'}  size={'20%'} />
+                                }
                             </div>
-
-                            : null
+                        </div>
+                            :
+                            null
                         }
 
 

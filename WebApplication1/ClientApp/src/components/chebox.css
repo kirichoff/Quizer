@@ -19,7 +19,9 @@
     background-color: #eeeeee;
     transform: scale(1.12);
 }
-
+.check{
+    display: none;
+}
 /* When the checkbox is checked, add a blue background */
 .container input:checked ~ .checkmark {
     background-color: #69f35f;
@@ -51,13 +53,23 @@
 /*    transform: rotate(45deg);*/
 /*}*/
 .sizz{
+    display: flex;
     width: 40vw;
-    height: 10vh;
 }
-
+.inputAdmin{
+    margin-top: 1.9%;
+    display: block;
+    height: 10px;
+    width: 150%;
+}
 
 .PlusQues{
     width: 10vw;
     height: 10vh;
-    margin-left: 40%;
+    margin-left: 50%;
+    margin-top: 1%;
+    transition: all ease-out 0.1s;
+}
+.PlusQues:hover{
+    transform: scale(1.2);
 }

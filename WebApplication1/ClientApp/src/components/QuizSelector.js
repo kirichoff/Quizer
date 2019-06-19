@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import RecatDOM from 'react-dom'
 import QuizCard from "./QuizCard";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
@@ -32,10 +33,14 @@ class QuizSelector extends Component {
         // await this.sleep(1000);
         this.setState({QuizMap: res,response: true})
     }
+    componentWillMount() {
+
+    }
 
     componentDidMount() {
         this.getData()
     }
+
 
 
     Remove = (id)=>{
@@ -46,13 +51,12 @@ class QuizSelector extends Component {
     }
 
     render() {
-
         let date = new Date()
         console.log(date.getFullYear())
 
         return (
             <div className={'main'} >
-                <Menu scroll = {true} />
+                <Menu  scroll = {true} />
                 <div>
                     { (this.state.response)?
                         <div>

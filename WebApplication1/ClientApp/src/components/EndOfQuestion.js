@@ -20,9 +20,10 @@ class EndOfQuestion extends Component {
         fetch(url,{method: 'GET'})
             .then((response)=> {
                 console.log("respnse: ")
-                console.log(response)
-                this.setState({Stat: response})
-            } )
+                response.json().then(val=>
+                    this.setState({Stat: val})
+                )
+            })
             .catch( (e) => console.log("exeption",e))
 
     }
@@ -33,7 +34,7 @@ class EndOfQuestion extends Component {
             <div style={{borderRadius: "20px",overflow: "hidden"}}>
                 {this.props.Questions.map((k,i)=>{
                     return(<div  key={i} className={'end'} style={ (this.props.answer[i].answer >0)? {backgroundColor: '#96ff63'} : {backgroundColor: '#ff6d5c'} } >
-                        <div className={'answer'} style={{cursor:'pointer'}} > {k.Question} {this.state.Stat[i]}%</div>
+                        <div className={'answer'} style={{cursor:'pointer'}} > {k.Question} {Math.round(this.state.Stat[i],2)}%</div>
                     </div>)
                     }
                 )}

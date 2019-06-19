@@ -52,7 +52,7 @@ class AgregateComponent extends Component {
     }
 
     componentWillMount = () => {
-        document.getElementsByTagName("body")[0].style.background='linear-gradient(left, #0022cb 0%,#3fd3d8 100%);';
+      //  document.getElementsByTagName("body")[0].style.background='-webkit-linear-gradient(left, #0022cb 0%,#3fd3d8 100%)';
     };
 
      Tags = () => {
@@ -62,7 +62,11 @@ class AgregateComponent extends Component {
                 case
                 0
                 :
-                    return (<TestPage next={() => this.setState({counter: 1})}>
+                    return (<TestPage
+                        payload={<p>
+                            {this.state.QuizMap.Description}
+                        </p>}
+                        next={() => this.setState({counter: 1})}>
                         {this.state.QuizMap.Header}
                     </TestPage>);
                 case
@@ -90,10 +94,10 @@ class AgregateComponent extends Component {
 
     render() {
         return (
-            <div style={{background: 'linear-gradient(left, #0022cb 0%,#3fd3d8 100%);'}} >
+            <div   style={{background: 'linear-gradient(left, #0022cb 0%,#3fd3d8 100%);'}} >
                 <Menu style={{margin:0}} />
                 {this.state.request ?
-                    <div>
+                    <div className={'TestPageBody'} >
                         {this.Tags()}
                     </div>
                     : ''

@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import TestPage from "./TestPage";
 import "./TestPage.css"
-import Menu from "./Menu";
-import Arrow from "./Arrow";
 import EndOfQuestion from "./EndOfQuestion";
 import {Link} from "react-router-dom";
 import Checkbox from 'rambler-ui/Checkbox'
@@ -116,6 +114,7 @@ class QuizRender extends Component {
                             (    (this.props.istest === true )?
                                 <div style={{
                                     marginTop: '10%'}} className={'justify_content'} >
+
                         {this.props.QuizMap[this.state.counter].Questions.map((k, i) =>
                             <div className={'Pointstyle'}
                                  style={ (this.state.answerssMap[this.state.counter].answers[i] &&
@@ -140,9 +139,9 @@ class QuizRender extends Component {
                                                  data-index={i} key={i} onClick={this.change}>
                                              {k}
                                          </div>)
-                                        }
-                                        )
-                                        }
+                                         }
+                                         )
+                                         }
                                     </div>
                             )
 

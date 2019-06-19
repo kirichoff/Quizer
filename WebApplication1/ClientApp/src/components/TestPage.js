@@ -17,12 +17,7 @@ class TestPage extends Component {
                 <div className={"hpos header"} >
                     {this.props.children}
                     </div>
-                    <p>
-                        Скрытый смысл, на первый взгляд, последовательно иллюстрирует культурный поток сознания и передается
-                        в этом стихотворении Донна метафорическим образом циркуля. Диалогический контекст неравномерен.
-                        Абстрактное высказывание многопланово аллитерирует дискурс. Орнаментальный сказ иллюстрирует диссонансный ритм.
-                    </p>
-
+                    {this.props.payload}
                         <div style={ {  marginBottom: "5%",}}>
                             <Button container={<Link to={'/'}/>}  type={'outline'} size={'small'} rounded={true}>
                                 Назад

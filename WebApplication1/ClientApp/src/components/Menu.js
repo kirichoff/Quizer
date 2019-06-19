@@ -79,19 +79,24 @@ class Menu extends Component {
 
    async getLogin ()
     {
-        const url = `api/SampleData/Login?name=${this.state.name}&pas=${this.state.pass}`;
-        const response = await fetch(url);
-        const Log = await response.json();
+        console.log(this.state)
+        if (this.state.pass != '') {
+            const url = `api/SampleData/Login?name=${this.state.name}&pas=${this.state.pass}`;
+            const response = await fetch(url, {method: "GET"});
+            const Log = await response.json();
 
-        if(Log.Status){
-            this.props.LogIn(true)
-            this.setState({ LogIn:
-                    {isLogin: true,isAdmin: Log.isAdmin ,name: this.state.name}
-            })
-            this.closePopup()
-        }
-        else {
-            this.setState({isFail: true });
+            console.log(Log);
+
+            if (Log == "true") {
+                this.props.LogIn(true)
+                this.setState({
+                    LogIn:
+                        {isLogin: true, isAdmin: Log.isAdmin, name: this.state.name}
+                })
+                this.closePopup()
+            } else {
+                this.setState({isFail: true});
+            }
         }
     }
 
@@ -166,52 +171,13 @@ class Menu extends Component {
                             </Button>
                         </div>
                     </div>
-
-
                     <Popup
                         title="Войдите"
                         showClose
                         isOpened={this.state.customIsOpened}
                         backdropColor="blue"
                         okButton={
-                            <Button type="primary" size="small" onClick={this.closePopup}>
-                                Ок
-                            </Button>
-                        }
-                        cancelButton={
-                            <Button type="flat" size="small" onClick={this.closePopup}>
-                                Отмена
-                            </Button>
-                        }
-                     >
-                        <div style={{width: 400}}>
-                            <div style={{marginBottom: '5%',color: 'red' }} >{(this.state.isFail)? 'Неверное имя пользователя или пароль' : null}</div>
-                            <Input
-                                style={{marginBottom: 5}}
-                                type="email"
-                                status={(this.state.isFail)? 'error': ''}
-                                autoFocus
-                                value={this.state.name}
-                                onChange={this.updateValue('name')}
-                            />
-
-                            <Input
-                                type="password"
-                                autoFocus
-                                status={(this.state.isFail)? 'error': ''}
-                                value={this.state.pass}
-                                onChange={this.updateValue('pass')}
-                            />
-                        </div>
-                    </Popup>
-
-                    <Popup
-                        title="Войдите"
-                        showClose
-                        isOpened={this.state.customIsOpened}
-                        backdropColor="blue"
-                        okButton={
-                            <Button type="primary" size="small" onClick={this.closePopup}>
+                            <Button type="primary" size="small" onClick={()=> this.getLogin()}>
                                 Ок
                             </Button>
                         }
