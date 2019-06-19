@@ -17,7 +17,8 @@ class QuizSelector extends Component {
         this.state =
             {
             QuizMap: arr,
-            response: false
+            response: false,
+                log: false
             }
     }
 
@@ -56,7 +57,7 @@ class QuizSelector extends Component {
 
         return (
             <div className={'main'} >
-                <Menu  scroll = {true} />
+                <Menu LogIn = {(bl)=>this.setState({log:bl})} scroll = {true} />
                 <div>
                     { (this.state.response)?
                         <div>
@@ -86,7 +87,9 @@ class QuizSelector extends Component {
 
                         <div  className={"Page"}>
                             {this.state.QuizMap.map( (k,i)=>
-                                    <QuizCard key={i}
+                                    <QuizCard
+                                            isLog ={this.state.log}
+                                            key={i}
                                               to={'bg/Test/'}
                                               text={k.Header}
                                               id = {k.Id}

@@ -31,11 +31,15 @@ class QuizCard extends Component {
                             <p className={'desc'} >{this.props.desc}</p>
 
         </Link>
-
-                <div style={{marginLeft:'30%',marginTop: '10%' ,display: 'flex', alignItems:'center' }} >
-                    <Link to={`/Stat/${this.props.id}`}><IconMet onClick={this.cl} className={'icon'}  /></Link>
-                    <IconRem onClick={  ()=>this.props.Remove(this.props.id)}  className={'icon'} style={{marginLeft: '20%'}} />
-                </div>
+                {(this.props.isLog) ?
+                    <div style={{marginLeft: '30%', marginTop: '10%', display: 'flex', alignItems: 'center'}}>
+                        <Link to={`/Stat/${this.props.id}`}><IconMet onClick={this.cl} className={'icon'}/></Link>
+                        < IconRem onClick={() => this.props.Remove(this.props.id)} className={'icon'}
+                                  style={{marginLeft: '20%'}}/>
+                    </div>
+                    :
+                    null
+                }
             </div>
         );
     }

@@ -163,12 +163,15 @@ class Menu extends Component {
 
                     <div style={{ marginTop: 5}} >
                         <div style={ {  marginBottom:5,   float: 'right'}}>
-                        <Button onClick={this.openPopup2} type={'outline'} size={'small'} rounded={true}>
-                            Sign up
+
+                            {(this.state.LogIn.isLogin)?
+                                <div style={{marginLeft: 20,marginRight: 10,}} >{"Hi " + this.state.name +" !    "}</div>
+                                : <div> <Button onClick={this.openPopup2} type={'outline'} size={'small'} rounded={true}>
+                                Sign up
                             </Button>
-                            <Button onClick={this.openPopup}  style={{marginLeft: 20,marginRight: 10,}} size={'small'}  rounded={true}>
-                            Sign in
-                            </Button>
+                                <Button onClick={this.openPopup}  style={{marginLeft: 20,marginRight: 10,}} size={'small'}  rounded={true}>
+                                    Sign in
+                                </Button></div> }
                         </div>
                     </div>
                     <Popup
