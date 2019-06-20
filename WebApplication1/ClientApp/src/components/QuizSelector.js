@@ -32,6 +32,7 @@ class QuizSelector extends Component {
         const response = await fetch(url,{method:"GET"})
         var res = await response.json();
         // await this.sleep(1000);
+        console.log(res)
         this.setState({QuizMap: res,response: true})
     }
     componentWillMount() {
@@ -46,7 +47,8 @@ class QuizSelector extends Component {
 
     Remove = (id)=>{
         const url = `api/SampleData/Delete?id=${id}`;
-        const response =  fetch(url);
+        const response =  fetch(url,{method: "POST"});
+        console.log(id)
         console.log('delete ?',response.status);
         this.getData()
     }
@@ -66,15 +68,14 @@ class QuizSelector extends Component {
                                 {marginLeft: '14%',
                                     marginBottom: "2%"
                                     ,height: '60vh', width: '72vw',borderRadius: 20 }}
-                            > <h1>Hellow</h1>
-                                <p style={{paddingRight: "40%" }}>
-                                    Соноропериод, в первом приближении, имеет миксолидийский алеаторически
+                            > <h1>Привет мир!</h1>
+                                <p  style={{paddingRight: "40%",fontSize: '2.1vh' }}>
+                                   Наконецто сайт  работает с некоотрыми
+                                    нюансами но все же ;) и вот вам немного воды:
                                     выстроенный бесконечный канон с полизеркальной векторно-голосовой
-                                    структурой,
-                                    потому что современная музыка не запоминается. Панладовая система, по определению, полифигурно
-                                    начинает нечетный сет. Фаза сонорна.
+                                    структурой,Соноропериод, в первом приближении, имеет миксолидийский алеаторически
                                 </p>
-                                <Button style={{color: "#ffff",marginTop: 20 }} size={"small"} type={'primary'} rounded={true}>
+                                <Button style={{color: "#ffff",marginTop: "1vh" }} size={"small"} type={'primary'} rounded={true}>
                                     Read more
                                 </Button>
                             </div>
@@ -94,7 +95,7 @@ class QuizSelector extends Component {
                                               text={k.Header}
                                               id = {k.Id}
                                               obj = {k}
-                                              desc = {'qweewqrwqr qfsaf asfasfasfasf asfafa'}
+                                              desc = {k.Description}
                                               Remove={this.Remove}
                                     />
                                 )}

@@ -306,7 +306,7 @@ namespace WebApplication1.Models
         // удаление документа
         public async Task Remove(string id)
         {
-            await Phones.DeleteOneAsync(new BsonDocument("_id", new ObjectId(id)));
+            await Quizes.DeleteOneAsync(new BsonDocument("_id", new ObjectId(id)));
         }
         // получение изображения
         public async Task<byte[]> GetImage(string id)

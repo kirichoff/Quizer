@@ -51,6 +51,12 @@ namespace WebApplication1.Controllers
             }           
 
         }
+        [HttpPost("[action]")]
+
+        public async void Delete(string id)
+        {
+            await db.Remove(id);
+        }
 
         [HttpPost("[action]")]
         public async void AddQuiz(string q)

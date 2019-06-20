@@ -10,6 +10,7 @@ import PieRender from "./components/PieRender";
 import LogIn from "./components/LogIn";
 import Background from "./components/Background";
 import StatistickRender from "./components/StatistickRender";
+import Help from "./components/Help";
 
 export default () => (
 
@@ -20,6 +21,7 @@ export default () => (
         <Route path={'/Pie'}  component = {PieRender} />
       <Route path={'/bg/info/:id'} component={InfoForm} />
       <Route path={'/bg'} component={Background} />
+      <Route path={'/Help'} component={Help} />
       <Route path={'/bg/Test/:id'} component={AgregateComponent}  />
       <Route path={'/Home/Login'} component={LogIn}/>
       <Route path={'/bg/Admin'} component={AdminAgregateComponent}/>

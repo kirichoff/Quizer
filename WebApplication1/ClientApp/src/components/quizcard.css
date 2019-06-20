@@ -2,9 +2,10 @@
     font-family: Roboto;
     text-decoration: none;
     color: #212121;
+    padding-bottom: 2%;
     width: 22vw;
     height: 48vh;
-    font-size: 30px;
+    font-size: 1.9vw;
     font-style: normal;
     border-radius: 10px;
     justify-content: center;
@@ -28,7 +29,7 @@
     font-family: "Roboto Condensed";
     text-decoration: none;
     color: #212121;
-    font-size: 16px;
+    font-size: 1vw;
     letter-spacing: normal;
 }
 .Contain div{

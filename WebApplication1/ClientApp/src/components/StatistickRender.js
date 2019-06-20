@@ -108,7 +108,7 @@ class StatistickRender extends Component {
                     <Loader  style={{transform: 'scale(2)' ,marginTop: '35%'}} loading={!this.state.response} />
             }
             </div>
-
+                <div className={'footer'} >  </div>
             </div>
 
         );

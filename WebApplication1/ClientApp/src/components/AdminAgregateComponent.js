@@ -9,6 +9,7 @@ import Textarea from 'rambler-ui/Textarea'
 import FormGroup from 'rambler-ui/FormGroup'
 import InputStatus from 'rambler-ui/InputStatus'
 import Menu from "./Menu";
+import {Toggle, ToggleOption} from "rambler-ui/Toggle";
 
 class AdminAgregateComponent extends Component {
     constructor(props, context) {
@@ -22,6 +23,7 @@ class AdminAgregateComponent extends Component {
             UserInfo: null,
             istest: true,
             biteImage: null,
+            toggleValue3: 'Тест'
         }
     }
 
@@ -50,7 +52,6 @@ class AdminAgregateComponent extends Component {
                 body.append(pair,b[pair])
 
             body.append('istest',this.state.istest)
-            body.append('istest',this.state.istest)
 
             fetch(url, {
                 method: "Post",
@@ -61,6 +62,9 @@ class AdminAgregateComponent extends Component {
         }
     }
     Send = (state) =>{
+
+        console.log(this.state)
+
         const url = 'api/SampleData/AddQuiz'
         const body = new FormData;
         body.append('q',JSON.stringify(
@@ -68,6 +72,7 @@ class AdminAgregateComponent extends Component {
                 Header:this.state.vale,
                 Baground: '#123H1',
                 Items: state,
+                Description: this.state.Desc,
                 istest: this.state.istest
             }))
         fetch(url,{
@@ -101,16 +106,21 @@ class AdminAgregateComponent extends Component {
                             style={{width: '100%'}}
                             textareaStyle={{minHeight: '100px',maxHeight: '100px',minWidth:"100%"}}
                         />
-                        <Radio val1={'тест'} val2 ={'опрос'}  onchange = {
-                            ( val1, val2, child ) =>
-                            {
-                                console.log(val1)
-                                this.setState({istest: val1 })
-                                console.log(this.state.istest)
-                            }
-                        }>
-                            тип
-                        </Radio>
+                        <Toggle
+                            rounded ={true}
+                            value={this.state.toggleValue3}
+                            className="toggle marg2"
+                            onChange={(value) => this.setState( {istest: (value.target.value==='Тест')?true : false,
+                                toggleValue3: value.target.value
+                            } )}
+                            block={true}
+                            equalWidth={true}>
+                            <ToggleOption value="Тест">Тест</ToggleOption>
+                            <ToggleOption value="Опрос">Опрос</ToggleOption>
+                        </Toggle>
+
+
+
                     </TestPage>);
                 case
                 1

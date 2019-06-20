@@ -157,16 +157,17 @@ class Menu extends Component {
                     <img src="../Zaur.png"  style={{height: '4vw',width: '7vw'}}  alt=""/>
                     <div style={{marginTop: '3%'}} >
                     <Link className={'LnStyle '} to={'/'} >Главная</Link>
-                    <Link className={'LnStyle'} to={'/'} >О нас</Link>
                     <Link className={'LnStyle'} to={'/'} >Связь</Link>
+                    <Link className={'LnStyle'} to={'/Help'} > Помощь </Link>
                     </div>
 
                     <div style={{ marginTop: 5}} >
                         <div style={ {  marginBottom:5,   float: 'right'}}>
 
                             {(this.state.LogIn.isLogin)?
-                                <div style={{marginLeft: 20,marginRight: 10,}} >{"Hi " + this.state.name +" !    "}</div>
-                                : <div> <Button onClick={this.openPopup2} type={'outline'} size={'small'} rounded={true}>
+                                <div style={{marginTop: 10 ,marginLeft: 20,marginRight: 20,}} >{"Hi " + this.state.name +" !    "}</div>
+                                :
+                                <div> <Button onClick={this.openPopup2} type={'outline'} size={'small'} rounded={true}>
                                 Sign up
                             </Button>
                                 <Button onClick={this.openPopup}  style={{marginLeft: 20,marginRight: 10,}} size={'small'}  rounded={true}>
