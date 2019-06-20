@@ -98,7 +98,9 @@ class QuizSelector extends Component {
                                               Remove={this.Remove}
                                     />
                                 )}
-                    <div   style={{filter: 'grayscale(.75)'}} >
+
+                        {(this.state.log)?
+                            <div   style={{filter: 'grayscale(.75)'}} >
                             <QuizCard
 
                                         key={241}
@@ -109,7 +111,10 @@ class QuizSelector extends Component {
                                       desc = {'какой-то тескст'}
                                       Remove={this.Remove}
                             />
-                    </div>
+                            </div>
+                            : null
+                        }
+
                         </div>
 
                         </div>
