@@ -97,7 +97,7 @@ class QuizRender extends Component {
             <div  >
                         <div className={"mainRend"}>
                         <div className="hs">
-                             { !(this.state.isend )? this.props.QuizMap[this.state.counter].Question : 'Good Work!' }
+                             { !(this.state.isend )? this.props.QuizMap[this.state.counter].Question : 'Хорошая работа' }
                         </div>
                         < div className = "QuizRender" >
                             {
@@ -105,7 +105,9 @@ class QuizRender extends Component {
                                     <div className={' Header2 Header '}>
                                         <div className={'MakeDes'} >Выберите один из Вариантов ответа</div>
                                     </div>
-                                    : null
+                                    :  (!this.state.istest)?   <div className={' Header2 Header '}>
+                                        <div className={'MakeDes'} >Результаты</div>
+                                    </div>:null
                             }
                     {
                         (!this.state.isend )?

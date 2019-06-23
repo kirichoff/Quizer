@@ -47,7 +47,9 @@ class QuizSelector extends Component {
 
     Remove = (id)=>{
         const url = `api/SampleData/Delete?id=${id}`;
-        const response =  fetch(url,{method: "POST"});
+        const response =  fetch(url,{method: "POST"}).then(()=>{this.getData()
+            this.render()});
+
         console.log(id)
         console.log('delete ?',response.status);
     }

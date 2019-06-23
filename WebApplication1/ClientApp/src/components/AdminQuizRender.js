@@ -161,8 +161,18 @@ class AdminQuizRender extends Component {
 
                                         :
                                         this.state.QuizMap[this.state.counter].Questions.map((k, i) =>
-                                            <input type={'text'} value={k} className={'Pointstyle'} id={i}
-                                                                 key={i} onChange={this.change}/>
+                                                <span className={'inputAdmin2'}>
+                                                            <Input
+                                                                type="text"
+                                                                value={k}
+                                                                onChange={this.change}
+                                                                placeholder="вопросс"
+                                                                id={i}
+                                                                key={i}
+                                                                variation={'regular'}
+                                                                size={'small'}
+                                                            />
+                                        </span>
                                         )
 
                                     }

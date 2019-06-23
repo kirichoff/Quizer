@@ -113,7 +113,7 @@ class AdminAgregateComponent extends Component {
                         <input
                             className= {'AdminHeader'}
                             type="text"
-                            defaultValue={'Your Header!'}
+                            placeholder={'Заголовок'}
                             value={this.state.vale}
                             onChange={event => this.setState({vale: event.target.value})}
                         />

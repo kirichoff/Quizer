@@ -33,7 +33,7 @@ class EndOfQuestion extends Component {
             <div>
             <div style={{borderRadius: "20px",overflow: "hidden"}}>
                 {this.props.Questions.map((k,i)=>{
-                    return(<div  key={i} className={'end'} style={ (this.props.answer[i].answer >0)? {backgroundColor: '#96ff63'} : {backgroundColor: '#ff6d5c'} } >
+                    return(<div  key={i} className={'end'} style={ (this.props.answer[i].answer >= 0)? {backgroundColor: '#96ff63'} : {backgroundColor: '#ff6d5c'} } >
                         <div className={'answer'} style={{cursor:'pointer'}} > {k.Question} {Math.round(this.state.Stat[i],2)}%</div>
                     </div>)
                     }
