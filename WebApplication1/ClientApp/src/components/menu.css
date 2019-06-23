@@ -26,3 +26,14 @@
     color: #274BC8;
     text-decoration: none;
 }
+@media (max-width: 767px) {
+    .LnStyle {
+        margin-left: 5%;
+    }
+    .LnStyle{
+        margin-left: 5%;
+    }
+    #navbar{
+        grid-template-columns: 10% 65% 25%;
+    }
+}

@@ -122,6 +122,8 @@ class Menu extends Component {
             SignUpOpened: false,
             isFail: false
         })
+
+        //this.Reg()
     }
 
     closePopup = () => {
@@ -132,25 +134,7 @@ class Menu extends Component {
     }
 
     render() {
-    // if(this.state.navBar !== undefined) {
-    //     console.log('nav: ',this.state.navBar)
-    //     var nav = this.state.navBar
-    //     var prevScrollpos = window.pageYOffset;
-    //     window.onscroll = function () {
-    //         var currentScrollpos = window.pageYOffset;
-    //         if (currentScrollpos <= 50) {
-    //             nav.position = 'relative';
-    //         } else {
-    //             if (prevScrollpos > currentScrollpos) {
-    //                 nav.top = "0px";
-    //                 nav.position = 'fixed';
-    //             } else {
-    //                 nav.top = "-100px";
-    //             }
-    //         }
-    //         prevScrollpos = currentScrollpos;
-    //     }
-    // }
+
         return (
                 <div id="navbar"
                      style={{...this.state.navBar,...this.props.style}}>
@@ -168,10 +152,10 @@ class Menu extends Component {
                                 <div style={{marginTop: 10 ,marginLeft: 20,marginRight: 20,}} >{"Hi " + this.state.name +" !    "}</div>
                                 :
                                 <div> <Button onClick={this.openPopup2} type={'outline'} size={'small'} rounded={true}>
-                                Sign up
+                                Регистрация
                             </Button>
                                 <Button onClick={this.openPopup}  style={{marginLeft: 20,marginRight: 10,}} size={'small'}  rounded={true}>
-                                    Sign in
+                                    Войти
                                 </Button></div> }
                         </div>
                     </div>
@@ -256,7 +240,7 @@ class Menu extends Component {
                                 placeholder={'ключ'}
                                 autoFocus
                                 status={(this.state.isKey)? 'error': ''}
-                                value={this.state.pass}
+                                value={this.state.Key}
                                 onChange={this.updateValue('Key')}
                             />
 

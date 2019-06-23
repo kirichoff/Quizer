@@ -39,3 +39,14 @@
     padding: 3%;
 
 }
+@media (max-width: 767px) {
+    .Page {
+        grid-template-columns: 100%;
+        padding-left: 16%;
+        padding-right: 16%;
+    }
+    .footer{
+        margin-top: 100%;
+    }
+
+}

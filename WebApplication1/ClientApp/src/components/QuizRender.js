@@ -103,7 +103,7 @@ class QuizRender extends Component {
                             {
                                 (!this.state.isend) ?
                                     <div className={' Header2 Header '}>
-                                        <div>Выберите один из Вариантов ответа</div>
+                                        <div className={'MakeDes'} >Выберите один из Вариантов ответа</div>
                                     </div>
                                     : null
                             }
@@ -112,8 +112,7 @@ class QuizRender extends Component {
 
 
                             (    (this.props.istest === true )?
-                                <div style={{
-                                    marginTop: '10%'}} className={'justify_content'} >
+                                <div  className={'justify_content'} >
 
                         {this.props.QuizMap[this.state.counter].Questions.map((k, i) =>
                             <div className={'Pointstyle'}
@@ -127,11 +126,7 @@ class QuizRender extends Component {
                             {isRight(this.state.answerssMap,this.state.counter,this.props.QuizMap[this.state.counter].Right)}
                         </div>
                                     :
-                                    <div style={{
-                                        marginTop: '10%'}} className={'justify_content'} >
-
-
-
+                                    <div  className={'justify_content'} >
                                         {this.props.QuizMap[this.state.counter].Questions.map((k, i) =>
                                         {
                                          return(   <div className={'Pointstyle'}
