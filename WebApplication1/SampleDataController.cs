@@ -25,13 +25,6 @@ namespace WebApplication1.Controllers
             Byte[] hashB = SHA256.Create().ComputeHash(innput);
             return BitConverter.ToString(hashB);
         }
-
-        [HttpGet("[action]")]
-        public async void Pisun(int startDateIndex)
-        {            
-            Admin A = (new Admin {Login = "Real", Pass_hash = "Admin" });
-          //  await db.Create(A);
-        }
         [HttpGet("[action]")]
         public string Login(string name,string pas )
         {
