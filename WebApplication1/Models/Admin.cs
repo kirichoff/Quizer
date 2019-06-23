@@ -12,7 +12,7 @@ namespace WebApplication1.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
         [Display(Name ="Login")]
-        public string Login { get; set; }
+        public string Login { get; set; } 
         [Display(Name = "Pass_hash")]
         public string Pass_hash { get; set; }
     }
