@@ -41,3 +41,10 @@
     background-color: #eeeeee;
     border-radius: 5px;
 }
+.textDecor{
+    text-decoration: none;
+    color: #212121;
+}
+.textDecor:hover{
+    text-decoration: none;
+    color: black;}

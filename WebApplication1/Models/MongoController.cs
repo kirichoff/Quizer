@@ -163,37 +163,41 @@ namespace WebApplication1.Models
 
             var Qwes  = new List<List<int>>();
             var buf = new List<int>();
-            
-            for ( int i = 0; i<ls.First().answerssmap.Length; i++)
+            try
             {
-
-                buf = new List<int>();
-
-                foreach (var pt4 in ls.First().answerssmap[i].answers)
+                for (int i = 0; i < ls.First().answerssmap.Length; i++)
                 {
-                    buf.Add(0);
-                }
-                Qwes.Add(buf);
-            }
 
-            int counter = 0;
+                    buf = new List<int>();
 
-            
-            foreach (var pt in ls)
-            {               
-                foreach (var pt2 in pt.answerssmap)
-                {                
-                    for (int i =0; i< pt2.answers.Length; i++)
+                    foreach (var pt4 in ls.First().answerssmap[i].answers)
                     {
-                        if (pt2.answers[i]) Qwes[counter][i]++;
-                    }                    
-                    counter++;
+                        buf.Add(0);
+                    }
+                    Qwes.Add(buf);
                 }
-                counter = 0;
-            }
-            
 
-            return  Qwes.ToArray();
+                int counter = 0;
+
+
+                foreach (var pt in ls)
+                {
+                    foreach (var pt2 in pt.answerssmap)
+                    {
+                        for (int i = 0; i < pt2.answers.Length; i++)
+                        {
+                            if (pt2.answers[i]) Qwes[counter][i]++;
+                        }
+                        counter++;
+                    }
+                    counter = 0;
+                }
+
+
+                return Qwes.ToArray();
+            }
+            catch { }
+            return Qwes.ToArray();
         }
 
 

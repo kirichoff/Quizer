@@ -7,8 +7,8 @@ import {actionCreators} from "../store/QuizMap";
 import './selector.css'
 import Menu from "./Menu";
 import Button from "rambler-ui/Button";
-import { Preloader, Placeholder } from 'react-preloading-screen';
 import Loader from 'rambler-ui/Loader'
+import CarouselMain from "./СarouselMain";
 var obj = {text: 'sometext', id: 1}, arr = [obj,obj,obj];
 class QuizSelector extends Component {
 
@@ -50,7 +50,6 @@ class QuizSelector extends Component {
         const response =  fetch(url,{method: "POST"});
         console.log(id)
         console.log('delete ?',response.status);
-        this.getData()
     }
 
     render() {
@@ -63,32 +62,11 @@ class QuizSelector extends Component {
                 <div>
                     { (this.state.response)?
                         <div>
-                        <div>
-                            <div className={'discr'} style={
-                                {marginLeft: '14%',
-                                    marginBottom: "2%"
-                                    ,height: '60vh', width: '72vw',borderRadius: 20 }}
-                            > <h1>Привет мир!</h1>
-                                <p  style={{paddingRight: "40%",fontSize: '2.1vh' }}>
-                                   Наконецто сайт  работает с некоотрыми
-                                    нюансами но все же ;) и вот вам немного воды:
-                                    выстроенный бесконечный канон с полизеркальной векторно-голосовой
-                                    структурой,Соноропериод, в первом приближении, имеет миксолидийский алеаторически
-                                </p>
-                                <Button style={{color: "#ffff",marginTop: "1vh" }} size={"small"} type={'primary'} rounded={true}>
-                                    Read more
-                                </Button>
-                            </div>
-                            <img src={'../marc-kargel-1621473-unsplash.jpg'} style={
-                                {marginLeft: '14%',
-                                    filter: 'brightness(0.6)',
-                                    marginBottom: "2%"
-                                    ,height: '60vh', width: '72vw',borderRadius: 20 }}/>
-                        </div>
-
+                            <CarouselMain/>
                         <div  className={"Page"}>
                             {this.state.QuizMap.map( (k,i)=>
                                     <QuizCard
+                                          img = {(k.Baground)? k.Baground : '../immge.jpg' }
                                             isLog ={this.state.log}
                                             key={i}
                                               to={'bg/Test/'}
@@ -111,6 +89,7 @@ class QuizSelector extends Component {
                                       obj = {{}}
                                       desc = {'какой-то тескст'}
                                       Remove={this.Remove}
+                                        img = {'../immge.jpg'}
                             />
                             </div>
                             : null

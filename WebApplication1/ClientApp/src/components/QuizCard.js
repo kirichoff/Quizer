@@ -23,10 +23,10 @@ class QuizCard extends Component {
         return (
             <div className={'Contain'} >
             <Link
-                className={'Contain'}
+                className={'textDecor'}
                to={`/${this.props.to}${this.props.id}`}
                 >
-                        <img src={'../immge.jpg'} className={'imag'} />
+                        <img src={this.props.img} className={'imag'} />
                            <div>{this.props.text}</div>
                             <p className={'desc'} >{this.props.desc}</p>
 
@@ -34,7 +34,7 @@ class QuizCard extends Component {
                 {(this.props.isLog) ?
                     <div style={{marginLeft: '30%', marginTop: '10%', display: 'flex', alignItems: 'center'}}>
                         <Link to={`/Stat/${this.props.id}`}><IconMet onClick={this.cl} className={'icon'}/></Link>
-                        < IconRem onClick={() => this.props.Remove(this.props.id)} className={'icon'}
+                        < IconRem onClick={() => this.props.Remove(this.props.id)  } className={'icon'}
                                   style={{marginLeft: '20%'}}/>
                     </div>
                     :

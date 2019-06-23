@@ -70,7 +70,7 @@ class AdminAgregateComponent extends Component {
         body.append('q',JSON.stringify(
             {
                 Header:this.state.vale,
-                Baground: '#123H1',
+                Baground: this.state.biteImage,
                 Items: state,
                 Description: this.state.Desc,
                 istest: this.state.istest
@@ -81,7 +81,23 @@ class AdminAgregateComponent extends Component {
         }).then(console.log('success')).catch(e=>console.log(e))
     }
 
+     getImage =(e)=>{
+        let imag =null ;
 
+        let imageFile  = e.target.files[0];
+        let fr = new FileReader();
+
+
+
+        fr.onload = (e) => {
+            imag = fr.result;
+            console.log(imag)
+            this.setState({biteImage: imag})
+            console.log(this.state)
+        }
+
+    fr.readAsDataURL(imageFile)
+    }
 
     Tags = () => {
         if(this.state.request)
@@ -90,7 +106,10 @@ class AdminAgregateComponent extends Component {
                 case
                 0
                 :
-                    return (<TestPage next={() => this.setState({counter: 1})}>
+                    return (<TestPage
+                        payload = {<div><input type={'file'} onChange={this.getImage} />
+                        <img style={{width: 100,height: 100}} src={this.state.biteImage} alt="some"/></div>}
+                        next={() => this.setState({counter: 1})}>
                         <input
                             className= {'AdminHeader'}
                             type="text"
@@ -118,9 +137,6 @@ class AdminAgregateComponent extends Component {
                             <ToggleOption value="Тест">Тест</ToggleOption>
                             <ToggleOption value="Опрос">Опрос</ToggleOption>
                         </Toggle>
-
-
-
                     </TestPage>);
                 case
                 1

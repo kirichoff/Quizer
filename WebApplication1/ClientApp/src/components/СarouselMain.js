@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Button from "rambler-ui/Button";
 
-class Сarousel extends Component {
+class CarouselMain extends Component {
     render() {
         return (
                 <div>
@@ -16,9 +16,9 @@ class Сarousel extends Component {
                             выстроенный бесконечный канон с полизеркальной векторно-голосовой
                             структурой,Соноропериод, в первом приближении, имеет миксолидийский алеаторически
                         </p>
-                        <Button style={{color: "#ffff",marginTop: "1vh" }} size={"small"} type={'primary'} rounded={true}>
-                            Read more
-                        </Button>
+                        {/*<Button style={{color: "#ffff",marginTop: "1vh" }} size={"small"} type={'primary'} rounded={true}>*/}
+                        {/*    Read more*/}
+                        {/*</Button>*/}
                     </div>
                     <img src={'../marc-kargel-1621473-unsplash.jpg'} style={
                         {marginLeft: '14%',
@@ -30,4 +30,4 @@ class Сarousel extends Component {
     }
 }
 
-export default Сarousel;
+export default CarouselMain;
