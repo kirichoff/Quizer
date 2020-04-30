@@ -9,7 +9,7 @@
     "core-decorators": "^0.20.0",
     "d3": "^5.9.2",
     "flow": "^0.2.3",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "moment": "^2.24.0",
     "rambler-ui": "^3.43.0",
     "react": "^16.4.0",
