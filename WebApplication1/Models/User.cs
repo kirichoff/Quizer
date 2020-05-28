@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WebApplication1.Models
 {
-   public class Admin
+   public class User
     {
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
@@ -15,5 +15,7 @@ namespace WebApplication1.Models
         public string Login { get; set; } 
         [Display(Name = "Pass_hash")]
         public string Pass_hash { get; set; }
+        [Display(Name = "Type")]
+        public int Type { get; set; }
     }
 }

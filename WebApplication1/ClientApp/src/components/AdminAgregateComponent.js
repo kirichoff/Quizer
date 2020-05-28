@@ -10,6 +10,8 @@ import FormGroup from 'rambler-ui/FormGroup'
 import InputStatus from 'rambler-ui/InputStatus'
 import Menu from "./Menu";
 import {Toggle, ToggleOption} from "rambler-ui/Toggle";
+import userHelper from "../utils/userHelper";
+import {Input} from "rambler-ui";
 
 class AdminAgregateComponent extends Component {
     constructor(props, context) {
@@ -81,77 +83,46 @@ class AdminAgregateComponent extends Component {
         }).then(console.log('success')).catch(e=>console.log(e))
     }
 
-     getImage =(e)=>{
-        let imag =null ;
-
-        let imageFile  = e.target.files[0];
-        let fr = new FileReader();
-
-
-
-        fr.onload = (e) => {
-            imag = fr.result;
-            console.log(imag)
-            this.setState({biteImage: imag})
-            console.log(this.state)
-        }
-
-    fr.readAsDataURL(imageFile)
-    }
-
     Tags = () => {
         if(this.state.request)
-        {
-            switch (this.state.counter) {
-                case
-                0
-                :
-                    return (<TestPage
-                        payload = {<div><input type={'file'} onChange={this.getImage} />
-                        <img style={{width: 100,height: 100}} src={this.state.biteImage} alt="some"/></div>}
-                        next={() => this.setState({counter: 1})}>
-                        <input
-                            className= {'AdminHeader'}
-                            type="text"
-                            placeholder={'Заголовок'}
-                            value={this.state.vale}
-                            onChange={event => this.setState({vale: event.target.value})}
-                        />
-                        <Textarea
-                            variation="regular"
-                            value={this.state.Desc}
-                            onChange={event => this.setState({Desc: event.target.value})}
-                            placeholder="описание"
-                            style={{width: '100%'}}
-                            textareaStyle={{minHeight: '100px',maxHeight: '100px',minWidth:"100%"}}
-                        />
-                        <Toggle
-                            rounded ={true}
-                            value={this.state.toggleValue3}
-                            className="toggle marg2"
-                            onChange={(value) => this.setState( {istest: (value.target.value==='Тест')?true : false,
-                                toggleValue3: value.target.value
-                            } )}
-                            block={true}
-                            equalWidth={true}>
-                            <ToggleOption value="Тест">Тест</ToggleOption>
-                            <ToggleOption value="Опрос">Опрос</ToggleOption>
-                        </Toggle>
-                    </TestPage>);
-                case
-                1
-                :
-                    return (<AdminQuizRender
-                            cl={this.Send}
-                            istest={this.state.istest}
-                    />);
+            {
+                switch (this.state.counter) {
+                    case
+                    0
+                    :
+                        return (<TestPage
+                            next={() => this.setState({counter: 1})}>
+                            <input
+                                className= {'AdminHeader'}
+                                type="text"
+                                placeholder={'Заголовок'}
+                                value={this.state.vale}
+                                onChange={event => this.setState({vale: event.target.value})}
+                            />
+                           <div style={{fontSize:'15px'}}>Максимальное количество балов</div>
+                            <Input
+                                style={{
+                                    marginLeft: '32%',
+                                    width:'250px'
+                                }}
+                                type={'number'}
+                            />
+                        </TestPage>);
+                    case
+                    1
+                    :
+                        return (<AdminQuizRender
+                                cl={this.Send}
+                                istest={this.state.istest}
+                        />);
+                }
             }
-        }
     }
 
 
 
     render() {
+        let user = userHelper.GetUser();
         return (
             <div  >
                 <Menu style={{margin:0}} />

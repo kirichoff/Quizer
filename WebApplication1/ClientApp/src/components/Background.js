@@ -10,5 +10,14 @@ class Background extends Component {
         );
     }
 }
+class Background2 extends Component {
+    render() {
+        return (
+            <div className={"TestPageBody2"} >
 
-export default Background;
+            </div>
+        );
+    }
+}
+
+export {Background,Background2};

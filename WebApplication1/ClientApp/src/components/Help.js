@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Menu from "./Menu";
 import {Tabs, TabsItem} from 'rambler-ui/Tabs'
+import userHelper from "../utils/userHelper";
 const values = ['Пользователю', 'Администратору']
 
 
@@ -16,9 +17,10 @@ class Help extends Component {
     }
 
     render() {
+        let user = userHelper.GetUser()
         return (
             <div>
-                <Menu/>
+                <Menu user = {user} {...this.props} />
 
                 <div style={{marginBottom: '50%' }} >
 

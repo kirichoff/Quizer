@@ -27,10 +27,10 @@ namespace WebApplication1.Models
                             
             gridFS = new GridFSBucket(database);
         }
-        // обращаемся к коллекции Phones
-        private IMongoCollection<Admin> Phones
+
+        private IMongoCollection<User> Users
         {
-            get { return database.GetCollection<Admin>("Admins"); }
+            get { return database.GetCollection<User>("Admins"); }
         }
         private IMongoCollection<Quiz> Quizes
         {
@@ -40,21 +40,31 @@ namespace WebApplication1.Models
         {
             get { return database.GetCollection<QuizStats>("Users"); }
         }
-     
-        public  Admin LogIn(string name)
+        private IMongoCollection<AdminKey> AdminKeys
         {
-            var builder = new FilterDefinitionBuilder<Admin>();
-            var filter = builder.Empty; // фильтр для выборки всех документов
-            filter = filter & builder.Regex("Login", new BsonRegularExpression(name));
-            return  Phones.Find(filter).FirstOrDefault();
+            get { return database.GetCollection<AdminKey>("AdminsKeys"); }
+        }
+        private IMongoCollection<TestResult> TestsResult
+        {
+            get { return database.GetCollection<TestResult>("TestsResult"); }
         }
 
-        public async Task<Admin> GetPhone(string id)
+
+
+        public  User LogIn(string name)
         {
-            return await Phones.Find(new BsonDocument("_id", new ObjectId(id))).FirstOrDefaultAsync();
+            var builder = new FilterDefinitionBuilder<User>();
+            var filter = builder.Empty; // фильтр для выборки всех документов
+            filter = filter & builder.Regex("Login", new BsonRegularExpression(name));
+            return  Users.Find(filter).FirstOrDefault();
+        }
+
+        public async Task<User> GetPhone(string id)
+        {
+            return await Users.Find(new BsonDocument("_id", new ObjectId(id))).FirstOrDefaultAsync();
         }
         
-        public  List<Quiz> GetQuiz(int count)
+        public  List<Quiz> GetQuiz()
         {
             var builder = new FilterDefinitionBuilder<Quiz>();
             var filter = builder.Empty; // фильтр для выборки всех документов            
@@ -69,12 +79,6 @@ namespace WebApplication1.Models
         public async Task addQuiz(Quiz q)
         {
             await Quizes.InsertOneAsync(q);
-        }
-
-        // добавление документа
-        public async Task AddAdmin(Admin p)
-        {
-            await Phones.InsertOneAsync(p);
         }
 
         public async Task AddQuizStats(QuizStats p)
@@ -173,112 +177,28 @@ namespace WebApplication1.Models
             return Qwes.ToArray();
         }
 
-
-        public double AveAge(string id)
+        public bool Register(User user,string adminKey)
         {
-            var builder = new FilterDefinitionBuilder<QuizStats>();
-            var filter = builder.Empty; // фильтр для выборки всех документов
-            filter = filter & builder.Regex("QuizId", new BsonRegularExpression(id));
-            var ls = QuizStat.Find(new BsonDocument("QuizId", id)).ToList();
 
-
-            double age = 0;
-
-            foreach (var pt in ls)
+            if (adminKey != null)
             {
-                age += pt.age;
-            }            
-            return age/ls.Count;
-        }
-
-        public double AveAnsers(string id)
-        {
-            var builder = new FilterDefinitionBuilder<QuizStats>();
-            var filter = builder.Empty; // фильтр для выборки всех документов
-            filter = filter & builder.Regex("QuizId", new BsonRegularExpression(id));
-            var ls = QuizStat.Find(new BsonDocument("QuizId", id)).ToList();
-
-
-            double age = 0;
-
-            foreach (var pt in ls)
-            {
-                age += pt.right_count;
+                var isAdmin = AdminKeys.FindSync(k => k.Value == adminKey);
+                if (isAdmin != null)
+                {
+                    user.Type = 2;
+                }
             }
-            return age / ls.Count * 100;
+
+            Users.InsertOne(user);
+
+            return true;
         }
-     
-
-        public int[] GetSex(string id)
-        {
-            var builder = new FilterDefinitionBuilder<QuizStats>();
-            var filter = builder.Empty; // фильтр для выборки всех документов
-            filter = filter & builder.Regex("QuizId", new BsonRegularExpression(id));
-            var ls = QuizStat.Find(new BsonDocument("QuizId", id)).ToList();
-
-
-            int men = 0;
-            int women = 0;
-
-            foreach (var pt in ls)
-            {
-                if (pt.sex == "Женский") men++;
-                else women++;
-            }
-            int[] a = { men, women, ls.Count };
-            return a;
-        }
-
-
-        public int[] GetWork(string id)
-        {
-            var builder = new FilterDefinitionBuilder<QuizStats>();
-            var filter = builder.Empty; // фильтр для выборки всех документов
-            filter = filter & builder.Regex("QuizId", new BsonRegularExpression(id));
-            var ls = QuizStat.Find(new BsonDocument("QuizId", id)).ToList();
-
-
-            int men = 0;
-            int women = 0;
-
-            foreach (var pt in ls)
-            {
-                if (pt.work == "Да") men++;
-                else women++;
-            }
-            int[] a = { men, women, ls.Count };
-            return a;
-        }
-
-
-
-        public int[] GetLoc(string id)
-        {
-            var builder = new FilterDefinitionBuilder<QuizStats>();
-            var filter = builder.Empty; // фильтр для выборки всех документов
-            filter = filter & builder.Regex("QuizId", new BsonRegularExpression(id));
-            var ls = QuizStat.Find(new BsonDocument("QuizId", id)).ToList();
-
-
-            int men = 0;
-            int women = 0;
-
-            foreach (var pt in ls)
-            {
-                if (pt.wher == "Город") men++;
-                else women++;
-            }
-            int[] a = { men, women, ls.Count };
-            return a;
-        }
-
-
 
 
         // обновление документа
-        public async Task Update(Admin p)
+        public async Task Update(User p)
         {
-            await Phones.ReplaceOneAsync(new BsonDocument("_id", new ObjectId(p.Id)), p);
+            await Users.ReplaceOneAsync(new BsonDocument("_id", new ObjectId(p.Id)), p);
         }
         // удаление документа
         public async Task Remove(string id)

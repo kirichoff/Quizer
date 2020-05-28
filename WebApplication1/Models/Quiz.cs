@@ -21,5 +21,6 @@ namespace WebApplication1.Models
         public bool istest { get; set; }
         [Display(Name = "Items")]
         public List<QuizItem> Items { get; set; }
+        public double MaxPoints { get; set; }
     }
 }

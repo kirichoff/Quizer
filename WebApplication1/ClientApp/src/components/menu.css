@@ -14,9 +14,9 @@
 }
 .LnStyle{
     color: #212121;
+    padding-top: 2vh;
+    text-align: center;
     text-decoration: none;
-    margin-left: 20%;
-    margin-top: 20%;
 }
 .LnStyle:hover {
     text-decoration: none;
@@ -36,4 +36,9 @@
     #navbar{
         grid-template-columns: 10% 65% 25%;
     }
+}
+.newLogo{
+    font-family: 'Monoton', cursive;
+    font-size: 40px;
+    margin-left: 10px;
 }

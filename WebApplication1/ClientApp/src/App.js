@@ -8,19 +8,24 @@ import AdminAgregateComponent from "./components/AdminAgregateComponent";
 import BarRender from "./components/BarRender";
 import PieRender from "./components/PieRender";
 import LogIn from "./components/LogIn";
-import Background from "./components/Background";
+import {Background,Background2} from "./components/Background";
 import StatistickRender from "./components/StatistickRender";
 import Help from "./components/Help";
-
+import Login from "./pages/Login/Login";
+import TestsList from "./pages/TestsList/TestsList";
+import {Redirect} from "react-router-dom";
 export default () => (
 
   <div>
-      <Route exact path ={'/'} component = {QuizSelector} />
-        <Route path={'/Bar'} component={BarRender}  />
-        <Route path={'/Stat/:id'} component={StatistickRender}/>
-        <Route path={'/Pie'}  component = {PieRender} />
+      <Redirect from={'/'} to={'/bg/LoginBeta'} />
+      <Route path={'/bg/LoginBeta'} component={Login} />
+      <Route path={'/bg2/TestsList'} component={TestsList} />
+      <Route path={'/Bar'} component={BarRender}  />
+      <Route path={'/Stat/:id'} component={StatistickRender}/>
+      <Route path={'/Pie'}  component = {PieRender} />
       <Route path={'/bg/info/:id'} component={InfoForm} />
       <Route path={'/bg'} component={Background} />
+      <Route path={'/bg2'} component={Background2} />
       <Route path={'/Help'} component={Help} />
       <Route path={'/bg/Test/:id'} component={AgregateComponent}  />
       <Route path={'/Home/Login'} component={LogIn}/>
