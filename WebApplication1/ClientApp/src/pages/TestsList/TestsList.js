@@ -21,7 +21,7 @@ function TestsList(props) {
         getQuiz()
     },[reports.length])
 
-    console.log('Test', user)
+    console.log('Test', reports)
     return (
         <div>
             <Menu user={user} {...props} />
@@ -42,19 +42,24 @@ function TestsList(props) {
                         null
                 }
                 {
-                    reports.map(item =>
-                        <div className={'repContainer'}>
-                            <span className={'repText'}>{item}</span>
+                    reports.map((item,i) =>
+                        <div key={i}  className={'repContainer'}>
+                            <span className={'repText'}>{item.Header}</span>
                             <span className={'repButton'}>
-                                    <Button>
+                                    <Button onClick={()=>{
+                                        const url = `api/SampleData/Delete?id=${item.Id}`;
+                                        fetch(url,{method: "POST"}).then(()=>{getQuiz()});
+                                    }}>
                                         <span style={{fontSize: '10px'}}>удалить</span>
                                     </Button>
-                                    <Button style={{marginLeft: 10}}>
-                                        <span style={{fontSize: '10px'}}>изменить</span>
-                                    </Button>
+                                    {/*<Button style={{marginLeft: 10}}>*/}
+                                    {/*    <span style={{fontSize: '10px'}}>изменить</span>*/}
+                                    {/*</Button>*/}
+                                <Link to={'/bg/Test/'+item.Id}>
                                      <Button style={{marginLeft: 10}}>
                                         <span style={{fontSize: '10px'}}>пройти</span>
                                     </Button>
+                                    </Link>
                             </span>
                         </div>
                     )

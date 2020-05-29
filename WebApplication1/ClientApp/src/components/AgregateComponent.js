@@ -3,6 +3,7 @@ import TestPage from "./TestPage";
 import QuizRender from "./QuizRender";
 import InfoForm from "./InfoForm";
 import Menu from "./Menu";
+import userHelper from "../utils/userHelper";
 
 class AgregateComponent extends Component {
     constructor(props, context) {
@@ -28,27 +29,23 @@ class AgregateComponent extends Component {
         );
     };
 
-    SendStat = (answers,right_count) =>{
-        const url = `api/SampleData/SendStat`;
-        let b;
-        console.log('call Send')
-        let obj = this.state.UserInfo
-        if (obj != null) {
-             const body = new FormData();
-            obj.answerssmap = answers
-            obj.QuizId = this.props.match.params.id
-            obj.right_count = right_count
-            body.append('body', JSON.stringify(obj))
+    testResult = (answers) =>{
+        console.log(this.state)
+        const url = 'api/SampleData/SetTestResults'
+        const body = new FormData;
+        body.append('q',JSON.stringify(
+            {
+                QuizHeader:this.state.QuizMap.Header,
+                QuizId: this.state.QuizMap.Id,
+                Answers: answers,
+                UserTest: userHelper.GetUser()
+            }))
+        fetch(url,{
+            method:'Post',
+            body: body
+        }).then(()=>this.props.history.push('/bg2/TestsList')
 
-            console.log(body)
-
-            fetch(url, {
-                method: "Post",
-                body: body
-            }).then(console.log('Success')).catch(e =>
-                console.log(e)
-            );
-        }
+        ).catch(e=>console.log(e))
     }
 
     componentWillMount = () => {
@@ -63,26 +60,13 @@ class AgregateComponent extends Component {
                 0
                 :
                     return (<TestPage
-                        payload={<p>
-                            {this.state.QuizMap.Description}
-                        </p>}
                         next={() => this.setState({counter: 1})}>
                         {this.state.QuizMap.Header}
                     </TestPage>);
-                case
-                1
-                :
-                    return (<InfoForm prev={() => this.setState({counter: 0})}   result={(obj) => {
-                        this.setState({UserInfo: obj, counter: 2});
-                    }}
-                    />);
-                case
-                2
-                :
+                case 1:
                     return (<QuizRender
+                        sendResult={this.testResult}
                         QuizMap = {this.state.QuizMap.Items}
-                        istest = {this.state.QuizMap.istest}
-                        getQuiz = {this.SendStat}
                     />);
             }
         }

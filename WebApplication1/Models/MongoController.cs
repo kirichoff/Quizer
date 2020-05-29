@@ -30,7 +30,7 @@ namespace WebApplication1.Models
 
         private IMongoCollection<User> Users
         {
-            get { return database.GetCollection<User>("Admins"); }
+            get { return database.GetCollection<User>("Users"); }
         }
         private IMongoCollection<Quiz> Quizes
         {
@@ -76,6 +76,17 @@ namespace WebApplication1.Models
             return Quizes.Find(new BsonDocument("_id", new ObjectId(id))).FirstOrDefault();
         }
 
+
+        public void AddTestResult(TestResult test)
+        {
+            TestsResult.InsertOne(test);
+        }
+        public List<TestResult> GetTestResult(string testId)
+        {
+            var builder = new FilterDefinitionBuilder<QuizStats>();
+            var filter = builder.Empty; // фильтр для выборки всех документов
+            return TestsResult.Find(new BsonDocument(new BsonDocument("QuizId", testId))).ToList();
+        }
         public async Task addQuiz(Quiz q)
         {
             await Quizes.InsertOneAsync(q);
@@ -194,6 +205,22 @@ namespace WebApplication1.Models
             return true;
         }
 
+        public void AddUser(User user, string key)
+        {
+            var findkey = AdminKeys.FindSync(k => k.Value == key).FirstOrDefault();
+
+            if (findkey != null)
+            {
+                user.Type = 2;
+                Users.InsertOne(user);
+            }
+            else
+            {
+                user.Type = 0;
+                Users.InsertOne(user);
+            }
+
+        }
 
         // обновление документа
         public async Task Update(User p)

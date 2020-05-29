@@ -11,16 +11,11 @@ namespace WebApplication1.Models
     {
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id { get; set; }
-        [Display(Name = "Description")]
-        public string Description { get; set; }
         [Display(Name = "Header")]
         public string Header { get; set; }
-        [Display(Name = "Baground")]
-        public string Baground { get; set;}
-        [Display(Name = "istest")]
-        public bool istest { get; set; }
         [Display(Name = "Items")]
         public List<QuizItem> Items { get; set; }
         public double MaxPoints { get; set; }
+        public User UserAccount { get; set; }
     }
 }

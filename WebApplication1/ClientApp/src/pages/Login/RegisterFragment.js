@@ -4,10 +4,16 @@ import {Toggle, ToggleOption} from "rambler-ui/Toggle";
 
 function RegisterFragment(props) {
     const [type,setType] = useState(false)
-
     const [name,setName] = useState("")
     const [password,setPassword] = useState("")
     const [adminKey,setAdminKey] = useState("")
+
+    let register = () => {
+
+        fetch(`/api/SampleData/Register?user=${JSON.stringify({Login:name,Pass_hash: password,Type: 0})}&adminKey=${adminKey}`).then(
+            props.toLogin(true)
+        )
+    }
 
     return (
         <div>

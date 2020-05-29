@@ -93,13 +93,12 @@
     justify-content: center;
 }
 .hs{
-    height: 92.1vh;
+    height: 0;
     width: 50vw;
     color: rgb(255, 253, 249);
     align-content: center;
     align-self: center;
     text-align: center;
-    padding-top: 18%;
     float: left;
     font-family: Montserrat;
     font-size: 300%;

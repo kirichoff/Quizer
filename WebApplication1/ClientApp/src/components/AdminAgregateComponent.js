@@ -18,14 +18,10 @@ class AdminAgregateComponent extends Component {
         super(props, context);
         this.state ={
             QuizMap:null,
-            vale: null,
+            vale: "",
             request: true,
-            Desc: '',
             counter: 0,
-            UserInfo: null,
-            istest: true,
-            biteImage: null,
-            toggleValue3: 'Тест'
+            maxPoint: 0,
         }
     }
 
@@ -42,45 +38,23 @@ class AdminAgregateComponent extends Component {
         );
     };
 
-    SendStat = (obj) =>{
-        const url = `api/SampleData/SendStat`;
-        let b;
-        console.log('call')
-        if (obj != null) {
-            b = obj
-            b["QuizId"] = this.props.match.params.id;
-            const body = new FormData();
-            for (const pair in b)
-                body.append(pair,b[pair])
-
-            body.append('istest',this.state.istest)
-
-            fetch(url, {
-                method: "Post",
-                body: body
-            }).then(console.log('Sucsces')).catch(e =>
-                console.log(e)
-            );
-        }
-    }
     Send = (state) =>{
-
         console.log(this.state)
-
         const url = 'api/SampleData/AddQuiz'
         const body = new FormData;
         body.append('q',JSON.stringify(
             {
                 Header:this.state.vale,
-                Baground: this.state.biteImage,
                 Items: state,
-                Description: this.state.Desc,
-                istest: this.state.istest
+                MaxPoints: 0,
+                UserAccount: userHelper.GetUser()
             }))
         fetch(url,{
             method:'Post',
             body: body
-        }).then(console.log('success')).catch(e=>console.log(e))
+        }).then(()=>this.props.history.push('/bg2/TestsList')
+
+        ).catch(e=>console.log(e))
     }
 
     Tags = () => {
@@ -101,6 +75,8 @@ class AdminAgregateComponent extends Component {
                             />
                            <div style={{fontSize:'15px'}}>Максимальное количество балов</div>
                             <Input
+                                value={this.state.maxPoint}
+                                onChange={(e)=>this.setState({maxPoint: e.target.value})}
                                 style={{
                                     marginLeft: '32%',
                                     width:'250px'
@@ -118,8 +94,6 @@ class AdminAgregateComponent extends Component {
                 }
             }
     }
-
-
 
     render() {
         let user = userHelper.GetUser();

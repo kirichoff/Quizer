@@ -46,8 +46,14 @@ namespace WebApplication1.Controllers
             }
         }
 
-        [HttpPost("[action]")]
-        public async void Register() { }
+        [HttpGet("[action]")]
+        public async void Register(string user,string adminKey)
+        {
+            db.AddUser(
+                JsonConvert.DeserializeObject<User>(user),
+                adminKey
+            );
+        }
 
         [HttpPost("[action]")]
         public async void Delete(string id)
@@ -78,6 +84,22 @@ namespace WebApplication1.Controllers
                 db.GetQuizById(id)
             );
         }
+        [HttpPost("[action]")]
+        public void SetTestResults(string q)
+        {
+            db.AddTestResult(
+            JsonConvert.DeserializeObject<TestResult>(q)
+                             );
+        }
+
+        [HttpGet("[action]")]
+        public string GetTestResults(string id)
+        {
+            return JsonConvert.SerializeObject(
+                db.GetTestResult(id)
+            );
+        }
+
 
         [HttpGet("[action]")]
         public string GetStatsOfQuestion(string id)

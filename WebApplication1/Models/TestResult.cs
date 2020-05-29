@@ -11,12 +11,12 @@ namespace WebApplication1.Models
         public User UserTest { get; set; }
         [Display(Name = "QuizId")]
         public string QuizId { get; set; }
-        public List<AnswerssItem> Answerss { get; set; }
-
-        public class AnswerssItem
+        public List<AnswersItem> Answers { get; set; }
+        public string QuizHeader { get; set; }
+        public class AnswersItem
         {
             public QuizItem TestItem { get; set; }
-            public bool[] question { get; set; }
+            public bool Answer { get; set; }
         }
     }
 }
