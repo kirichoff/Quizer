@@ -19,7 +19,7 @@ class TestPage extends Component {
                     </div>
                     {this.props.payload}
                         <div style={ {  marginBottom: "5%",}}>
-                            <Button container={<Link to={'/'}/>}  type={'outline'} size={'small'} rounded={true}>
+                            <Button container={<Link to={'/bg2/TestsList'}/>}  type={'outline'} size={'small'} rounded={true}>
                                 Назад
                             </Button>
                             <Button onClick={()=> this.props.next()}  style={{float:'right' }} size={'small'}  rounded={true}>

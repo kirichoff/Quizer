@@ -14,12 +14,14 @@ import Help from "./components/Help";
 import Login from "./pages/Login/Login";
 import TestsList from "./pages/TestsList/TestsList";
 import {Redirect} from "react-router-dom";
+import Results from "./pages/Result/Results";
 export default () => (
 
   <div>
       <Redirect from={'/'} to={'/bg/LoginBeta'} />
       <Route path={'/bg/LoginBeta'} component={Login} />
       <Route path={'/bg2/TestsList'} component={TestsList} />
+      <Route path={'/bg2/Results/:id'} component={Results} />
       <Route path={'/Bar'} component={BarRender}  />
       <Route path={'/Stat/:id'} component={StatistickRender}/>
       <Route path={'/Pie'}  component = {PieRender} />

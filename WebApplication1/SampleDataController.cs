@@ -47,9 +47,9 @@ namespace WebApplication1.Controllers
         }
 
         [HttpGet("[action]")]
-        public async void Register(string user,string adminKey)
+        public void Register(string user,string adminKey)
         {
-            db.AddUser(
+            db.Register(
                 JsonConvert.DeserializeObject<User>(user),
                 adminKey
             );

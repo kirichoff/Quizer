@@ -46,25 +46,48 @@ class QuizRender extends Component {
     change(e) {
         let index = parseInt(e.target.dataset.index);
         let answers = this.state.Answers;
-
-        console.log(this.props.QuizMap)
-
-        if(answers[this.state.counter]){
-            answers[this.state.counter].Answer[index] = true;
-        }
-        else{
-            answers.push(
-                {
-                    TestItem: this.props.QuizMap[this.state.counter],
-                    Answer: new Array(this.props.QuizMap[this.state.counter].Questions.length).fill(false,0)
+            if (answers[this.state.counter]) {
+                let count1 = this.answersCount(answers[this.state.counter].Answer);
+                let count2 = this.rightAnswers(this.props.QuizMap[this.state.counter].Questions);
+                if(count1 < count2 ) {
+                    answers[this.state.counter].Answer[index] = true;
                 }
-            )
+            } else {
+                answers.push(
+                    {
+                        TestItem: this.props.QuizMap[this.state.counter],
+                        Answer: new Array(this.props.QuizMap[this.state.counter].Questions.length).fill(false, 0)
+                    }
+                )
+                answers[this.state.counter].Answer[index] = true;
+            }
+            console.log(this.state.Answers)
+            this.setState({Answers: [...answers]})
+    }
+
+
+    rightAnswers(question){
+        let count = 0;
+        for (let item of question){
+            if(item.Right){
+                count++
+            }
         }
-        console.log(this.state.Answers)
-        this.setState({Answers: [...answers]})
+        return count;
+    }
+
+    answersCount(question){
+        let count = 0;
+        for (let item of question){
+            if(item){
+                count++
+            }
+        }
+        return count;
     }
 
     render() {
+        console.log(this.props)
         return (
             <div>
                 <div className={"mainRend"}>
@@ -82,6 +105,7 @@ class QuizRender extends Component {
                                     {/*<div className={'MakeDes'}>Результат</div>*/}
                                 </div>
                         }
+                        <div> колличество правильных вариантов {this.rightAnswers(this.props.QuizMap[this.state.counter].Questions)}</div>
                         {
                             (!this.state.isend) ?
                                 <div className={'justify_content'}>
@@ -120,7 +144,6 @@ class QuizRender extends Component {
                             :
                             <div style={{marginTop: '30%', height: '20%'}}>
                                 <Button
-                                    container={<Link style={{textDecoration: 'none', margin: 0, padding: 0}} to={'/'}/>}
                                     onClick={() => {
                                         this.props.sendResult(this.state.Answers)
                                         this.props.history.push('/bg2/TestsList')

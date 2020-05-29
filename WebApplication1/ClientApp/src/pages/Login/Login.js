@@ -24,10 +24,17 @@ import userHelper from "../../utils/userHelper";
         return rge.test(text)
      }
      let register = () => {
-        if(testLogin(newUser.Login)){
-            fetch(`/api/SampleData/Register?user=${JSON.stringify(newUser)}&adminKey=${key}`).then(()=>
+        if(newUser.Type == 2){
+            fetch(`api/SampleData/Register?user=${JSON.stringify(newUser)}&adminKey=${key}`).then(()=>
                 setRegister(false)
             )
+        }
+        else{
+            if(testLogin(newUser.Login)){
+                fetch(`api/SampleData/Register?user=${JSON.stringify(newUser)}&adminKey=${key}`).then(()=>
+                    setRegister(false)
+                )
+            }
         }
      }
      useEffect(()=>{

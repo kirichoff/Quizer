@@ -23,29 +23,48 @@ class AgregateComponent extends Component {
             method: "GET"
         }).then(function (response) {
             return response.json()
-        }).then(data =>
-            this.setState({QuizMap: data, request: true})).catch( e=>
+        }).then(data => {
+                this.setState({QuizMap:data, request: true})
+            }
+        ).catch( e=>
             console.log(e)
         );
     };
+     getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min)) + min; //Максимум не включается, минимум включается
+    }
+
+    mix = (quiz) => {
+        let uniqOrder = new Set();
+        while (uniqOrder.size < quiz.length){
+            uniqOrder.add(this.getRandomInt(0,quiz.length))
+        }
+        let newQuiz = [];
+        for(let i of uniqOrder){
+            let item = quiz[+i];
+         newQuiz.push({...item})
+        }
+        return newQuiz;
+    }
 
     testResult = (answers) =>{
         console.log(this.state)
+        console.log(answers)
         const url = 'api/SampleData/SetTestResults'
         const body = new FormData;
         body.append('q',JSON.stringify(
             {
                 QuizHeader:this.state.QuizMap.Header,
                 QuizId: this.state.QuizMap.Id,
-                Answers: answers,
+                Answers: [...answers],
                 UserTest: userHelper.GetUser()
             }))
         fetch(url,{
             method:'Post',
             body: body
-        }).then(()=>this.props.history.push('/bg2/TestsList')
-
-        ).catch(e=>console.log(e))
+        }).catch(e=>console.log(e))
     }
 
     componentWillMount = () => {
@@ -66,7 +85,7 @@ class AgregateComponent extends Component {
                 case 1:
                     return (<QuizRender
                         sendResult={this.testResult}
-                        QuizMap = {this.state.QuizMap.Items}
+                        QuizMap = {this.mix(this.state.QuizMap.Items)}
                     />);
             }
         }
@@ -78,7 +97,7 @@ class AgregateComponent extends Component {
 
     render() {
         return (
-            <div   style={{background: 'linear-gradient(left, #0022cb 0%,#3fd3d8 100%);'}} >
+            <div   style={{background: 'linear-gradient(left, #0022cb 0%,#3fd3d8 100%)'}} >
                 <Menu style={{margin:0}} />
                 {this.state.request ?
                     <div className={'TestPageBody'} >

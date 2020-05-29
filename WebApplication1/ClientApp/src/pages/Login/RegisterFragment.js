@@ -62,7 +62,7 @@ function RegisterFragment(props) {
                         value={adminKey}
                         onChange={(e)=>{
                             setAdminKey(e.target.value)
-                            props.onChange({Login:name,Pass_hash: password,Type: 0},adminKey)
+                            props.onChange({Login:name,Pass_hash: password,Type: !type? 2 : 0},adminKey)
                         }}
                     />
                 </>

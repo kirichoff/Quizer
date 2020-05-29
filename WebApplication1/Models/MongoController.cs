@@ -85,7 +85,7 @@ namespace WebApplication1.Models
         {
             var builder = new FilterDefinitionBuilder<QuizStats>();
             var filter = builder.Empty; // фильтр для выборки всех документов
-            return TestsResult.Find(new BsonDocument(new BsonDocument("QuizId", testId))).ToList();
+            return TestsResult.Find(new BsonDocument("QuizId", testId)).ToList();
         }
         public async Task addQuiz(Quiz q)
         {
@@ -203,23 +203,6 @@ namespace WebApplication1.Models
             Users.InsertOne(user);
 
             return true;
-        }
-
-        public void AddUser(User user, string key)
-        {
-            var findkey = AdminKeys.FindSync(k => k.Value == key).FirstOrDefault();
-
-            if (findkey != null)
-            {
-                user.Type = 2;
-                Users.InsertOne(user);
-            }
-            else
-            {
-                user.Type = 0;
-                Users.InsertOne(user);
-            }
-
         }
 
         // обновление документа

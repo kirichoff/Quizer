@@ -28,7 +28,7 @@ function TestsList(props) {
             <div style={{marginLeft: '15%'}}>
                 <h1 className={'section'}>Ваши Тесты</h1>
                 {
-                    user.Type === 0?
+                    user.Type === 2?
                         <Link to={'/bg/Admin/'}>
                         <Button
                             style={{marginLeft: '38%'}}
@@ -46,20 +46,31 @@ function TestsList(props) {
                         <div key={i}  className={'repContainer'}>
                             <span className={'repText'}>{item.Header}</span>
                             <span className={'repButton'}>
-                                    <Button onClick={()=>{
-                                        const url = `api/SampleData/Delete?id=${item.Id}`;
-                                        fetch(url,{method: "POST"}).then(()=>{getQuiz()});
-                                    }}>
-                                        <span style={{fontSize: '10px'}}>удалить</span>
-                                    </Button>
-                                    {/*<Button style={{marginLeft: 10}}>*/}
-                                    {/*    <span style={{fontSize: '10px'}}>изменить</span>*/}
-                                    {/*</Button>*/}
+                                   {
+                                       user.Type === 0 ?
+                                           <>
+                                           <Button onClick={() => {
+                                               const url = `api/SampleData/Delete?id=${item.Id}`;
+                                               fetch(url, {method: "POST"}).then(() => {
+                                                   getQuiz()
+                                               });
+                                           }}>
+                                               <span style={{fontSize: '10px'}}>удалить</span>
+                                           </Button>
+                                           <Link to={'/bg2/Results/' + item.Id}>
+                                               <Button style={{marginLeft: 10}}>
+                                                   <span style={{fontSize: '10px'}}>Результаты</span>
+                                               </Button>
+                                           </Link>
+                                       </>
+                                           :
+                                           null
+                                   }
                                 <Link to={'/bg/Test/'+item.Id}>
-                                         <Button style={{marginLeft: 10}}>
-                                        <span style={{fontSize: '10px'}}>пройти</span>
-                                    </Button>
-                                    </Link>
+                                       <Button style={{marginLeft: 10}}>
+                                       <span style={{fontSize: '10px'}}>пройти</span>
+                                       </Button>
+                                       </Link>
                             </span>
                         </div>
                     )
