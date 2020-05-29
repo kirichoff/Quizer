@@ -65,6 +65,7 @@ class AgregateComponent extends Component {
             method:'Post',
             body: body
         }).catch(e=>console.log(e))
+        this.props.history.push('/bg2/TestsList')
     }
 
     componentWillMount = () => {

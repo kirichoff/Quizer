@@ -65,7 +65,6 @@ class QuizRender extends Component {
             this.setState({Answers: [...answers]})
     }
 
-
     rightAnswers(question){
         let count = 0;
         for (let item of question){
@@ -146,7 +145,6 @@ class QuizRender extends Component {
                                 <Button
                                     onClick={() => {
                                         this.props.sendResult(this.state.Answers)
-                                        this.props.history.push('/bg2/TestsList')
                                     }}
                                     size={'small'}
                                     rounded={true}>
