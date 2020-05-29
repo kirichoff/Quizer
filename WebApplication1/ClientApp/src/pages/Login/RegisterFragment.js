@@ -8,13 +8,6 @@ function RegisterFragment(props) {
     const [password,setPassword] = useState("")
     const [adminKey,setAdminKey] = useState("")
 
-    let register = () => {
-
-        fetch(`/api/SampleData/Register?user=${JSON.stringify({Login:name,Pass_hash: password,Type: 0})}&adminKey=${adminKey}`).then(
-            props.toLogin(true)
-        )
-    }
-
     return (
         <div>
             {props.type ?
@@ -38,11 +31,15 @@ function RegisterFragment(props) {
             <Input
                 style={{marginBottom: 5}}
                 type="email"
-                status={!props.testLogin(name)? 'error': null}
+                status={!props.testLogin(name) && type? 'error': null}
                 autoFocus
                 placeholder={''}
                 value={name}
-                onChange={(e)=>setName(e.target.value)}
+                onChange={(e)=> {
+                    setName(e.target.value)
+                    props.onChange({Login:name,Pass_hash: password,Type: 0},adminKey)
+                    }
+                }
             />
             <div>пароль</div>
             <Input
@@ -50,7 +47,10 @@ function RegisterFragment(props) {
                 autoFocus
                 placeholder={'пароль'}
                 value={password}
-                onChange={(e)=>setPassword(e.target.value)}
+                onChange={(e)=> {
+                    setPassword(e.target.value)
+                    props.onChange({Login:name,Pass_hash: password,Type: 0},adminKey)
+                }}
             />
             {!type ?
                 <>
@@ -60,7 +60,10 @@ function RegisterFragment(props) {
                         autoFocus
                         placeholder={'ключ'}
                         value={adminKey}
-                        onChange={(e)=>setAdminKey(e.target.value)}
+                        onChange={(e)=>{
+                            setAdminKey(e.target.value)
+                            props.onChange({Login:name,Pass_hash: password,Type: 0},adminKey)
+                        }}
                     />
                 </>
                 :

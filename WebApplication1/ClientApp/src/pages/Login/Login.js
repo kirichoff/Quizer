@@ -15,17 +15,37 @@ import userHelper from "../../utils/userHelper";
     const [login,setLogin] = useState('')
     const [password,setPassword] = useState('')
     const [status,seStatus] = useState('')
+
+     const [newUser,setUser] = useState({})
+     const [key,setKey] = useState({})
+
      let testLogin = (text) => {
         let rge = /([0-30]+(Т|П|т|п)[0-900]+)/
         return rge.test(text)
      }
-
+     let register = () => {
+        if(testLogin(newUser.Login)){
+            fetch(`/api/SampleData/Register?user=${JSON.stringify(newUser)}&adminKey=${key}`).then(()=>
+                setRegister(false)
+            )
+        }
+     }
      useEffect(()=>{
          let user = userHelper.GetUser()
          if(user){
              props.history.push('/bg2/TestsList')
          }
      },[])
+
+     let request = () =>{
+         if(isRegister){
+             register()
+         }
+         else {
+             getLogin()
+         }
+     }
+
 
     let getLogin = async () => {
         if (password != '') {
@@ -93,10 +113,15 @@ import userHelper from "../../utils/userHelper";
                             <RegisterFragment
                                 toLogin={()=>setRegister(false)}
                                 testLogin={testLogin}
+                                onChange={(us,key)=> {
+                                    setUser(us);
+                                    setKey(key);
+                                }}
                             />
                         }
                         <div style={{display: 'flex',justifyContent: 'space-between',marginTop: '10px'}} >
-                            <Button type="primary" onClick={() => getLogin()}>
+                            <Button type="primary" onClick={request
+                            }>
                                 Ок
                             </Button>
                             <Button

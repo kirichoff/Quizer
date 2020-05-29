@@ -56,7 +56,7 @@ function TestsList(props) {
                                     {/*    <span style={{fontSize: '10px'}}>изменить</span>*/}
                                     {/*</Button>*/}
                                 <Link to={'/bg/Test/'+item.Id}>
-                                     <Button style={{marginLeft: 10}}>
+                                         <Button style={{marginLeft: 10}}>
                                         <span style={{fontSize: '10px'}}>пройти</span>
                                     </Button>
                                     </Link>
