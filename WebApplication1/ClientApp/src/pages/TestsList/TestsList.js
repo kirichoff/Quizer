@@ -59,7 +59,17 @@ function TestsList(props) {
                                            :
                                            null
                                         }
-
+                                        {user.Type === 2?
+                                            {/*                                         
+                                            <Link to={'api/SampleData/твояФункция'}> 
+                                               <Button style={{marginLeft: 10}}>
+                                                   <span style={{fontSize: '10px'}}>Docx</span>//текст
+                                               </Button>
+                                            </Link> */
+                                            }
+                                            :
+                                            null
+                                        }
                                            <Link to={'/bg2/Results/' + item.Id}>
                                                <Button style={{marginLeft: 10}}>
                                                    <span style={{fontSize: '10px'}}>Результаты</span>
