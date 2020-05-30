@@ -47,8 +47,7 @@ function TestsList(props) {
                             <span className={'repText'}>{item.Header}</span>
                             <span className={'repButton'}>
                                    {
-                                       user.Type === 0 ?
-                                           <>
+                                       user.Type === 2?                                                                    
                                            <Button onClick={() => {
                                                const url = `api/SampleData/Delete?id=${item.Id}`;
                                                fetch(url, {method: "POST"}).then(() => {
@@ -57,15 +56,15 @@ function TestsList(props) {
                                            }}>
                                                <span style={{fontSize: '10px'}}>удалить</span>
                                            </Button>
+                                           :
+                                           null
+                                        }
+
                                            <Link to={'/bg2/Results/' + item.Id}>
                                                <Button style={{marginLeft: 10}}>
                                                    <span style={{fontSize: '10px'}}>Результаты</span>
                                                </Button>
-                                           </Link>
-                                       </>
-                                           :
-                                           null
-                                   }
+                                            </Link>            
                                 <Link to={'/bg/Test/'+item.Id}>
                                        <Button style={{marginLeft: 10}}>
                                        <span style={{fontSize: '10px'}}>пройти</span>
