@@ -4,7 +4,6 @@ import {Button} from 'rambler-ui';
 import Menu from "../../components/Menu";
 import userHelper from "../../utils/userHelper";
 import {Link} from "react-router-dom";
-
 function TestsList(props) {
 
     let user = userHelper.GetUser()
@@ -20,15 +19,13 @@ function TestsList(props) {
     useEffect( ()=>{
         getQuiz()
     },[reports.length])
-
-    console.log('Test', reports)
     return (
         <div>
             <Menu user={user} {...props} />
             <div style={{marginLeft: '15%'}}>
                 <h1 className={'section'}>Ваши Тесты</h1>
                 {
-                    user.Type === 2?
+                    user && user.Type  === 2?
                         <Link to={'/bg/Admin/'}>
                         <Button
                             style={{marginLeft: '38%'}}
@@ -58,18 +55,6 @@ function TestsList(props) {
                                            </Button>
                                            :
                                            null
-                                        }
-                                        {user.Type === 2?
-                                            //разкоментить
-                                            /*
-                                            <Link to={'api/SampleData/твояФункция'}> 
-                                               <Button style={{marginLeft: 10}}>
-                                                   <span style={{fontSize: '10px'}}>Docx</span>//текст
-                                               </Button>
-                                            </Link> */
-                                            null //закоментить
-                                            :
-                                            null
                                         }
                                            <Link to={'/bg2/Results/' + item.Id}>
                                                <Button style={{marginLeft: 10}}>
