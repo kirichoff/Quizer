@@ -10,7 +10,6 @@ import RegisterFragment from "./RegisterFragment";
 import userHelper from "../../utils/userHelper";
 
  function Login (props){
-    console.log(props)
     const [isRegister,setRegister] = useState(false)
     const [login,setLogin] = useState('')
     const [password,setPassword] = useState('')

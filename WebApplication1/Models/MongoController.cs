@@ -71,6 +71,17 @@ namespace WebApplication1.Models
             return  Quizes.Find(filter).ToList();
         }
 
+        public List<Quiz> GetQuiz(string id)
+        {
+            var builder = new FilterDefinitionBuilder<Quiz>();
+            var filter = builder.Empty; // фильтр для выборки всех документов            
+            return Quizes.Find(k => k.UserAccount.Id == id).ToList();
+        }
+
+
+
+
+
         public Quiz GetQuizById(string id)
         {
             return Quizes.Find(new BsonDocument("_id", new ObjectId(id))).FirstOrDefault();
@@ -82,11 +93,15 @@ namespace WebApplication1.Models
             TestsResult.InsertOne(test);
         }
         public List<TestResult> GetTestResult(string testId)
-        {
-            var builder = new FilterDefinitionBuilder<QuizStats>();
-            var filter = builder.Empty; // фильтр для выборки всех документов
+        {           
             return TestsResult.Find(new BsonDocument("QuizId", testId)).ToList();
         }
+
+        public List<TestResult> GetTestResultByUser(string userId)
+        {
+            return TestsResult.Find(k=> k.UserTest.Id == userId).ToList();
+        }
+
         public async Task addQuiz(Quiz q)
         {
             await Quizes.InsertOneAsync(q);

@@ -19,15 +19,15 @@ function Results(props) {
         let res = await fetch('/api/SampleData/GetTestResults?id=' + loc)
         let data = await res.json()
         data = data || []
-        console.log(data)
         setResults(data)
-        console.log(body(data))
-        getDoc({
-            title: `Отчет о тесте: "${data[0].QuizHeader}"`,
-            description: '',
-            headers: ['Ученик', 'Количество Балов'],
-            body: [...body(data)]
-        }).then(r => setDocx(r))
+        if(data.length) {
+            getDoc({
+                title: `Отчет о тесте: "${data[0].QuizHeader}"`,
+                description: '',
+                headers: ['Ученик', 'Количество Балов'],
+                body: [...body(data)]
+            }).then(r => setDocx(r))
+        }
     }
 
     let total = (array) => {

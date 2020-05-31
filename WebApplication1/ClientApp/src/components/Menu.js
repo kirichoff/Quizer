@@ -10,7 +10,6 @@ var nav_style = {position: 'relative', top: '0px'}
 
 function Menu(props){
     let us = props.user;
-    console.log(props)
         return (
             <div id="navbar">
                 <div className={'newLogo'}>Tests</div>

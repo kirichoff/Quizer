@@ -76,6 +76,14 @@ namespace WebApplication1.Controllers
                 db.GetQuiz()
             );
         }
+        [HttpGet("[action]")]
+        public string GetQuizByUser(string id)
+        {
+            return JsonConvert.SerializeObject(
+                db.GetQuiz(id)
+            );
+        }
+        
 
         [HttpGet("[action]")]
         public string GetQuizById(string id)
@@ -99,7 +107,13 @@ namespace WebApplication1.Controllers
                 db.GetTestResult(id)
             );
         }
-
+        [HttpGet("[action]")]
+        public string GetTestResultsByUser(string id)
+        {
+            return JsonConvert.SerializeObject(
+                db.GetTestResultByUser(id)
+            );
+        }
 
         [HttpGet("[action]")]
         public string GetStatsOfQuestion(string id)

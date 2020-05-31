@@ -9,6 +9,7 @@ import Button from "rambler-ui/Button";
 
 const ChevronLeftIcon = icons['ChevronLeftIcon'];
 const ChevronRightIcon = icons['ChevronRightIcon'];
+const ClearIcon = icons['ClearIcon'];
 const AddIcon = icons['AddIcon'];
 
 var obj = {
@@ -76,8 +77,7 @@ class AdminQuizRender extends Component {
         const map = this.state.QuizMap
         try {
             map[this.state.counter].Questions[index].right = event.target.checked;
-        }
-        catch (e) {
+        } catch (e) {
 
         }
 
@@ -87,7 +87,35 @@ class AdminQuizRender extends Component {
 
     }
 
+
+    total = (array) => {
+        array = array || this.state.QuizMap && this.state.QuizMap.length ? this.state.QuizMap : []
+        let sum = 0;
+        if (array.length) {
+            for (let item of array) {
+                sum += this.forQuestion(item.Questions)
+            }
+        }
+        return sum;
+    }
+
+    forQuestion = (arr1) => {
+        let sum = 0
+        for (let i = 0; i < arr1.length; i++) {
+            sum += arr1[i].Point
+        }
+        return sum;
+    }
+
+
+    deleteVariant = (count,id) => {
+
+
+
+    }
+
     render() {
+        console.log('AdminQUiz', this.state, this.props)
         return (
             <div className={'TestPageBody'}>
                 <div className={"mainRend"}>
@@ -110,14 +138,18 @@ class AdminQuizRender extends Component {
                                     <div>
                                         Выберите один из Вариантов ответа
                                     </div>
-                                    <Link to={'/'}>
                                         <Button
-                                            onClick={() => this.props.cl(this.state.QuizMap)}
+                                            onClick={() => {
+                                                if (this.total() == this.props.maxPoint) {
+                                                    this.props.cl(this.state.QuizMap)
+                                                    this.props.history.push('/')
+                                                }
+                                            }
+                                            }
                                             style={{marginRight: '0%', marginTop: '1%'}}
                                             type={'outline'} size={'small'} rounded={true}>
                                             завершить
                                         </Button>
-                                    </Link>
                                 </div>
                                 : null
                         }
@@ -126,7 +158,7 @@ class AdminQuizRender extends Component {
                                 <div className={'justify_content'}>
                                     {
                                         this.state.QuizMap[this.state.counter].Questions.map((k, i) =>
-                                                <div key={i+"text"}  className={'sizz'}>
+                                            <div key={i + "text"} className={'sizz'}>
                                             <span>
                                             <label className={'container'}>
                                             <input
@@ -140,15 +172,15 @@ class AdminQuizRender extends Component {
                                                 <span className={'checkmark'}></span>
                                             </label>
                                                 </span>
-                                                    <span className={'inputAdmin'}>
+                                                <span className={'inputAdmin'}>
                                                             <Input
-                                                                style={{width:'85%',display: 'inline-block'}}
+                                                                style={{width: '80%', display: 'inline-block'}}
                                                                 type="text"
                                                                 value={k.Text}
-                                                                onChange={(event)=> {
+                                                                onChange={(event) => {
                                                                     let map = this.state.QuizMap;
                                                                     map[this.state.counter].Questions[i].Text = event.target.value
-                                                                    this.setState({QuizMap:[ ...map]})
+                                                                    this.setState({QuizMap: [...map]})
                                                                 }}
                                                                 placeholder="вопросс"
                                                                 id={i}
@@ -157,20 +189,33 @@ class AdminQuizRender extends Component {
 
                                                             />
                                                                  <Input
-                                                                     style={{width:'15%',display: 'inline-block'}}
+                                                                     style={{width: '15%', display: 'inline-block'}}
                                                                      type="number"
-                                                                     value={k.Point}
-                                                                     onChange={(event)=> {
-                                                                             let map = this.state.QuizMap;
-                                                                             map[this.state.counter].Questions[i].Point= +event.target.value
-                                                                             this.setState({QuizMap:[ ...map]})
+                                                                     value={(k.Point)}
+                                                                     onChange={(event) => {
+                                                                         let map = this.state.QuizMap;
+                                                                         map[this.state.counter].Questions[i].Point = Math.abs(+event.target.value)
+                                                                         this.setState({QuizMap: [...map]})
                                                                      }}
                                                                      id={i}
                                                                      variation={'regular'}
                                                                      size={'small'}
                                                                  />
+                                                                 <span style={{width: '5%', display: 'inline-block'}}>
+                                                                     <ClearIcon
+                                                                        onClick={
+                                                                            ()=>{
+                                                                                let ques = this.state.QuizMap[this.state.counter].Questions;
+                                                                                ques.splice(i,1)
+                                                                                this.state.QuizMap[this.state.counter].Questions = ques;
+
+                                                                                this.setState({QuizMap: this.state.QuizMap})
+                                                                            }
+                                                                        }
+                                                                     />
+                                                                 </span>
                                                     </span>
-                                                </div>
+                                            </div>
                                         )
                                     }
                                     <span onClick={this.add}>
@@ -212,6 +257,11 @@ class AdminQuizRender extends Component {
                             </div>
                             :
                             null
+                        }
+                        {
+                            <span style={{color: this.total() == this.props.maxPoint ? 'green' : 'red'}}>
+                                            {this.total() + ' из ' + this.props.maxPoint} баллов
+                            </span>
                         }
                     </div>
                 </div>
