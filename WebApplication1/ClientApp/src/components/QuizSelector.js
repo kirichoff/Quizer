@@ -86,10 +86,10 @@ class QuizSelector extends Component {
 
                                         key={241}
                                       to={'bg/Admin/'}
-                                      text={"Доабавить тест"}
+                                      text={"Добавить тест"}
                                       id = {'k.Id'}
                                       obj = {{}}
-                                      desc = {'какой-то тескст'}
+                                      desc = {'какой-то текст'}
                                       Remove={this.Remove}
                                         img = {'../immge.jpg'}
                             />

@@ -1,12 +1,12 @@
 const userHelper = {
     GetUser: () =>
-        JSON.parse(localStorage.getItem('login'))
+        JSON.parse(sessionStorage.getItem('login'))
     ,
     setUser: us =>
-        localStorage.setItem('login', JSON.stringify(us))
+        sessionStorage.setItem('login', JSON.stringify(us))
     ,
     clearUser: () =>
-        localStorage.removeItem('login')
+        sessionStorage.removeItem('login')
 
 }
 

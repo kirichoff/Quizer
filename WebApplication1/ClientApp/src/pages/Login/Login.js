@@ -10,7 +10,6 @@ import RegisterFragment from "./RegisterFragment";
 import userHelper from "../../utils/userHelper";
 
  function Login (props){
-    console.log(props)
     const [isRegister,setRegister] = useState(false)
     const [login,setLogin] = useState('')
     const [password,setPassword] = useState('')
@@ -20,7 +19,7 @@ import userHelper from "../../utils/userHelper";
      const [key,setKey] = useState({})
 
      let testLogin = (text) => {
-        let rge = /([0-30]+(Т|П|т|п)[0-900]+)/
+        let rge = /([0-30]+(Т|П|т|п)[0-999]+)/
         return rge.test(text)
      }
      let register = () => {
@@ -90,7 +89,7 @@ import userHelper from "../../utils/userHelper";
                         {
                             !isRegister?
                                 <>
-                                    <div>имя пользователя</div>
+                                    <div>Имя пользователя</div>
                                 <Input
                                     style={{marginBottom: 5}}
                                     type="text"
@@ -100,7 +99,7 @@ import userHelper from "../../utils/userHelper";
                                     value={login}
                                     onChange={(e)=>setLogin(e.target.value)}
                                 />
-                                    <div>пароль</div>
+                                    <div>Пароль</div>
                                 <Input
                                     type="password"
                                     autoFocus
@@ -113,7 +112,7 @@ import userHelper from "../../utils/userHelper";
                                         className={'LnStyle'}
                                         onClick={()=>setRegister(true)}
                                     >
-                                        Регистарция
+                                        Регистрация
                                     </div>
                                 </>
                                 :
@@ -129,7 +128,7 @@ import userHelper from "../../utils/userHelper";
                         <div style={{display: 'flex',justifyContent: 'space-between',marginTop: '10px'}} >
                             <Button type="primary" onClick={request
                             }>
-                                Ок
+                                Далее
                             </Button>
                             <Button
                                 type="outline" onClick={() => {

@@ -46,7 +46,7 @@ class AdminAgregateComponent extends Component {
             {
                 Header:this.state.vale,
                 Items: state,
-                MaxPoints: 0,
+                MaxPoints: this.state.maxPoint,
                 UserAccount: userHelper.GetUser()
             }))
         fetch(url,{
@@ -71,12 +71,12 @@ class AdminAgregateComponent extends Component {
                                 type="text"
                                 placeholder={'Заголовок'}
                                 value={this.state.vale}
-                                onChange={event => this.setState({vale: event.target.value})}
+                                onChange={event => this.setState({vale:event.target.value})}
                             />
                            <div style={{fontSize:'15px'}}>Максимальное количество балов</div>
                             <Input
                                 value={this.state.maxPoint}
-                                onChange={(e)=>this.setState({maxPoint: e.target.value})}
+                                onChange={(e)=>this.setState({maxPoint:  Math.abs(+e.target.value)})}
                                 style={{
                                     marginLeft: '32%',
                                     width:'250px'
@@ -89,6 +89,8 @@ class AdminAgregateComponent extends Component {
                     :
                         return (<AdminQuizRender
                                 cl={this.Send}
+                                history={this.props.history}
+                                maxPoint={this.state.maxPoint}
                                 istest={this.state.istest}
                         />);
                 }

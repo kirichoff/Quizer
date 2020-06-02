@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Menu from "./Menu";
 import {Tabs, TabsItem} from 'rambler-ui/Tabs'
 import userHelper from "../utils/userHelper";
-const values = ['Пользователю', 'Администратору']
+const values = ['Учащемуся', 'Преподавателю']
 
 
 class Help extends Component {
@@ -37,16 +37,16 @@ class Help extends Component {
                         ))}
                     </Tabs>
                     </div>
-                    {(this.state.value === 'Пользователю') ?
+                    {(this.state.value === 'Учащемуся') ?
                         <div style={{paddingLeft: '20%',paddingRight: '20%' }}>
-                          <h4 style={{marginLeft: '28%'}} >Краткая инструкция для пользователей</h4>
+                          <h4 style={{marginLeft: '28%'}} >Краткая справка для учеников</h4>
                             <p>
                                 Какая-то инструкция
                             </p>
                         </div>
                         :
                         <div style={{paddingLeft: '20%',paddingRight: '20%' }}>
-                            <h4 style={{marginLeft: '28%'}} >Краткая инструкция для администраторов</h4>
+                            <h4 style={{marginLeft: '28%'}} >Краткая справка для преподавателей</h4>
                             <p>
                                 Какая-то инструкция
                             </p>

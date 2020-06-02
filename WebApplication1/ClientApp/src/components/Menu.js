@@ -10,7 +10,6 @@ var nav_style = {position: 'relative', top: '0px'}
 
 function Menu(props){
     let us = props.user;
-    console.log(props)
         return (
             <div id="navbar">
                 <div className={'newLogo'}>Tests</div>
@@ -19,7 +18,7 @@ function Menu(props){
                     justifyContent: 'space-around'
                 }}>
                     <Link className={'LnStyle'} to={'/Help'}> Помощь </Link>
-                    {us ? <Link className={'LnStyle'} to={'/bg2/TestsList'}>мои тесты </Link> : null}
+                    {us ? <Link className={'LnStyle'} to={'/bg2/TestsList'}>Список тестов </Link> : null}
                 </div>
                 <div style={{marginTop: 5}}>
                     <div style={{marginBottom: 5, float: 'right'}}>
@@ -30,7 +29,7 @@ function Menu(props){
                             }
                             } style={{marginLeft: 20, marginRight: 10,}}
                                     size={'small'} rounded={true}>
-                                выйти
+                                Выйти
                             </Button>
                             :
                             null

@@ -91,20 +91,20 @@ class QuizRender extends Component {
             <div>
                 <div className={"mainRend"}>
                     <div className="hs">
-                        {!(this.state.isend) ? this.props.QuizMap[this.state.counter].Question : 'Хорошая работа'}
+                        {!(this.state.isend) ? this.props.QuizMap[this.state.counter].Question : 'Ваши результаты сохранены!'}
                     </div>
                     < div className="QuizRender">
                         {
                             (!this.state.isend) ?
                                 <div className={' Header2 Header '}>
-                                    <div className={'MakeDes'}>Выберите Вариант ответа</div>
+                                    <div className={'MakeDes'}>Выберите вариант ответа:</div>
                                 </div>
                                 :
                                 <div className={' Header2 Header '}>
                                     {/*<div className={'MakeDes'}>Результат</div>*/}
                                 </div>
                         }
-                        <div> колличество правильных вариантов {this.rightAnswers(this.props.QuizMap[this.state.counter].Questions)}</div>
+                        <div> Количество правильных вариантов: {this.rightAnswers(this.props.QuizMap[this.state.counter].Questions)}</div>
                         {
                             (!this.state.isend) ?
                                 <div className={'justify_content'}>
@@ -135,7 +135,7 @@ class QuizRender extends Component {
                                 </div>
                                 :
                                 <div>
-                                    <div style={{color: '#212121'}} className="hs">Спасибо!</div>
+                                    <div style={{color: '#212121'}} className="hs">Тест окончен.</div>
                                 </div>
                         }
                         {(!this.state.isend) ?
@@ -148,7 +148,7 @@ class QuizRender extends Component {
                                     }}
                                     size={'small'}
                                     rounded={true}>
-                                    к остальным тестам
+                                    Вернуться в главное меню.
                                 </Button>
                             </div>
                         }
@@ -175,7 +175,7 @@ class QuizRender extends Component {
 
         function isRight(ar, counter, right) {
             if (ar[counter].answer === right) return (<div className={'answer'}>Верно</div>);
-            if (ar[counter].answer === -1) return (<div className={'answer'}>неверно</div>)
+            if (ar[counter].answer === -1) return (<div className={'answer'}>Неверно</div>)
             if (ar[counter] === -2) return (null)
         }
 

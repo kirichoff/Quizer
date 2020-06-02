@@ -19,15 +19,15 @@ function RegisterFragment(props) {
                 </>
             }
             <Toggle
-                value={type?"ученик":"преподователь"}
+                value={type?"Ученик":"Преподователь"}
                 className="toggle marg2"
                 onChange={()=>setType(!type)}
                 block={true}
                 equalWidth={true}>
-                <ToggleOption value="ученик">ученик</ToggleOption>
-                <ToggleOption value="преподователь">преподователь</ToggleOption>
+                <ToggleOption value="Ученик">Ученик</ToggleOption>
+                <ToggleOption value="Преподователь">Преподователь</ToggleOption>
             </Toggle>
-            {type ? <div>№студента/отделение/№группы</div> : <div>Фамилия</div> }
+            {type ? <div>№студента/отделение/№группы</div> : <div>ФИО</div> }
             <Input
                 style={{marginBottom: 5}}
                 type="email"
@@ -41,7 +41,7 @@ function RegisterFragment(props) {
                     }
                 }
             />
-            <div>пароль</div>
+            <div>Пароль</div>
             <Input
                 type="password"
                 autoFocus
@@ -54,7 +54,7 @@ function RegisterFragment(props) {
             />
             {!type ?
                 <>
-                    <div>ключ администратора</div>
+                    <div>Ключ администратора</div>
                     <Input
                         type="text"
                         autoFocus
@@ -71,7 +71,7 @@ function RegisterFragment(props) {
                 </>
             }
             <div className={'LnStyle'} onClick={()=> props.toLogin(true)}>
-                войти
+                Войти
             </div>
         </div>
     );
