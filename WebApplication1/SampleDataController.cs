@@ -108,7 +108,7 @@ namespace WebApplication1.Controllers
             );
         }
         [HttpGet("[action]")]
-        public string GetTestResultsByUser(string id)
+        public string GetTestResultByUser(string id)
         {
             return JsonConvert.SerializeObject(
                 db.GetTestResultByUser(id)
