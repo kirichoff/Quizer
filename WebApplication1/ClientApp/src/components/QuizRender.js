@@ -104,7 +104,7 @@ class QuizRender extends Component {
                                     {/*<div className={'MakeDes'}>Результат</div>*/}
                                 </div>
                         }
-                        <div> Количество правильных вариантов: {this.rightAnswers(this.props.QuizMap[this.state.counter].Questions)}</div>
+                        {!this.state.isend? <div> Количество правильных вариантов: {this.rightAnswers(this.props.QuizMap[this.state.counter].Questions)}</div> : null}
                         {
                             (!this.state.isend) ?
                                 <div className={'justify_content'}>

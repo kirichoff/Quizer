@@ -1,7 +1,7 @@
 
 import { Document, Packer, Paragraph, TextRun,Table, TableCell, TableRow,UnderlineType,TabStopPosition,TabStopType,WidthType,HeadingLevel,AlignmentType }  from "docx"
 
- const getDoc = async function({title,headers,body,description})
+ const getDoc = async function({title,headers,body,description,info})
 {
 
     let option = {styles: {
@@ -14,6 +14,20 @@ import { Document, Packer, Paragraph, TextRun,Table, TableCell, TableRow,Underli
                     quickFormat: true,
                     run: {
                         size: 38,
+                    },
+                    paragraph: {
+                        spacing: {
+                            after: 120,
+                        },
+                    }
+                },   {
+                    id: "Heading3",
+                    name: "Heading 3",
+                    basedOn: "Normal",
+                    next: "Normal",
+                    quickFormat: true,
+                    run: {
+                        size: 24,
                     },
                     paragraph: {
                         spacing: {
@@ -58,6 +72,7 @@ import { Document, Packer, Paragraph, TextRun,Table, TableCell, TableRow,Underli
         let tableHeader = header.map(head=>
             new TableCell({
             children: [new Paragraph({
+                alignment: AlignmentType.CENTER,
                 heading: HeadingLevel.HEADING_2,
                 children: [
                     new TextRun(head),
@@ -67,6 +82,7 @@ import { Document, Packer, Paragraph, TextRun,Table, TableCell, TableRow,Underli
         let tableBody = body.map(row=> new TableRow ({children: [ ...row.map(cell=>
             new TableCell({
                 children: [new Paragraph({
+                    alignment: AlignmentType.CENTER,
                     children: [
                         new TextRun(cell.toString()),
                     ],
@@ -92,8 +108,37 @@ import { Document, Packer, Paragraph, TextRun,Table, TableCell, TableRow,Underli
 
     doc.addSection({
             children:[
-                ...Header(title),
-                new Paragraph(""),
+                new Paragraph({
+                    alignment: AlignmentType.CENTER,
+                    heading: HeadingLevel.HEADING_3,
+                    children:[
+                        new TextRun("Частное учреждение образования")
+                    ]
+                }),
+                new Paragraph({
+                    alignment: AlignmentType.CENTER,
+                    heading: HeadingLevel.HEADING_3,
+                    children:[
+                        new TextRun("«Колледж бизнеса и права»")
+                    ]
+                }),
+                ...Header("Отчет о результатах тестирования по работе: "+title),
+                new Paragraph(''),
+                new Paragraph(''),
+                new Paragraph(''),
+                new Paragraph(''),
+                new Paragraph(''),
+                new Paragraph({
+                    children:[
+                        new TextRun('Автор теса: '+info.user ),
+                        ]
+                }),
+                new Paragraph(
+                    'Количество вопросов: ' + info.count
+                ),
+                new Paragraph(
+                    'Максимальное количество баллов: ' + info.points
+                ),
                 ...description? [new Paragraph(description),new Paragraph("")] : [new Paragraph("")],
                 table({header: headers,body: body})
             ]

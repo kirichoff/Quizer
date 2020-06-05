@@ -34,9 +34,10 @@ function TestsList(props) {
 
     useEffect(() => {
         if (user) {
-            getQuiz()
+            getQuiz();
+            getResults();
         }
-    }, [reports.length])
+    }, [])
     return (
         <div>
             <Menu user={user} {...props} />
@@ -80,7 +81,7 @@ function TestsList(props) {
                                                </Link>
                                            </>
                                            :
-                                           findTest(item.Id) ?
+                                           !findTest(item.Id)?
                                                <Link to={'/bg/Test/' + item.Id}>
                                                    <Button style={{marginLeft: 10}}>
                                        <span style={{fontSize: '10px'}}>

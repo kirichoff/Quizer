@@ -18,13 +18,15 @@ function Results(props) {
         let loc = props.match.params.id
         let res = await fetch('/api/SampleData/GetTestResults?id=' + loc)
         let data = await res.json()
+        let test = await (await fetch('api/SampleData/GetQuizById?id='+loc)).json()
         data = data || []
         setResults(data)
         if(data.length) {
             getDoc({
-                title: `Отчет о тесте: "${data[0].QuizHeader}"`,
+                title: `"${data[0].QuizHeader}"`,
+                info: {user: test.UserAccount.Login,count: test.Items.length, points: test.MaxPoints},
                 description: '',
-                headers: ['Ученик', 'Количество Балов'],
+                headers: ['Учащийся', 'Количество Балов','Количество правильных ответов'],
                 body: [...body(data)]
             }).then(r => setDocx(r))
         }
@@ -32,10 +34,15 @@ function Results(props) {
 
     let total = (array) => {
         let sum = 0;
+        let count = 0;
         for (let item of array) {
-            sum += forQuestion(item.Answer, item.TestItem.Questions)
+            if(forQuestion(item.Answer, item.TestItem.Questions)){
+                sum += forQuestion(item.Answer, item.TestItem.Questions)
+                count++;
+            }
+
         }
-        return sum;
+        return [sum,count];
     }
 
 
@@ -53,7 +60,7 @@ function Results(props) {
     console.log('results', results)
 
     const body = (data) => {
-        return data.map(k => [k.UserTest.Login, total(k.Answers).toString()])
+        return data.map(k => [k.UserTest.Login, total(k.Answers)[0].toString(),total(k.Answers)[1].toString()])
     }
 
     console.log(results)
@@ -112,9 +119,13 @@ function Results(props) {
                             {
                                 open === i ?
                                     item.Answers.map((k, i) =>
-                                        <div>
-                                            <div>{k.TestItem.Question}</div>
-                                            <div>Баллов: {forQuestion(k.Answer, k.TestItem.Questions)}</div>
+                                        <div style={{display: 'flex'}} >
+                                            <div style={{marginRight: '40px',width: '300px'}} >
+                                                <b>Вопрос:</b>{k.TestItem.Question}
+                                            </div>
+                                            <div>
+                                                <b>Баллов:</b> {forQuestion(k.Answer, k.TestItem.Questions)}
+                                            </div>
                                         </div>
                                     )
                                     : null
