@@ -96,6 +96,8 @@ function TestsList(props) {
 
                                    }
                             </span>
+
+                            <div>Максимальное колличесвто баллов: {item.MaxPoints}</div>
                         </div>
                     )
                 }

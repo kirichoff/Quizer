@@ -12,7 +12,9 @@ function Menu(props){
     let us = props.user;
         return (
             <div id="navbar">
+                <Link to={'/'} >
                 <div className={'newLogo'}>Tests</div>
+                </Link>
                 <div style={{
                     display: 'flex',
                     justifyContent: 'space-around'
