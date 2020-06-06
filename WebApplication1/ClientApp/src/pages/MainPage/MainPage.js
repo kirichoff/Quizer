@@ -13,16 +13,12 @@ function MainPage(props) {
             <div className={'bg-main'}>
 
                 <Link to={'/bg/LoginBeta'}>
-                    Войти
-                </Link>
-
-                <Link to={'/bg/LoginBeta'}>
                     <Button>
                         Войти
                     </Button>
                 </Link>
 
-                <div>Добро ПОжаловать</div>
+                <div>Добро Пожаловать</div>
 
             </div>
         </div>

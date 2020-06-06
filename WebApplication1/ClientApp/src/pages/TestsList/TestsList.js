@@ -62,7 +62,7 @@ function TestsList(props) {
                         <div key={i} className={'repContainer'}>
                             <span className={'repText'}>{item.Header}</span>
                             <span> Cоздано: {item.UserAccount.Login}</span>
-                            <span>Максимальное колличесвто баллов: {item.MaxPoints}</span>
+                            <span>Максимальное количество баллов: {item.MaxPoints}</span>
                             <span className={'repButton'}>
                                    {
                                        user.Type === 2 ?
@@ -92,7 +92,7 @@ function TestsList(props) {
                                                </Link>
                                                :
                                                <span>
-                                       пройдено
+                                       ПРОЙДЕНО
                                        </span>
 
                                    }

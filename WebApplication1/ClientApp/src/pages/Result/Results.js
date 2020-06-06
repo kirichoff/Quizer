@@ -92,7 +92,7 @@ function Results(props) {
                             <div className={'repContainer'}>
                                 <span className={'repText'}>
                                     <div>
-                                    Ученик:
+                                        Ученик:&nbsp;
                                     <span style={{
                                         fontFamily: 'Roboto',
                                         fontWeight: 300
@@ -101,19 +101,19 @@ function Results(props) {
                                 </span>
                                         </div>
                                     <div>
-                                    всего:
+                                        Всего баллов:&nbsp;
                                     <span style={{
                                         fontFamily: 'Roboto',
                                         fontWeight: 300
                                     }}>
-                                        {total(item.Answers)}
+                                        {total(item.Answers)[0]}
                                 </span>
                                         </div>
                                 </span>
                                 <Button type={'outline'}
                                         onClick={() => i === open ? setOpen(null) : setOpen(i)}
                                 >
-                                    {open === i ? 'Свернуть' : 'Разверунть'}
+                                    {open === i ? 'Свернуть' : 'Развернуть'}
                                 </Button>
                             </div>
                             {

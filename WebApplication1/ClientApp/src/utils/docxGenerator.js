@@ -130,7 +130,7 @@ import { Document, Packer, Paragraph, TextRun,Table, TableCell, TableRow,Underli
                 new Paragraph(''),
                 new Paragraph({
                     children:[
-                        new TextRun('Автор теса: '+info.user ),
+                        new TextRun('Автор теста: '+info.user ),
                         ]
                 }),
                 new Paragraph(
