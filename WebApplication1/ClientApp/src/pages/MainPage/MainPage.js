@@ -1,11 +1,22 @@
 import React from 'react';
 import './MainPage.css'
-import 'bg.png'
+import Menu from "../../components/Menu";
+import userHelper from "../../utils/userHelper";
+import Link from "react-router-dom/Link";
 
 function MainPage(props) {
-    return (
-        <div style={{background: 'url(bg.png)'}}>
+    let user = userHelper.GetUser()
 
+    return (<div>
+        <Menu user={user} {...props} />
+            <div className={'bg-main'}>
+
+                <Link to={'/bg/LoginBeta'}>
+                    Войти
+                </Link>
+
+
+            </div>
         </div>
     );
 }

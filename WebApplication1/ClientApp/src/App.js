@@ -21,7 +21,7 @@ export default () => (
   <div>
       {/*<Redirect from={'/'} to={'/bg/LoginBeta'} />*/}
       <Route path={'/bg/LoginBeta'} component={Login} />
-      <Route path={'/'} component={MainPage} />
+      <Route exact path={'/'} component={MainPage} />
       <Route path={'/bg2/TestsList'} component={TestsList} />
       <Route path={'/bg2/Results/:id'} component={Results} />
       <Route path={'/Bar'} component={BarRender}  />
