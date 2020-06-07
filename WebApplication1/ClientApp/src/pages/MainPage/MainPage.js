@@ -12,9 +12,8 @@ function MainPage(props) {
                 <Menu user={user} {...props} />
                 <div className={'bg-main'}>
                         <h1> Добро пожаловать в онлайн систему тестирования KBIP_ExamSystem.</h1>
-           
-            <Link to={'/bg/LoginBeta'}>
 
+            <Link to={'/bg/LoginBeta'}>
                          <Button>
                              Войти
                          </Button>

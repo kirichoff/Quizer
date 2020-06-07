@@ -103,8 +103,9 @@ namespace WebApplication1.Models
         }
 
         public void UpdateQuiz(string id,Quiz quiz)
-        {           
-            Quizes.FindOneAndReplace<Quiz>(new BsonDocument("Id",id), quiz);            
+        {
+            quiz.Id = id;
+            var res = Quizes.FindOneAndReplace<Quiz>(k=>k.Id==id, quiz);
         }
 
         public async Task addQuiz(Quiz q)

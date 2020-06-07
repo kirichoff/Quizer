@@ -60,7 +60,7 @@ class AdminAgregateComponent extends Component {
         let url = 'api/SampleData/AddQuiz'
 
         if(this.props.match.params.id){
-            let url = 'api/SampleData/UpdateQuiz?id='+this.props.match.params.id;
+             url = 'api/SampleData/UpdateQuiz?id='+this.props.match.params.id;
         }
         const body = new FormData;
         body.append('q',JSON.stringify(
