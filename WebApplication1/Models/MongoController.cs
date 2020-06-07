@@ -102,6 +102,11 @@ namespace WebApplication1.Models
             return TestsResult.Find(k=> k.UserTest.Id == userId).ToList();
         }
 
+        public void UpdateQuiz(string id,Quiz quiz)
+        {           
+            Quizes.FindOneAndReplace<Quiz>(new BsonDocument("Id",id), quiz);            
+        }
+
         public async Task addQuiz(Quiz q)
         {
             await Quizes.InsertOneAsync(q);

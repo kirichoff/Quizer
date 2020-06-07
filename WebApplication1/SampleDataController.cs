@@ -69,6 +69,16 @@ namespace WebApplication1.Controllers
             );
         }
 
+
+        [HttpPost("[action]")]
+        public async void UpdateQuiz(string id,string q)
+        {
+                       db.UpdateQuiz(
+                id,JsonConvert.DeserializeObject<Quiz>(q)
+            );
+        }
+
+
         [HttpGet("[action]")]
         public string GetQuiz()
         {
@@ -99,6 +109,8 @@ namespace WebApplication1.Controllers
             JsonConvert.DeserializeObject<TestResult>(q)
                              );
         }
+
+
 
         [HttpGet("[action]")]
         public string GetTestResults(string id)
