@@ -16,7 +16,16 @@ var obj = {
     Question: "Содержание вопроса",
     Questions: [{Text: "", right: false, Point: 0}]
 }
-var arr = [obj]
+var arr = [{...obj}]
+
+class Ques {
+    Question = "Содержание вопроса";
+    Questions = [{Text: "", Right: false, Point: 0}]
+
+    constructor() {
+
+    }
+}
 
 
 class AdminQuizRender extends Component {
@@ -25,7 +34,7 @@ class AdminQuizRender extends Component {
         this.state = {
             counter: 0,
             anser: -1,
-            QuizMap: Object.assign(arr),
+            QuizMap: [new Ques()],
             isend: false,
         }
         this.change = this.change.bind(this)
@@ -64,7 +73,7 @@ class AdminQuizRender extends Component {
             QuizMap: [...this.state.QuizMap, {
                 Question: '<Вопрос>',
                 Questions: [
-                    {Text: "", right: false, Point: 0}
+                    {Text: "", Right: false, Point: 0}
                 ]
             }]
         })
@@ -76,17 +85,19 @@ class AdminQuizRender extends Component {
         const index = parseInt(event.target.dataset.index);
         const map = this.state.QuizMap
         try {
-            map[this.state.counter].Questions[index].right = event.target.checked;
+            map[this.state.counter].Questions[index].Right = event.target.checked;
         } catch (e) {
 
         }
-
         console.log(this.state.QuizMap)
 
         this.setState({QuizMap: map})
-
     }
 
+    componentDidMount() {
+        console.log(this.props)
+        this.setState({QuizMap: this.props.QuizMap})
+    }
 
     total = (array) => {
         array = array || this.state.QuizMap && this.state.QuizMap.length ? this.state.QuizMap : []
@@ -115,7 +126,7 @@ class AdminQuizRender extends Component {
     }
 
     render() {
-        console.log('AdminQUiz', this.state, this.props)
+        console.log(this.props)
         return (
             <div className={'TestPageBody'}>
                 <div className={"mainRend"}>
@@ -166,7 +177,7 @@ class AdminQuizRender extends Component {
                                                 name="isGoing"
                                                 type="checkbox"
                                                 data-index={i}
-                                                checked={k.right}
+                                                checked={k.Right}
                                                 onChange={this.handleInputChange}
                                             />
                                                 <span className={'checkmark'}></span>
@@ -197,6 +208,7 @@ class AdminQuizRender extends Component {
                                                                          map[this.state.counter].Questions[i].Point = Math.abs(+event.target.value)
                                                                          this.setState({QuizMap: [...map]})
                                                                      }}
+                                                                     disabled={!k.Right}
                                                                      id={i}
                                                                      variation={'regular'}
                                                                      size={'small'}

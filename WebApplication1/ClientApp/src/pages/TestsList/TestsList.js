@@ -37,7 +37,8 @@ function TestsList(props) {
             getQuiz();
             getResults();
         }
-    }, [])
+    },[])
+    console.log('rend tests')
     return (
         <div>
             <Menu user={user} {...props} />
@@ -78,6 +79,11 @@ function TestsList(props) {
                                                <Link to={'/bg2/Results/' + item.Id}>
                                                    <Button style={{marginLeft: 10}}>
                                                        <span style={{fontSize: '10px'}}>Результаты</span>
+                                                   </Button>
+                                               </Link>
+                                               <Link to={'/bg/Admin/' + item.Id}>
+                                                   <Button style={{marginLeft: 10}}>
+                                                       <span style={{fontSize: '10px'}}>Изменить</span>
                                                    </Button>
                                                </Link>
                                            </>

@@ -10,6 +10,7 @@ function Results(props) {
     let [results, setResults] = useState([])
     let [open, setOpen] = useState(null)
     let [docx, setDocx] = useState(null)
+    let [MaxPoints, setMaxPoints] = useState(null)
     useEffect(() => {
         getResults()
     }, [])
@@ -22,6 +23,7 @@ function Results(props) {
         data = data || []
         setResults(data)
         if(data.length) {
+            setMaxPoints(test.MaxPoints)
             getDoc({
                 title: `"${data[0].QuizHeader}"`,
                 info: {user: test.UserAccount.Login,count: test.Items.length, points: test.MaxPoints},
@@ -106,7 +108,7 @@ function Results(props) {
                                         fontFamily: 'Roboto',
                                         fontWeight: 300
                                     }}>
-                                        {total(item.Answers)[0]}
+                                        {total(item.Answers)[0]}/{MaxPoints}
                                 </span>
                                         </div>
                                 </span>

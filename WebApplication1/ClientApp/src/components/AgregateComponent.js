@@ -44,7 +44,23 @@ class AgregateComponent extends Component {
         let newQuiz = [];
         for(let i of uniqOrder){
             let item = quiz[+i];
+            let qes = this.mixQ(item.Questions)
+            item.Questions = qes;
          newQuiz.push({...item})
+        }
+        return newQuiz;
+    }
+
+
+    mixQ = (quiz)=>{
+        let uniqOrder = new Set();
+        while (uniqOrder.size < quiz.length){
+            uniqOrder.add(this.getRandomInt(0,quiz.length))
+        }
+        let newQuiz = [];
+        for(let i of uniqOrder){
+            let item = quiz[+i];
+            newQuiz.push({...item})
         }
         return newQuiz;
     }

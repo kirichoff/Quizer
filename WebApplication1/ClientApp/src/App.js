@@ -33,7 +33,8 @@ export default () => (
       <Route path={'/Help'} component={Help} />
       <Route path={'/bg/Test/:id'} component={AgregateComponent}  />
       <Route path={'/Home/Login'} component={LogIn}/>
-      <Route path={'/bg/Admin'} component={AdminAgregateComponent}/>
+      <Route exact path={'/bg/Admin'} component={AdminAgregateComponent}/>
+      <Route path={'/bg/Admin/:id'} component={AdminAgregateComponent}/>
       <Route path={'/bg/QuizRender/:id' }component={QuizRender} />
   </div>
 

@@ -13,11 +13,21 @@ import {Toggle, ToggleOption} from "rambler-ui/Toggle";
 import userHelper from "../utils/userHelper";
 import {Input} from "rambler-ui";
 
+
+class Ques {
+    Question = "Содержание вопроса";
+    Questions = [{Text: "", right: false, Point: 0}]
+
+    constructor() {
+
+    }
+}
+
 class AdminAgregateComponent extends Component {
     constructor(props, context) {
         super(props, context);
         this.state ={
-            QuizMap:null,
+            QuizMap:[new Ques()],
             vale: "",
             request: true,
             counter: 0,
@@ -33,14 +43,25 @@ class AdminAgregateComponent extends Component {
         }).then(function (response) {
             return response.json()
         }).then(data =>
-            this.setState({QuizMap: data, request: true})).catch( e=>
+            this.setState({QuizMap: [...data.Items],maxPoint: data.MaxPoints,vale: data.Header, request: true})).catch( e=>
             console.log(e)
         );
     };
 
+
+    componentDidMount() {
+        if(this.props.match.params.id){
+            this.getData();
+        }
+    }
+
     Send = (state) =>{
         console.log(this.state)
-        const url = 'api/SampleData/AddQuiz'
+        let url = 'api/SampleData/AddQuiz'
+
+        if(this.props.match.params.id){
+            let url = 'api/SampleData/UpdateQuiz?id='+this.props.match.params.id;
+        }
         const body = new FormData;
         body.append('q',JSON.stringify(
             {
@@ -89,6 +110,7 @@ class AdminAgregateComponent extends Component {
                     :
                         return (<AdminQuizRender
                                 cl={this.Send}
+                                QuizMap={this.state.QuizMap}
                                 history={this.props.history}
                                 maxPoint={this.state.maxPoint}
                                 istest={this.state.istest}
