@@ -9,19 +9,18 @@ function MainPage(props) {
     let user = userHelper.GetUser()
 
     return (<div>
-            <Menu user={user} {...props} />
-            <div className={'bg-main'}>
+                <Menu user={user} {...props} />
+                <div className={'bg-main'}>
+                        <h1> Добро пожаловать в онлайн систему тестирования KBIP_ExamSystem.</h1>
+           
+            <Link to={'/bg/LoginBeta'}>
 
-                <Link to={'/bg/LoginBeta'}>
-                    <Button>
-                        Войти
-                    </Button>
-                </Link>
-
-                <div>Добро Пожаловать</div>
-
+                         <Button>
+                             Войти
+                         </Button>
+                      </Link>
+                </div>
             </div>
-        </div>
     );
 }
 
