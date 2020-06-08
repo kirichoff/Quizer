@@ -12,8 +12,8 @@ function Menu(props){
     let us = props.user;
         return (
             <div id="navbar">
-                <Link to={'/'} >
-                <div className={'newLogo'}>Tests</div>
+                <Link to={'/'}>
+                    <div className={'newLogo'}>Tests</div>
                 </Link>
                 <div style={{
                     display: 'flex',
@@ -22,7 +22,7 @@ function Menu(props){
                     <Link className={'LnStyle'} to={'/Help'}> Помощь </Link>
                     {us ? <Link className={'LnStyle'} to={'/bg2/TestsList'}>Список тестов </Link> : null}
                 </div>
-                <div style={{marginTop: 5}}>
+                <div style={{marginTop: 10}}>
                     <div style={{marginBottom: 5, float: 'right'}}>
                         {us ?
                             <Button onClick={() => {
@@ -31,7 +31,7 @@ function Menu(props){
                             }
                             } style={{marginLeft: 20, marginRight: 10,}}
                                     size={'small'} rounded={true}>
-                                Выйти
+                                выйти
                             </Button>
                             :
                             null

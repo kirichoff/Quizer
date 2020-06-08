@@ -6,16 +6,22 @@
     z-index: 100000;
     display: grid;
     grid-template-columns: 25% 40% 35%;
-    margin-bottom: 2%;
     top: 0;
     width: 100%;
     box-shadow: rgba(0, 0, 0, 0.13) 0 1px 20px;
     transition: all ease-in-out 0.8s;
 }
+    
+#navbar .LnStyle {
+        font-size: 200%;
+    }
+
 .LnStyle{
     color: #212121;
-    padding-top: 2vh;
     text-align: center;
+
+    font-family: 'Segoe UI Historic';
+    font-weight:600;
     text-decoration: none;
 }
 .LnStyle:hover {

@@ -82,9 +82,9 @@ import userHelper from "../../utils/userHelper";
                 <div>
                     <div style={{padding:0,fontSize: '30px'}} className="hpos header">Войдите</div>
                     <div className="some center">
-
+                        
                         <div style={{marginBottom: '5%', color: 'red'}}>
-                            {status==="false"? 'Неверное имя пользователя или пароль' : null}
+                            {(!isRegister && status==="false")? 'Неверное имя пользователя или пароль' : null}
                         </div>
                         {
                             !isRegister?

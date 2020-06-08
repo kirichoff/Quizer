@@ -19,7 +19,7 @@ function RegisterFragment(props) {
                 </>
             }
             <Toggle
-                value={type?"Ученик":"Преподователь"}
+                value={type?"Ученик":"Преподаватель"}
                 className="toggle marg2"
                 onChange={()=>setType(!type)}
                 block={true}
@@ -40,7 +40,7 @@ function RegisterFragment(props) {
                     props.onChange({Login:name,Pass_hash: password,Type: 0},adminKey)
                     }
                 }
-            />
+            />     
             <div>Пароль</div>
             <Input
                 type="password"
@@ -56,7 +56,7 @@ function RegisterFragment(props) {
                 <>
                     <div>Ключ администратора</div>
                     <Input
-                        type="text"
+                        type="password"
                         autoFocus
                         placeholder={'ключ'}
                         value={adminKey}
