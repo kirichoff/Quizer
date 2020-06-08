@@ -25,7 +25,7 @@ function RegisterFragment(props) {
                 block={true}
                 equalWidth={true}>
                 <ToggleOption value="Ученик">Ученик</ToggleOption>
-                <ToggleOption value="Преподователь">Преподователь</ToggleOption>
+                <ToggleOption value="Преподаватель">Преподаватель</ToggleOption>
             </Toggle>
             {type ? <div>№студента/отделение/№группы</div> : <div>ФИО</div> }
             <Input

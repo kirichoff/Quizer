@@ -11,7 +11,10 @@ function MainPage(props) {
     return (<div>
                 <Menu user={user} {...props} />
                 <div className={'bg-main'}>
-                        <h1> Добро пожаловать в онлайн систему тестирования KBIP_ExamSystem.</h1>
+
+            <h3>Добро пожаловать в онлайн-систему тестирования знаний</h3>
+            <p><strong></strong></p>
+            <h1><strong>KBIP_ExamSystem</strong><span><br /></span></h1>
 
             <Link to={'/bg/LoginBeta'}>
                          <Button>

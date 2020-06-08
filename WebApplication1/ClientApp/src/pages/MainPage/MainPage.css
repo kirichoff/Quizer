@@ -6,7 +6,8 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    font-family: Helvetica neue, roboto;
+    font-family: Consolas;
+    font-size: 150%;
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -18,6 +19,6 @@
 
 .h1 {
     font-weight: 300;
-    font-size: 20px;
+    font-size: 26px;
     margin: 20px;
 }

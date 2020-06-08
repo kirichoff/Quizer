@@ -19,7 +19,7 @@ import userHelper from "../../utils/userHelper";
      const [key,setKey] = useState({})
 
      let testLogin = (text) => {
-        let rge = /([0-30]+(Т|П|т|п)[0-999]+)/
+         let rge = /([0-30]+(Т|П|К|Л|Б|Э|т|п|к|л|б|э)[0-999]+)/
         return rge.test(text)
      }
      let register = () => {
