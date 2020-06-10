@@ -27,7 +27,7 @@ function RegisterFragment(props) {
                 <ToggleOption value="Ученик">Ученик</ToggleOption>
                 <ToggleOption value="Преподаватель">Преподаватель</ToggleOption>
             </Toggle>
-            {type ? <div>№студента/отделение/№группы</div> : <div>ФИО</div> }
+            {type ? <div>Фамилия-№/Отделение/Группа</div> : <div>ФИО</div> }
             <Input
                 style={{marginBottom: 5}}
                 type="email"

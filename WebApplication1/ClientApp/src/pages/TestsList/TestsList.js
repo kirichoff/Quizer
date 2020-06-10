@@ -89,24 +89,26 @@ function TestsList(props) {
                                                    </Button>
                                             </Link>
 
-                                            <Button style={{ marginLeft: 10 }} 
-                                                onClick={() => i === open ? setOpen(i) : setOpen(i)}
-                                            >
-                                                {open === i ? 'Свернуть' : 'Подробнее'}
-                                            </Button>
+                                          
+                                                    <Button style={{ marginLeft: 10 }}
+                                                        onClick={() => i === open ? setOpen(null) : setOpen(i)}
+                                                    >
+                                                        {open === i ? 'Свернуть' : 'Подробнее'}
+                                                    </Button>
                                         
-                                            {
+                                                 {
                                                     open === i ?
-                                                        item.Answers.map((k, i) =>
+                                                        item.Question.map((k, i) =>
                                                             <div style={{ display: 'flex' }} >
                                                                 <div style={{ marginRight: '40px', width: '300px' }} >
                                                                     <b>Вопрос:  </b>{k.TestItem.Question}
                                                                 </div>
-                                               
+
                                                             </div>
                                                         )
                                                         : null
                                                 }
+                                    
                                            </>
                                            :
                                            !findTest(item.Id)?
