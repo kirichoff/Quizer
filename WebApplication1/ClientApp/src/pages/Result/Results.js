@@ -4,6 +4,8 @@ import Menu from "../../components/Menu";
 import userHelper from "../../utils/userHelper";
 import {Button} from "rambler-ui";
 import getDoc from "../../utils/docxGenerator";
+import Input from "rambler-ui/Input";
+
 
 function Results(props) {
 
@@ -11,6 +13,8 @@ function Results(props) {
     let [open, setOpen] = useState(null)
     let [docx, setDocx] = useState(null)
     let [MaxPoints, setMaxPoints] = useState(null)
+    const [search, setSearch] = useState('');
+    const [filted, setFilted] = useState([]);
     useEffect(() => {
         getResults()
     }, [])
@@ -22,6 +26,7 @@ function Results(props) {
         let test = await (await fetch('api/SampleData/GetQuizById?id='+loc)).json()
         data = data || []
         setResults(data)
+        setFilted(data)
         if(data.length) {
             setMaxPoints(test.MaxPoints)
             getDoc({
@@ -71,6 +76,24 @@ function Results(props) {
             <Menu user={user} {...props} />
             <div style={{marginLeft: '15%'}}>
                 <h1 className={'section'}>Результаты</h1>
+
+    <Input
+style={{ width: '83%', marginBottom: 5}}
+value={search}
+placeholder={'Поиск'}
+onChange={(e) => {
+    if (e.target.value != '') {
+        setFilted(
+            results.filter(it => it.UserTest.Login.toLowerCase().indexOf(e.target.value.toLowerCase()) > -1
+            )
+        )
+    } else {
+        setFilted(results)
+    }
+    setSearch(e.target.value)
+}
+}
+/>
                 {
                     results && results.length > 0 ?
                         <Button style={{marginLeft: 10}}
@@ -88,7 +111,7 @@ function Results(props) {
                         :
                         null
                 }
-                {results.map((item, i) => {
+                {filted.map((item, i) => {
                     return (
                         <div key={i}>
                             <div className={'repContainer'}>
@@ -122,11 +145,12 @@ function Results(props) {
                                 open === i ?
                                     item.Answers.map((k, i) =>
                                         <div style={{display: 'flex'}} >
-                                            <div style={{marginRight: '40px',width: '300px'}} >
+                                            <div style={{ marginRight: '40px', width: '72%', marginBottom: 15}} >
                                                 <b>Вопрос:  </b>{k.TestItem.Question}
                                             </div>
-                                            <div>
-                                                <b>Баллов:  </b> {forQuestion(k.Answer, k.TestItem.Questions)}
+                                        
+                                            <div style={{ marginBottom: 15}}>
+                                                <b>Баллов Набрано:  </b> {forQuestion(k.Answer, k.TestItem.Questions)}
                                             </div>
                                         </div>
                                     )

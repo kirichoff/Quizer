@@ -3,21 +3,27 @@ import './TestsList.css'
 import {Button} from 'rambler-ui';
 import Menu from "../../components/Menu";
 import userHelper from "../../utils/userHelper";
-import {Link} from "react-router-dom";
+import {  Link  } from "react-router-dom";
+import Input from "rambler-ui/Input";
 
 function TestsList(props) {
 
     let user = userHelper.GetUser()
-    let [open, setOpen] = useState(null)
     const [reports, setReports] = useState([]);
-    const [results, setResults] = useState([])
+    const [results, setResults] = useState([]);
+    const [search, setSearch] = useState('');
+    const [filted, setFilted] = useState([]);
+    const [open, setOpen] = useState(null);
+
+
     let getQuiz = async () => {
         if (user) {
             const url = `api/SampleData/GetQuiz${user.Type === 2 ? 'ByUser?id=' + user.Id : ''}`;
             let response = await fetch(url);
             let json = await response.json()
             setReports(json || []);
-        }
+            setFilted(json || []);
+        } 
     }
 
     let findTest = (id) => {
@@ -45,7 +51,25 @@ function TestsList(props) {
             <Menu user={user} {...props} />
             <div style={{marginLeft: '15%'}}>
                 <h1 className={'section'}>Ваши тесты</h1>
-                {
+
+<Input
+style={{ width: '83%', marginBottom: 5}}
+value={search}
+placeholder={'Поиск'}
+onChange={(e) => {
+    if (e.target.value != '') {
+        setFilted(
+            reports.filter(it => it.Header.toLowerCase().indexOf(e.target.value.toLowerCase()) > -1
+            )
+        )
+    } else {
+        setFilted(reports)
+    }
+    setSearch(e.target.value)
+}
+}
+/>
+    {
                     user && user.Type === 2 ?
                         <Link to={'/bg/Admin/'}>
                             <Button
@@ -60,12 +84,17 @@ function TestsList(props) {
                         null
                 }
                 {
-                    reports.map((item, i) =>
-                        <div key={i} className={'repContainer'}>
-                            <span className={'repText'}>{item.Header}</span>
-                            <span>Cоздано:{item.UserAccount.Login}</span>
-                            <span>Максимум баллов: {item.MaxPoints}</span>
-                            <span>Вопросов: </span>
+                    filted.map((item, i) =>
+                        <div key={i}>
+                        <div  className={'repContainer'}>
+                            <span style={{ width: 400 }} className={'repText'}>
+                                <div>{item.Header}
+                                </div>
+                                <div style={{ fontSize: 14 }}>Cоздано:{item.UserAccount.Login}</div>
+                            </span>
+
+                            <span style={{width: 180}}>Максимум баллов: {item.MaxPoints}</span>
+                            <span style={{width: 150}}>Вопросов: {item.Items.length} </span>
                             <span className={'repButton'}>
                                    {
                                        user.Type === 2 ?
@@ -87,29 +116,15 @@ function TestsList(props) {
                                                    <Button style={{marginLeft: 10}}>
                                                        <span style={{fontSize: '10px'}}>Изменить</span>
                                                    </Button>
-                                            </Link>
+                                                 </Link>
 
                                           
                                                     <Button style={{ marginLeft: 10 }}
                                                         onClick={() => i === open ? setOpen(null) : setOpen(i)}
                                                     >
                                                         {open === i ? 'Свернуть' : 'Подробнее'}
-                                                    </Button>
-                                        
-                                                 {
-                                                    open === i ?
-                                                        item.Question.map((k, i) =>
-                                                            <div style={{ display: 'flex' }} >
-                                                                <div style={{ marginRight: '40px', width: '300px' }} >
-                                                                    <b>Вопрос:  </b>{k.TestItem.Question}
-                                                                </div>
-
-                                                            </div>
-                                                        )
-                                                        : null
-                                                }
-                                    
-                                           </>
+                                                    </Button> 
+                                            </>
                                            :
                                            !findTest(item.Id)?
                                                <Link to={'/bg/Test/' + item.Id}>
@@ -126,6 +141,33 @@ function TestsList(props) {
 
                                    }
                             </span>
+
+
+                            </div>
+{
+    open === i ?
+    item.Items.map((k, i) =>
+<div key= {i} style={{ display: 'flex' }} >
+<div style={{ marginRight: '40px', width: '72%',marginBottom: 15 }} >
+<b>Вопрос:  </b>{k.Question}
+    </div>
+            <div>
+            <b>Ценность:  </b>
+                {(() =>
+                                {
+                    console.log(k)
+                    let sum = 0;
+                    for (let it of k.Questions) {
+                        sum += it.Point;
+                    }
+                    return sum;
+})()
+}
+    </div>
+    </div>
+)
+: null
+}
                         </div>
                     )
                 }
