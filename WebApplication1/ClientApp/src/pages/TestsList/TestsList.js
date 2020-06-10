@@ -8,6 +8,7 @@ import {Link} from "react-router-dom";
 function TestsList(props) {
 
     let user = userHelper.GetUser()
+    let [open, setOpen] = useState(null)
     const [reports, setReports] = useState([]);
     const [results, setResults] = useState([])
     let getQuiz = async () => {
@@ -43,7 +44,7 @@ function TestsList(props) {
         <div>
             <Menu user={user} {...props} />
             <div style={{marginLeft: '15%'}}>
-                <h1 className={'section'}>Ваши Тесты</h1>
+                <h1 className={'section'}>Ваши тесты</h1>
                 {
                     user && user.Type === 2 ?
                         <Link to={'/bg/Admin/'}>
@@ -62,8 +63,9 @@ function TestsList(props) {
                     reports.map((item, i) =>
                         <div key={i} className={'repContainer'}>
                             <span className={'repText'}>{item.Header}</span>
-                            <span> Cоздано: {item.UserAccount.Login}</span>
-                            <span>Максимальное количество баллов: {item.MaxPoints}</span>
+                            <span>Cоздано:{item.UserAccount.Login}</span>
+                            <span>Максимум баллов: {item.MaxPoints}</span>
+                            <span>Вопросов: </span>
                             <span className={'repButton'}>
                                    {
                                        user.Type === 2 ?
@@ -85,7 +87,26 @@ function TestsList(props) {
                                                    <Button style={{marginLeft: 10}}>
                                                        <span style={{fontSize: '10px'}}>Изменить</span>
                                                    </Button>
-                                               </Link>
+                                            </Link>
+
+                                            <Button style={{ marginLeft: 10 }} 
+                                                onClick={() => i === open ? setOpen(i) : setOpen(i)}
+                                            >
+                                                {open === i ? 'Свернуть' : 'Подробнее'}
+                                            </Button>
+                                        
+                                            {
+                                                    open === i ?
+                                                        item.Answers.map((k, i) =>
+                                                            <div style={{ display: 'flex' }} >
+                                                                <div style={{ marginRight: '40px', width: '300px' }} >
+                                                                    <b>Вопрос:  </b>{k.TestItem.Question}
+                                                                </div>
+                                               
+                                                            </div>
+                                                        )
+                                                        : null
+                                                }
                                            </>
                                            :
                                            !findTest(item.Id)?

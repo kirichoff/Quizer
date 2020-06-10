@@ -123,10 +123,10 @@ function Results(props) {
                                     item.Answers.map((k, i) =>
                                         <div style={{display: 'flex'}} >
                                             <div style={{marginRight: '40px',width: '300px'}} >
-                                                <b>Вопрос:</b>{k.TestItem.Question}
+                                                <b>Вопрос:  </b>{k.TestItem.Question}
                                             </div>
                                             <div>
-                                                <b>Баллов:</b> {forQuestion(k.Answer, k.TestItem.Questions)}
+                                                <b>Баллов:  </b> {forQuestion(k.Answer, k.TestItem.Questions)}
                                             </div>
                                         </div>
                                     )

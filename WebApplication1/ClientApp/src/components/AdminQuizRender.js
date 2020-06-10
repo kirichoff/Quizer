@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 import * as icons from "rambler-ui/icons/forms";
 import Input from "rambler-ui/Input";
 import Button from "rambler-ui/Button";
+import { Textarea } from 'rambler-ui';
 
 const ChevronLeftIcon = icons['ChevronLeftIcon'];
 const ChevronRightIcon = icons['ChevronRightIcon'];
@@ -131,7 +132,7 @@ class AdminQuizRender extends Component {
             <div className={'TestPageBody'}>
                 <div className={"mainRend"}>
                     <div className="hs">
-                        <input
+                        <textarea
                             className={'HeaderInput'}
                             type={'text'}
                             value={this.state.QuizMap[this.state.counter].Question}
