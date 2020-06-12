@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
-.TestPageBody{
+.TestPageBody {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#130e87+19,ff1396+100 */
-    background: #130e87; /* Old browsers */
-    background: -webkit-linear-gradient(left, #0022cb 0%,#3fd3d8 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#130e87', endColorstr='#ff1396',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    background: #28343b;
+    background: -moz-linear-gradient(left, hsl(202,19%,20%) 0%, hsl(208,8%,55%) 64%, hsl(215,15%,75%) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#28343b', endColorstr='#b5bdc8',GradientType=1 );
     width: 100%;
     height: 100%;
     position: absolute;

@@ -122,7 +122,7 @@ class QuizRender extends Component {
                                         console.log(answer)
                                          return(   <div className={'Pointstyle'}
                                                  style={{
-                                                     background: answer[i] ? "#96ff63" : ""
+                                                     background: answer[i] ? "#6693ea" : ""
                                                  }}
                                                  data-index={i}
                                                  key={i}
@@ -156,13 +156,13 @@ class QuizRender extends Component {
                             <div style={{marginTop: '12%', width: '100%', height: '50%'}}
                                  className={'Header AlignText'}>
                                 <ChevronLeftIcon style={{marginRight: '10%'}} onClick={this.dec} className={'strelka'}
-                                                 color={'#0022CB'}
+                                                 color={'#63676a'}
                                                  size={'20%'}/>
                                 <span> {this.state.counter}/{this.props.QuizMap.length} </span>
                                 <ChevronRightIcon
                                     style={{marginLeft: '10%'}}
                                     onClick={this.inc}
-                                    className={'strelka'} color={'#0022CB'} size={'20%'}/>
+                                    className={'strelka'} color={'#63676a'} size={'20%'}/>
                             </div>
                             :
                             null

@@ -13,14 +13,14 @@
 }
     
 #navbar .LnStyle {
-        font-size: 200%;
+        font-size: 250%;
     }
 
 .LnStyle{
     color: #212121;
     text-align: center;
 
-    font-family: 'Segoe UI Historic';
+    font-family: Consolas;
     font-weight:600;
     text-decoration: none;
 }
@@ -43,8 +43,9 @@
         grid-template-columns: 10% 65% 25%;
     }
 }
-.newLogo{
+.newLogo {
     font-family: 'Monoton', cursive;
     font-size: 40px;
     margin-left: 10px;
+    color: #260303;
 }

@@ -2,5 +2,14 @@
     /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */
     body {
         padding-top: 50px;
+
     }
+}
+
+.rui-Button-type-primary {
+    background: #1a1a1c !important;
+}
+
+.rui-Button-button {
+    font-family: 'Times New Roman' !important;
 }

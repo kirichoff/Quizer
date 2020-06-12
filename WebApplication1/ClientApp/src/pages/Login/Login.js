@@ -111,7 +111,7 @@ import userHelper from "../../utils/userHelper";
                                         className={'LnStyle'}
                                         onClick={()=>setRegister(true)}
                                     >
-                                        Регистрация
+                                        Зарегистрироваться
                                     </div>
                                 </>
                                 :

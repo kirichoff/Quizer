@@ -119,6 +119,14 @@ namespace WebApplication1.Controllers
                 db.GetTestResult(id)
             );
         }
+
+
+        [HttpGet("[action]")]
+        public void DeleteTestResults(string id)
+        {
+            db.DeleteTestResult(id);
+        }
+
         [HttpGet("[action]")]
         public string GetTestResultByUser(string id)
         {

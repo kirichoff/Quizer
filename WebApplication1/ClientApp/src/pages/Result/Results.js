@@ -33,7 +33,7 @@ function Results(props) {
                 title: `"${data[0].QuizHeader}"`,
                 info: {user: test.UserAccount.Login,count: test.Items.length, points: test.MaxPoints},
                 description: '',
-                headers: ['Учащийся', 'Количество Балов','Количество правильных ответов'],
+                headers: ['Учащийся', 'Количество Баллов','Количество правильных ответов'],
                 body: [...body(data)]
             }).then(r => setDocx(r))
         }
@@ -77,23 +77,23 @@ function Results(props) {
             <div style={{marginLeft: '15%'}}>
                 <h1 className={'section'}>Результаты</h1>
 
-    <Input
-style={{ width: '83%', marginBottom: 5}}
-value={search}
-placeholder={'Поиск'}
-onChange={(e) => {
-    if (e.target.value != '') {
-        setFilted(
-            results.filter(it => it.UserTest.Login.toLowerCase().indexOf(e.target.value.toLowerCase()) > -1
-            )
-        )
-    } else {
-        setFilted(results)
-    }
-    setSearch(e.target.value)
-}
-}
-/>
+                    <Input
+                style={{ width: '83%', marginBottom: 5}}
+                value={search}
+                placeholder={'Поиск'}
+                onChange={(e) => {
+                    if (e.target.value != '') {
+                        setFilted(
+                            results.filter(it => it.UserTest.Login.toLowerCase().indexOf(e.target.value.toLowerCase()) > -1
+                            )
+                        )
+                    } else {
+                        setFilted(results)
+                    }
+                    setSearch(e.target.value)
+                }
+                }
+                />
                 {
                     results && results.length > 0 ?
                         <Button style={{marginLeft: 10}}
@@ -120,7 +120,8 @@ onChange={(e) => {
                                         Ученик:&nbsp;
                                     <span style={{
                                         fontFamily: 'Roboto',
-                                        fontWeight: 300
+                                            fontWeight: 300,
+                                            width: 1020
                                     }}>
                                         {item.UserTest.Login}
                                 </span>
@@ -129,12 +130,32 @@ onChange={(e) => {
                                         Всего баллов:&nbsp;
                                     <span style={{
                                         fontFamily: 'Roboto',
-                                        fontWeight: 300
+                                        fontWeight: 300,
+                                        width: 1020
                                     }}>
                                         {total(item.Answers)[0]}/{MaxPoints}
                                 </span>
                                         </div>
                                 </span>
+
+
+
+                                <span className={'repButton'}>                               
+                                    {                                       
+                                <Button onClick={() => {
+                                    const url = `api/SampleData/DeleteTestResults?id=${item.Id}`;
+                                    fetch(url, { method: "GET" }).then(() => {
+                                        getResults()
+                                    });
+                                            }}>
+                                     
+                                    <span style={{ fontSize: '10px' }}>удалить результаты</span>
+                                        </Button>
+                                    }
+                                 </span>
+
+
+
                                 <Button type={'outline'}
                                         onClick={() => i === open ? setOpen(null) : setOpen(i)}
                                 >

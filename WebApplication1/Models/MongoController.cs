@@ -226,6 +226,11 @@ namespace WebApplication1.Models
             return true;
         }
 
+        public void DeleteTestResult(string id)
+        {
+            TestsResult.DeleteOneAsync(k => k.Id == id);
+        }
+
         // обновление документа
         public async Task Update(User p)
         {

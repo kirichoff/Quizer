@@ -52,24 +52,24 @@ function TestsList(props) {
             <div style={{marginLeft: '15%'}}>
                 <h1 className={'section'}>Ваши тесты</h1>
 
-<Input
-style={{ width: '83%', marginBottom: 5}}
-value={search}
-placeholder={'Поиск'}
-onChange={(e) => {
-    if (e.target.value != '') {
-        setFilted(
-            reports.filter(it => it.Header.toLowerCase().indexOf(e.target.value.toLowerCase()) > -1
-            )
-        )
-    } else {
-        setFilted(reports)
-    }
-    setSearch(e.target.value)
-}
-}
-/>
-    {
+            <Input
+            style={{ width: '83%', marginBottom: 5}}
+            value={search}
+            placeholder={'Поиск'}
+            onChange={(e) => {
+                if (e.target.value != '') {
+                    setFilted(
+                        reports.filter(it => it.Header.toLowerCase().indexOf(e.target.value.toLowerCase()) > -1
+                        )
+                    )
+                } else {
+                    setFilted(reports)
+                }
+                setSearch(e.target.value)
+            }
+            }
+            />
+                {
                     user && user.Type === 2 ?
                         <Link to={'/bg/Admin/'}>
                             <Button
@@ -144,36 +144,36 @@ onChange={(e) => {
 
 
                             </div>
-{
-    open === i ?
-    item.Items.map((k, i) =>
-<div key= {i} style={{ display: 'flex' }} >
-<div style={{ marginRight: '40px', width: '72%',marginBottom: 15 }} >
-<b>Вопрос:  </b>{k.Question}
-    </div>
-            <div>
-            <b>Ценность:  </b>
-                {(() =>
-                                {
-                    console.log(k)
-                    let sum = 0;
-                    for (let it of k.Questions) {
-                        sum += it.Point;
+                    {
+                        open === i ?
+                        item.Items.map((k, i) =>
+                    <div key= {i} style={{ display: 'flex' }} >
+                    <div style={{ marginRight: '40px', width: '72%',marginBottom: 15 }} >
+                    <b>Вопрос:  </b>{k.Question}
+                        </div>
+                                <div>
+                                <b>Ценность:  </b>
+                                    {(() =>
+                                                    {
+                                        console.log(k)
+                                        let sum = 0;
+                                        for (let it of k.Questions) {
+                                            sum += it.Point;
+                                        }
+                                        return sum;
+                    })()
                     }
-                    return sum;
-})()
-}
-    </div>
-    </div>
-)
-: null
-}
+                        </div>
                         </div>
                     )
-                }
-            </div>
-        </div>
-    );
+                    : null
+                    }
+                                            </div>
+                                        )
+                                    }
+                                </div>
+                            </div>
+                        );
 }
 
 export default TestsList;
