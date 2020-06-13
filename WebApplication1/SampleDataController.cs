@@ -73,8 +73,7 @@ namespace WebApplication1.Controllers
         [HttpPost("[action]")]
         public async void UpdateQuiz(string id,string q)
         {
-                       db.UpdateQuiz(
-                id,JsonConvert.DeserializeObject<Quiz>(q)
+                       db.UpdateQuiz(id,JsonConvert.DeserializeObject<Quiz>(q)
             );
         }
 

@@ -120,11 +120,7 @@ class AdminQuizRender extends Component {
     }
 
 
-    deleteVariant = (count,id) => {
-
-
-
-    }
+    deleteVariant = (count,id) => { }
 
     render() {
         console.log(this.props)
@@ -247,7 +243,7 @@ class AdminQuizRender extends Component {
                                 <div style={{marginTop: '12%', width: '100%', height: '50%'}}
                                      className={'Header AlignText'}>
                                     <ChevronLeftIcon style={{marginRight: '10%'}} onClick={this.dec} className={'strelka'}
-                                                     color={'#0022CB'}
+                                                     color={'#0d0d0d'}
                                                      size={'20%'}/>
                                     <span> {this.state.counter + 1}/{this.state.QuizMap.length} </span>
                                     {
@@ -255,14 +251,14 @@ class AdminQuizRender extends Component {
                                             <ChevronRightIcon
                                                 style={{marginLeft: '10%'}}
                                                 onClick={this.inc}
-                                                className={'strelka'} color={'#0022CB'} size={'20%'}
+                                                className={'strelka'} color={'#0d0d0d'} size={'20%'}
                                             />
                                             :
                                             <AddIcon
                                                 style={{marginLeft: '10%'}}
                                                 onClick={this.addQu}
                                                 className={'strelka'}
-                                                color={'#0022CB'}
+                                                color={'#0d0d0d'}
                                                 size={'20%'}
                                             />
                                     }

@@ -23,6 +23,9 @@ function MainPage(props) {
             {!user ?
                 <div className={'home-container'} >
                     <Link style={{ marginRight: '30px' }} to={'/bg/LoginBeta'}>
+                        <div className={'space'}>
+
+                        </div>
                         <div>
                 <Button>
                                 Войти

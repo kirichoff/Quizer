@@ -94,12 +94,12 @@ class AdminAgregateComponent extends Component {
                                 value={this.state.vale}
                                 onChange={event => this.setState({vale:event.target.value})}
                             />
-                           <div style={{fontSize:'15px'}}>Максимальное количество балов</div>
+                           <div style={{fontSize:'15px'}}>Максимальное количество баллов</div>
                             <Input
                                 value={this.state.maxPoint}
                                 onChange={(e)=>this.setState({maxPoint:  Math.abs(+e.target.value)})}
                                 style={{
-                                    marginLeft: '32%',
+                                    marginLeft: '39%',
                                     width:'250px'
                                 }}
                                 type={'number'}

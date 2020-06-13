@@ -30,3 +30,7 @@ h1,h3{
     background-size: cover;
     background-image: url('/logo-kbp.png')
 }
+
+.space{
+    margin-top:30px;
+}
