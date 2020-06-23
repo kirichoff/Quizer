@@ -122,7 +122,7 @@ import { Document, Packer, Paragraph, TextRun,Table, TableCell, TableRow,Underli
                         new TextRun("«Колледж бизнеса и права»")
                     ]
                 }),
-                ...Header("Отчет о результатах тестирования по работе: "+title),
+                ...Header("Отчет по результатам тестирования по работе: "+title),
                 new Paragraph(''),
                 new Paragraph(''),
                 new Paragraph(''),

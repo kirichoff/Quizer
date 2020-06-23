@@ -87,7 +87,7 @@ function TestsList(props) {
                     filted.map((item, i) =>
                         <div key={i}>
                         <div  className={'repContainer'}>
-                            <span style={{ width: 400 }} className={'repText'}>
+                                <span style={{ width:'400px!important' }} className={'repText rep2'}>
                                 <div>{item.Header}
                                 </div>
                                 <div style={{ fontSize: 14 }}>Cоздано:{item.UserAccount.Login}</div>

@@ -33,7 +33,7 @@ function Results(props) {
                 title: `"${data[0].QuizHeader}"`,
                 info: {user: test.UserAccount.Login,count: test.Items.length, points: test.MaxPoints},
                 description: '',
-                headers: ['Учащийся', 'Количество Баллов','Количество правильных ответов'],
+                headers: ['Учащийся', 'Количество баллов','Количество правильных ответов'],
                 body: [...body(data)]
             }).then(r => setDocx(r))
         }
@@ -47,12 +47,9 @@ function Results(props) {
                 sum += forQuestion(item.Answer, item.TestItem.Questions)
                 count++;
             }
-
         }
         return [sum,count];
     }
-
-
     let forQuestion = (arr1, arr2) => {
         let sum = 0
         for (let i = 0; i < arr1.length; i++) {
@@ -99,7 +96,7 @@ function Results(props) {
                         <Button style={{marginLeft: 10}}
                                 container={
                                     <a
-                                        download={'otchet.docx'}
+                                        download={'Результаты_Отчет.docx'}
                                         href={"data:application/msword;base64," + docx
                                         }
                                     >
@@ -125,17 +122,27 @@ function Results(props) {
                                     }}>
                                         {item.UserTest.Login}
                                 </span>
-                                        </div>
+                                    </div>  
                                     <div>
+                                        <div style={{display: 'inline-block'}}>
                                         Всего баллов:&nbsp;
                                     <span style={{
                                         fontFamily: 'Roboto',
-                                        fontWeight: 300,
-                                        width: 1020
+                                        fontWeight: 300,                                        
                                     }}>
                                         {total(item.Answers)[0]}/{MaxPoints}
                                 </span>
+                                    </div>
+                                        <div style={{ marginLeft: '20px', display: 'inline-block' }}>
+                                        Итого:&nbsp;
+                                    <span style={{
+                                            fontFamily: 'Roboto',
+                                            fontWeight: 300,                                            
+                                        }}>
+                                        {Math.round(+total(item.Answers)[0] / +MaxPoints * 10)}/10
+                                        </span>
                                         </div>
+                                    </div>
                                 </span>
 
 
@@ -152,15 +159,15 @@ function Results(props) {
                                     <span style={{ fontSize: '10px' }}>удалить результаты</span>
                                         </Button>
                                     }
-                                 </span>
 
 
-
-                                <Button type={'outline'}
+                                    <Button type={'outline'}
                                         onClick={() => i === open ? setOpen(null) : setOpen(i)}
-                                >
-                                    {open === i ? 'Свернуть' : 'Развернуть'}
-                                </Button>
+                                    >
+                                        {open === i ? 'Свернуть' : 'Развернуть'}
+                                    </Button>
+
+                                 </span>                           
                             </div>
                             {
                                 open === i ?
